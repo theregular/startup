@@ -28,6 +28,8 @@ But this one really takes the cake [CLICK HERE](https://www.youtube.com/watch?v=
 Git and github are pretty cool and they'll have your back when no one else will tbh. Also it's really awesome that you don't have to worry about a file getting corrupted on your computer and losing tons of work because if that does happen you have a backup stored on Github.
 ## Elevator Pitch Time
 
+Have you ever wondered, why is that some of the most famous people are the most corrupt? Why are some of the people who have the most power the most diabolical? Why do we award those that find themselves in the position with more fame and attention when some one else could be in their position and be doing so much more good? That is why Clout was made! The first social media where your fame doesn't come from your follower count, but from your ranking among your peers. Theoretically, the better the person you are, the higher ranking you will be on Clout. Clout allows for an overall rating (out of 5), a view of where you rank among those in your local community, country, and even the world, as well as the ability to leave reviews on people and the kind of person they are. This could be the next revolutionary step in social media where the best kinds of people can finally get the attention the deserve! Clout, where do you stand?
+
 ### Sign Up Page
 ![Sign Up Page](https://github.com/theregular/startup/blob/main/clout%20signup.png?raw=true)
 ### Login Page
