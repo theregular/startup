@@ -30,3 +30,5 @@ Git and github are pretty cool and they'll have your back when no one else will 
 
 
 ![Sign Up Page](https://github.com/theregular/startup/blob/main/clout%20signup.png?raw=true)
+![Login Page](https://github.com/theregular/startup/blob/main/clout%20login.png)
+![Profile Page](https://github.com/theregular/startup/blob/main/clout%20profile.png)
