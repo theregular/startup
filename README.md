@@ -30,5 +30,10 @@ Git and github are pretty cool and they'll have your back when no one else will 
 
 Have you ever wondered, why is it that some of the most famous people are the most corrupt? Why are the people who have the most power some of the most diabolical? Why do we award those that find themselves in these positions with more fame and attention when someone else could be in their position and be doing so much more good? That is why Clout was made! The first social media where your fame doesn't come from your follower count, but from how you're rated by your peers. Theoretically, the better the person you are, the higher ranking you will be! Clout allows for an overall rating (out of 5), a view of where you rank among those in your local community, country, and even the world, as well as the ability to leave reviews on people and the kind of person they are. This could be the next revolutionary step in social media, where the best kinds of people can finally get the attention the deserve! Clout, where do you stand?
 
-### App Sketchups Page
+### App Sketchups
 <img src="clout%20signup.png" alt="signup" width="200"/> <img src="clout%20login.png" alt="login" width="200"/> <img src="clout%20profile.png" alt="pf" width="200"/>
+
+### Key Features
+* user rating (out of 5)
+* local, country, and world ranking
+* profile can be reviewed by your peers
