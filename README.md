@@ -35,5 +35,7 @@ Have you ever wondered, why is it that some of the most famous people are the mo
 <img src="clout%20signup.png" alt="signup" width="200"/>
 ### Login Page
 ![Login Page](https://github.com/theregular/startup/blob/main/clout%20login.png?raw=true)
+<img src="clout%20login.png" alt="login" width="200"/>
 ### Profile Page
 ![Profile Page](https://github.com/theregular/startup/blob/main/clout%20profile.png?raw=true)
+<img src="clout%20profile.png" alt="pf" width="200"/>
