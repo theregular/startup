@@ -9,7 +9,7 @@ we're going to make **MILLIONS**, no wait, dare I say **BILLIONS**
 ```
 void BestAppEver( ) {
 cout << "IT'S CODE TIME BABY!" << endl;
-return awesomeness;
+return awesomeness && coolness;
 }
 ```
 
