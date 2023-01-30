@@ -45,4 +45,4 @@ http://3.137.12.11/
 ssh -i [key pair file] ubuntu@[ip address]
 
 **Example**
-ssh -i ~/keys/production.pem ubuntu@53.104.2.123
+ssh -i ~/Documents/CS260_STARTUP/CS 260/keys/clout.pem ubuntu@3.137.12.11
