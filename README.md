@@ -37,3 +37,12 @@ Have you ever wondered, why is it that some of the most famous people are the mo
 * user rating (out of 5)
 * local, country, and world ranking
 * profile can be reviewed by your peers
+
+### Public IP
+http://3.137.12.11/
+
+#### how to ssh in
+ssh -i [key pair file] ubuntu@[ip address]
+
+**Example**
+ssh -i ~/keys/production.pem ubuntu@53.104.2.123
