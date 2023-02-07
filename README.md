@@ -38,11 +38,15 @@ Have you ever wondered, why is it that some of the most famous people are the mo
 * local, country, and world ranking
 * profile can be reviewed by your peers
 
-### Public IP
-http://3.137.12.11/
+### site
+https://cloutplatform.com/
 
 #### how to ssh in
 ssh -i [key pair file] ubuntu@[ip address]
 
 **Example**
 ssh -i "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" ubuntu@3.137.12.11
+
+## Post Simon Reflections
+HTML is really cool and very verasatile, I'm really really excited to use it more especially as it applies to making our start up project.
+I'm thinking about how awesome it will be for me to use the buttons and text boxes to make the login pages for the clout pages. Now my next big task will be thinking about how to design the actual profile pages where the rating is displayed.
