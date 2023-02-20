@@ -57,7 +57,7 @@ ssh -i "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" ubuntu@3.137.12.11
 ```
 **Example**
 ```
-./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon
+./deployFiles.sh -k "C:\Users\Ben Kartchner\Documents\CS260_STARTUP\CS 260\keys\clout.pem" -h cloutplatform.com -s simon
 ```
 
 ## Post Simon HTML Reflections
