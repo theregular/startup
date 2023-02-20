@@ -42,10 +42,23 @@ Have you ever wondered, why is it that some of the most famous people are the mo
 https://cloutplatform.com/
 
 #### how to ssh in
+```
 ssh -i [key pair file] ubuntu@[ip address]
+```
 
 **Example**
+```
 ssh -i "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" ubuntu@3.137.12.11
+```
+
+#### how to deploy to website
+```
+./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon
+```
+**Example**
+```
+./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon
+```
 
 ## Post Simon HTML Reflections
 HTML is really cool and very verasatile, I'm really really excited to use it more especially as it applies to making our start up project.
