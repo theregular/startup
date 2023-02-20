@@ -47,6 +47,9 @@ ssh -i [key pair file] ubuntu@[ip address]
 **Example**
 ssh -i "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" ubuntu@3.137.12.11
 
-## Post Simon Reflections
+## Post Simon HTML Reflections
 HTML is really cool and very verasatile, I'm really really excited to use it more especially as it applies to making our start up project.
 I'm thinking about how awesome it will be for me to use the buttons and text boxes to make the login pages for the clout pages. Now my next big task will be thinking about how to design the actual profile pages where the rating is displayed.
+
+## Post Simon CSS Reflections
+Looking back, me thinking that HTML was cool was a pretty chump move because CSS is even better. I feel like HTML is just a way to set up the skeleton of your work, and CSS is like what makes it actually shine. This will definitely come in handy as I design the clout app and make it look good. Now I know with confidence that I can make it look exactly how I want it to with the aid of Bootstrap and CSS.
