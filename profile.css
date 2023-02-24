@@ -2,57 +2,149 @@
     font-family: sans-serif;
   }
   header {
-    text-align: center;
+    margin-right: 50px;
+    text-align: right;
+  }
+  header a {
+    text-decoration: none;
   }
   .clout {
     font-size: 50px;
     padding: 10px;
-    margin: auto;
     font-family: Russo One, sans-serif;
     color: #CC2936;
     letter-spacing: 0.1em;
   }
+  /*
   .slogan {
     margin: auto;
     font-family: Roboto, sans-serif;
     letter-spacing: 0.05em;
   }
-  .login {
-    width: 360px;
-    padding: 30px 0 0;
-    margin: auto;
+  */
+
+  .pfp-top {
+    display: grid;
+    align-items: center;
+    margin-bottom: 100px;
   }
-  form {
-    position: static;
-    background: #FFFFFF;
-    margin: 0px 0px 0px;
-    max-width: 360;
-    padding: 40px;
-    text-align: center;
-    
-    animation: appear 2s;
+  .pfp-pic {
+      margin-left: 50px;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      object-position: 5%;
+      border-radius: 50%;
+      border-color: #CC2936;
+      border-width: 10px;
+      border-style: solid;
+      
   }
-  form input {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-    border-radius: 25px;
+  .pfp-userinfo {
+    margin-top: 100px;
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+  }
+  .name {
+    margin: 0;
+    font-size: 50px;
+  }
+  .username {
+    margin: 0;
+    font-size: 20px;
+    color: gray;
+  }
+
+  .pfp-body {
+    display: grid;
+    position: fixed;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(400px, 1fr));
+    grid-auto-rows: 5vw;
+    grid-auto-columns: 200px;
+    grid-gap: 10vw;
+    width: 75vw;
+    height: 200px;
+    left: 0;
+    right: 0; 
+    padding: 10px;
+    grid-auto-flow: dense;
+    margin: 50px;
+  }
+
+  .pfp-body h1 {
+    font-size: 50px;
+    color:#CC2936;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center; 
+  }
+
+  .widget{
+    padding: 2vh;
+    width: 40vw;
+    max-width: 500px;
+    height: 40vw;
+    max-height: 500px;
+    border-style:solid;
+    border-color: #CC2936;
+    border-width: 10px;
+    border-radius: 10%;
+    margin: 0, 10vh, 10vh;
+
+  }
+
+  .rating {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
-  form button {
-    font-family: "Roboto", sans-serif;
-    background: #CC2936;
-    width: 47%;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    padding: 0.3em;
     cursor: pointer;
-    border-radius: 25px;
+    width: 60px;
+    height: 60px;
+    position:relative;
+  }
+  
+  .rating label:before {
+    content: "\f10c";
+    font-family: FontAwesome;
+    position: relative;
+    top: 0;
+    left: 0;
+    color: #d13e4a;
+    font-size: 60px;
+  }
+  
+  .rating input:checked ~ label:before {
+    content: "\f111";;
+    color: #CC2936;
+    
+  }
+
+  .rating input:checked ~ label:hover:before {
+    content: "\f111";;
+    color: #d13e4a;
+    
+  }
+
+  .rating label:hover ~ label:before {
+    content: "\f111";
+    color: #d13e4a;
+  }
+  
+  .rating label:hover:before {
+    content: "\f111";
+    color: #d13e4a;
   }

@@ -1,16 +1,54 @@
-<html>
-  <link rel="stylesheet" href="profile.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo+One">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="profile.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"></link>
+  </head>
   <header>
-    <h1 class = "clout">CLOUT</h1>
-    <h6 class = "slogan">where do you stand?</h6>
+    <a href="login.html"><h1 class = "clout">CLOUT</h1></a>
+    <!-- <h6 class = "slogan">where do you stand?</h6> -->
   </header>
   <body>
-  <div class ="profile">
-    <h1>RATING</h1>
-    <h1>RANK</h1>
-    <h1>REVIEWS</h1>
+    <div class ="pfp-top">
+      <img class="pfp-pic" src="cool carl.jpg" alt="pfp">
+      <div class ="pfp-userinfo">
+        <h2 class="name">Carl Wheezer</h2>
+        <p class="username">@coolcarl420</p>
+      </div>
+    </div>
+  <div class="pfp-body">
+    <div class="widget">
+      <div class="rating-body">
+        <h1>RATING</h1>
+        <div class="rating">
+          <input type="radio" name="rating" id="star1" value="1">
+          <label for="star1"></label>
+          <input type="radio" name="rating" id="star2" value="2">
+          <label for="star2"></label>
+          <input type="radio" name="rating" id="star3" value="3">
+          <label for="star3"></label>
+          <input type="radio" name="rating" id="star4" value="4">
+          <label for="star4"></label>
+          <input type="radio" name="rating" id="star5" value="5">
+          <label for="star5"></label>
+        </div>
+      </div>
+    </div>  
+    <div class="widget">
+      <div class="rank-body">
+       <h1>RANK</h1>
+      </div>
+    </div>
+    <div class="widget">
+    <div class="reviews">
+      <h1>REVIEWS</h1>
+    </div>
   </div>
+  </div>
+</div>
 </body>
 </html>
