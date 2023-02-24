@@ -1,5 +1,6 @@
 * {
     font-family: sans-serif;
+    background-color: ;
   }
   header {
     margin-right: 50px;
@@ -17,7 +18,11 @@
   }
   /*
   .slogan {
-    margin: auto;
+    position: relative;
+    align-self: center;
+    display: flex;
+    justify-content: right;
+    margin: 0;
     font-family: Roboto, sans-serif;
     letter-spacing: 0.05em;
   }
@@ -58,6 +63,12 @@
   }
 
   .pfp-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    margin: 5vw;
+    
+    /*
     display: grid;
     position: fixed;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -72,17 +83,46 @@
     padding: 10px;
     grid-auto-flow: dense;
     margin: 50px;
+    */
   }
 
   .pfp-body h1 {
+    justify-content: center;
+    display: flex;
     font-size: 50px;
     color:#CC2936;
     font-family: Russo One, sans-serif;
     letter-spacing: 0.1em;
     text-align: center; 
+    margin: 0;
+  }
+
+  .rating-body h1 {
+    padding-bottom: 40px;
   }
 
   .widget{
+    letter-spacing: 0.03em;
+    font-family: Roboto, sans-serif;
+    justify-content: center;
+    font-weight: bold;
+
+    /*margin: 0, 20px, 20px;*/
+    margin: auto;
+    border-style:solid;
+    border-color: #CC2936;
+    border-width: 10px;
+    border-radius: 10%;
+    padding:20px;
+    min-width: 400px;
+
+    display: flex;
+    flex: 1;
+    height: 300px;
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+    /*
     padding: 2vh;
     width: 40vw;
     max-width: 500px;
@@ -93,6 +133,7 @@
     border-width: 10px;
     border-radius: 10%;
     margin: 0, 10vh, 10vh;
+    */
 
   }
 
@@ -148,3 +189,112 @@
     content: "\f111";
     color: #d13e4a;
   }
+
+  .rank-body p {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 18px;
+    color:#f9e9ea;
+  }
+
+  .inverted-widget{
+    letter-spacing: 0.03em;
+    font-family: Roboto, sans-serif;
+    justify-content: center;
+    font-weight: bold;
+
+    background-color: #CC2936;
+    /*margin: 0, 20px, 20px; */
+    margin: auto;
+    border-style:solid;
+    border-color: #CC2936;
+    border-width: 10px;
+    border-radius: 10%;
+    padding:20px;
+    min-width: 400px;
+
+    display: flex;
+    flex: 1;
+    height: 300px;
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+    /*
+    padding: 2vh;
+    width: 40vw;
+    max-width: 500px;
+    height: 40vw;
+    max-height: 500px;
+    border-style:solid;
+    border-color: #CC2936;
+    border-width: 10px;
+    border-radius: 10%;
+    margin: 0, 10vh, 10vh;
+    */
+
+  }
+
+  .rank-body h1 {
+    display: flex;
+    font-size: 50px;
+    color:#ffffff;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center; 
+    justify-content: center;
+    margin: 0;
+  }
+
+  .rank-body h2 {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 20px;
+    margin: 0;
+    font-weight: bold;
+    font-size: 150px;
+    color:#ffffff;
+  }
+
+  .rank-body #hash {
+
+    justify-content: center;
+    display: inline-block;
+    font-size: 50px;
+    color:#ffffff;
+  }
+
+  .reviews-body {
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .reviews-body h1 {
+    padding-bottom: 40px;
+    font-size: 50px;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .reviews-body p {
+    display: inline-flex;
+  }
+
+  .reviews-body label {
+    margin: 0;
+    width: 60px;
+    height: 30px;
+  }
+  .reviews-body label:before {
+    padding: 10px;
+    content: "\f406";
+    font-family: FontAwesome;
+    color:#CC2936;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 30px;
+  }
+
+  
