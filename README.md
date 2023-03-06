@@ -66,3 +66,6 @@ I'm thinking about how awesome it will be for me to use the buttons and text box
 
 ## Post Simon CSS Reflections
 Looking back, me thinking that HTML was cool was a pretty chump move because CSS is even better. I feel like HTML is just a way to set up the skeleton of your work, and CSS is like what makes it actually shine. This will definitely come in handy as I design the clout app and make it look good. Now I know with confidence that I can make it look exactly how I want it to with the aid of Bootstrap and CSS.
+
+## Post Simon Javascript Reflections
+Wow, I'm honestly baffled with how far we've come and how advanced we've gotten. Pure HTML seems archaic compared to the possibilities that the combined forces of HTML, CSS, and Javascript can provide. As I mention everytime, I'm very, very excited to see what I can use the combination of these three languages to create and how I can involve them in the startup I'm working on. Javascript is definitely much more complex than HTML or CSS, but I'm working on learning its ins and outs so that I can utilize it in my startup and on future projects. The way it intertwines with HTML and CSS is fascinating and I hope to use it as I continue on in the CS field.
