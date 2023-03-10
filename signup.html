@@ -1,22 +1,84 @@
 <html>
+
+<head>
   <link rel="stylesheet" href="signup.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo+One">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <header>
-    <a href="index.html"><h1 class = "clout">CLOUT</h1></a>
-    <h6 class = "slogan">where do you stand?</h6>
-    <h2 class = "signup">Sign Up</h2>
-  </header>
-  <body>
-  <div class ="login">
+</head>
+
+<header>
+  <a href="index.html">
+    <h1 class="clout">CLOUT</h1>
+  </a>
+  <h6 class="slogan">where do you stand?</h6>
+  <h2 class="signup">Sign Up</h2>
+</header>
+
+<body>
+  <div class="login">
     <form>
-      <input type="text" placeholder="username"/>
-      <input type="email" placeholder="email"/>
-      <input type="password" placeholder="password"/>
-      <input type="password" placeholder="confirm password"/>
-      <button id ="signup_one" onclick="location.href='profile.html'" type="button">
-        sign up</button>
-      <p class="register">Already have an account?  <a href="login.html">Login!</a></p>
+      <input type="text" id="username" placeholder="username" name="username" />
+      <input type="email" id="email" placeholder="email" name="email" />
+      <input type="password" id="password" placeholder="password" name="password" />
+      <input type="password" id="passwordConfirmation" placeholder="confirm password" name="confirm-password" />
+      <button id="signup_one" type="button">Sign Up</button>
+      <p class="register">Already have an account? <a href="login.html">Login!</a></p>
+    </form>
+
   </div>
-  </body>
+
+  <script>
+
+    const usernameInput = document.querySelector('input[type="text"]');
+    const emailInput = document.querySelector('input[type="email"]');
+    const passwordInput = document.querySelector('input[type="password"]');
+    const confirmPasswordInput = document.querySelectorAll('input[type="password"]')[1];
+
+    document.getElementById("signup_one").addEventListener("click", validate);
+
+    function validate() {
+
+      const username = usernameInput.value.trim();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+      const confirmPassword = confirmPasswordInput.value.trim();
+
+      if (username === '') {
+        alert('Please enter a username');
+        return false;
+      }
+
+      if (!isValidEmail(email)) {
+        alert('Please enter a valid email address');
+        return false;
+      }
+
+      if (!validatePassword(password)) {
+        alert('Password must contain at least one number and one special character, and be at least 8 characters long');
+        return false;
+      }
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return false;
+      }
+      window.location.href = "profile.html";
+      return true;
+    }
+
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function validatePassword(password) {
+      const regex = /^(?=.*[a-zA-Z])(?=.*[0-9!@#$%^&*])(?=.{8,})/;
+      return regex.test(password);
+    }
+
+
+  </script>
+
+</body>
+
 </html>
