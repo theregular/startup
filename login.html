@@ -1,21 +1,58 @@
+<!DOCTYPE html>
+
+
 <html>
+
+<head>
   <link rel="stylesheet" href="login.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo+One">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <header>
-    <a href="index.html"><h1 class = "clout">CLOUT</h1></a>
-    <h6 class = "slogan">where do you stand?</h6>
-  </header>
-  <body>
-  <div class ="login">
+  <script src="login.js"></script>
+</head>
+
+<header>
+  <a href="index.html">
+    <h1 class="clout">CLOUT</h1>
+  </a>
+  <h6 class="slogan">where do you stand?</h6>
+</header>
+
+<body>
+  <div class="login">
     <form>
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
-      <button id ="login" onclick="location.href='profile.html'" type="button">
-        login</button>
-     <button id ="register" onclick="location.href='signup.html'" type="button">
+      <input type="text" id="username" placeholder="username" />
+      <input type="text" id="password" placeholder="password" />
+    
+      <button id ="login" type="button">Login</button>
+      <button id="register" onclick="location.href='signup.html'" type="button">
         register</button>
+      <p id="demo"></p>
     </form>
   </div>
+
+  <script>
+    usernameInput = document.getElementById("username");
+    passwordInput = document.getElementById("password");
+
+    document.getElementById("login").addEventListener("click", displayMessage);
+
+    function displayMessage() {
+
+      const username = usernameInput.value;
+      const password = passwordInput.value;
+      
+      if (username === "carlwheezer" && password === "coolcarl420") {
+        
+        alert("Login successful!");
+        window.location.href = "profile.html";
+
+      } else {
+        
+        alert("Incorrect username or password!");
+      }
+
+    };
+  </script>
+
 </body>
 </html>
