@@ -1,64 +1,144 @@
 <!DOCTYPE html>
-<html>
-<link rel="stylesheet" href="index.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo+One">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </link>
+</head>
+
+<header>
+    <a href="index.html">
+        <h1 class="clout">CLOUT</h1>
+        <h6 class="links">
+            <a href="login.html">Login /</a>
+            <a href="signup.html">Signup /</a>
+            <a href="profile.html">Profile</a>
+        </h6>
+    </a>
+</header>
 
 <body>
-    <div class="grid-container">
-
-        <div class="grid-item item1">
-            <h1 class = "clout">CLOUT</h1>
-            <h6 class = "slogan">where do you stand?</h6>
-        </div>
-
-        <div class="grid-item item2">
-            <ul>
-                <li><a class="active" href="index.html">Home</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html">Signup</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
-        </div>
-
-        <div class="grid-item item3">
-            <div class = "item3Header">
-                <h1> About Us</h1>
-            </div>
-            <div class = "item3Body">
-                <p> Ben and David are two computer science students who are passionate about web programming and software development. 
-                    They are both currently enrolled in a top university, pursuing their degrees in Computer Science. Throughout their 
-                    studies, they have developed a keen interest in web development and have undertaken various projects and assignments 
-                    to hone their skills.
-                </p>
-            </div>
-
-        </div>
-
-        <div class="grid-item item4">
-            <div class = "item4Header">
-                <h1> About CLOUT</h1>
-            </div>
-            <div class = "item4Body">
-                <p> The first social media where your fame doesn't come from your follower count, but from how you're rated by your peers. 
-                    Theoretically, the better the person you are, the higher ranking you will be! Clout allows for an overall 
-                    rating (out of 5), a view of where you rank among those in your local community, country, and even the world, 
-                    as well as the ability to leave reviews on people and the kind of person they are. CLOUT, where do you stand?
-                </p>
+    <div class="pfp-body">
+        <div class="widget">
+            <div class="rating-body">
+                <h1>About Us</h1>
+                <div class="rating">
+                    <p> Ben and David are two computer science students who are passionate about web programming and
+                        software development.
+                        They are both currently enrolled in a top university, pursuing their degrees in Computer
+                        Science.
+                        Throughout their
+                        studies, they have developed a keen interest in web development and have undertaken various
+                        projects
+                        and assignments
+                        to hone their skills. We hope that you enjoy our using our simple website/app.
+                    </p>
+                </div>
             </div>
         </div>
-
-        <div class="grid-item item5">
-            <footer>
-                <p>Follow us on our Social Media!</p>
-                <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
-                <a href="https://twitter.com" class="fa fa-twitter"></a>
-                <a href="https://www.instagram.com" class="fa fa-instagram"></a>
-            </footer>
+        <div class="inverted-widget">
+            <div class="rank-body">
+                <h1>About CLOUT</h1>
+                <div class="rating">
+                    <p2> The first social media where your fame doesn't come from your follower count, but from how
+                        you're
+                        rated by your peers.
+                        Theoretically, the better the person you are, the higher ranking you will be! Clout allows for
+                        an
+                        overall
+                        rating (out of 5), a view of where you rank among those in your local community, country, and
+                        even
+                        the world,
+                        as well as the ability to leave reviews on people and the kind of person they are. CLOUT, where
+                        do
+                        you stand?
+                    </p2>
+                </div>
+            </div>
         </div>
-
+        <div class="widget">
+            <div class="reviews-body">
+                <h1>Follow us on our Social Media!</h1>
+                <div>
+                    <footer>
+                        <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+                        <a href="https://twitter.com" class="fa fa-twitter"></a>
+                        <a href="https://www.instagram.com" class="fa fa-instagram"></a>
+                    </footer>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+    <script>
+
+        const footer = document.querySelector('footer');
+        const socialMediaLinks = footer.querySelectorAll('a.fa');
+
+        socialMediaLinks.forEach((link) => {
+            link.style.display = 'none';
+        });
+
+        footer.addEventListener('mouseenter', () => {
+            socialMediaLinks.forEach((link) => {
+                link.style.display = 'inline-block';
+            });
+        });
+
+        footer.addEventListener('mouseleave', () => {
+            socialMediaLinks.forEach((link) => {
+                link.style.display = 'none';
+            });
+        });
+
+
+
+        const aboutUs = document.querySelector('.rating-body');
+        const paragraph = aboutUs.querySelectorAll('p');
+
+        paragraph.forEach((link) => {
+            link.style.display = 'none';
+        });
+
+        aboutUs.addEventListener('mouseenter', () => {
+            paragraph.forEach((link) => {
+                link.style.display = 'inline-block';
+            });
+        });
+
+        aboutUs.addEventListener('mouseleave', () => {
+            paragraph.forEach((link) => {
+                link.style.display = 'none';
+            });
+        });
+
+
+        const aboutClout = document.querySelector('.rank-body');
+        const paragraphTwo = aboutClout.querySelectorAll('p2');
+
+        paragraphTwo.forEach((link) => {
+            link.style.display = 'none';
+        });
+
+        aboutClout.addEventListener('mouseenter', () => {
+            paragraphTwo.forEach((link) => {
+                link.style.display = 'inline-block';
+            });
+        });
+
+        aboutClout.addEventListener('mouseleave', () => {
+            paragraphTwo.forEach((link) => {
+                link.style.display = 'none';
+            });
+        });
+
+    </script>
 
 
 </body>
