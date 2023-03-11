@@ -29,15 +29,42 @@
           <label for="star1"></label>
           <input type="radio" name="rating" id="star2" value="2">
           <label for="star2"></label>
-          <input type="radio" name="rating" id="star3" value="3" checked>
+          <input type="radio" name="rating" id="star3" value="3">
           <label for="star3"></label>
           <input type="radio" name="rating" id="star4" value="4">
           <label for="star4"></label>
           <input type="radio" name="rating" id="star5" value="5">
           <label for="star5"></label>
         </div>
+
+        <!-- <div class = "rating"></div> -->
+
+        <div class = "rating-text"></div>
+
+        <script>
+          const ratingInputs = document.querySelectorAll('.rating input');
+
+          ratingInputs.forEach(input => {
+            input.addEventListener('change', () => {
+              //get selected rating
+              const selectedValue = document.querySelector('.rating input:checked').value;
+              const actualValue = 6 - selectedValue; //flip the number because the stars are reversed
+              console.log(`rating is ${actualValue}`);
+
+              const username = document.querySelector('.username').textContent;
+              const ratingEl = document.querySelector('.rating-text');
+              ratingEl.textContent = `You rated ${username} ${actualValue}`;
+
+              // make readonly
+              ratingInputs.forEach(input => {
+                input.disabled = true;
+              });
+            });
+          });
+        </script>
       </div>
     </div>  
+
     <div class="inverted-widget">
       <div class="rank-body">
        <h1>RANK</h1>
@@ -46,9 +73,60 @@
        <p>in the world</p>
       </div>
     </div>
+
     <div class="widget">
-    <div class="reviews-body">
+    <div class="reviews-body" id="reviews-body">
       <h1>REVIEWS</h1>
+      <button id="reviewButton">Leave A Review</button>
+      <div id="review-textbox"></div>
+      <script>
+        /*
+        function leaveReview() {
+            const reviewTextbox = document.getElementById('review-textbox');
+            const textBoxEl = document.createElement('input');
+            textBoxEl.type = 'text';
+            //textBoxEl.maxLength = '100';
+
+            reviewTextbox.appendChild(textBoxEl);
+        }
+
+        document.getElementById('reviewButton').addEventListener('click', leaveReview);
+        */
+
+          const leaveReviewBtn = document.getElementById('reviewButton');
+          const reviewStuff = document.getElementById('review-textbox');
+          const reviewBody = document.getElementById('reviews-body');
+          let textBox = 0;
+
+          leaveReviewBtn.addEventListener('click', function() {
+            if (textBox == 0) {
+            const textArea = document.createElement('textarea');
+            textArea.setAttribute('id', 'reviewText');
+            textArea.type = 'text';
+            textArea.maxLength = '100';
+            reviewStuff.appendChild(textArea);
+            textBox++;
+
+            
+            const submitButton = document.createElement('button');
+            submitButton.setAttribute('id', 'submitBtn');
+            submitButton.textContent = 'Submit';
+            reviewBody.appendChild(submitButton);
+            
+            submitButton.addEventListener('click', function() {
+              leaveReviewBtn.style.display = 'none';
+              submitButton.style.display = 'none';
+              textArea.style.display = 'none';
+              const thankYouMsg = document.createElement('p');
+              thankYouMsg.textContent = 'Your review has been submitted!';
+              reviewBody.appendChild(thankYouMsg);
+            });
+            }
+          });
+      </script>
+      </div>
+
+      <div class = "top-reviews">
       <div>
       <label for="review1"></label>
       <p id="review1">"this guy is mid" - @patrickstarofficial</p>
@@ -59,7 +137,7 @@
     </div>
       <label for="review3"></label> 
       <p id="review3">"1/5, found out he's in love with my mom" - @jimmyboygenius</p>
-    </div>
+     </div>
   </div>
   </div>
 </div>

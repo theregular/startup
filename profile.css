@@ -100,6 +100,12 @@
     padding-bottom: 40px;
   }
 
+  .rating-text {
+    color: #2e2e2e;
+    text-align: center;
+    font-family: Arial;
+  }
+
   .widget{
     letter-spacing: 0.03em;
     font-family: Roboto, sans-serif;
@@ -173,7 +179,15 @@
     
   }
 
+  /*
   .rating input:checked ~ label:hover:before {
+    content: "\f111";;
+    color: #d13e4a;
+    
+  }
+  */
+
+  rating input:checked {
     content: "\f111";;
     color: #d13e4a;
     
@@ -184,11 +198,12 @@
     color: #d13e4a;
   }
   
+  /* interaction when not checked*/
   .rating label:hover:before {
     content: "\f111";
     color: #d13e4a;
   }
-
+  
   .rank-body p {
     display: flex;
     justify-content: center;
@@ -269,6 +284,8 @@
   }
   
   .reviews-body h1 {
+    justify-content: center;
+    display: inline;
     padding-bottom: 40px;
     font-size: 50px;
     font-family: Russo One, sans-serif;
@@ -285,7 +302,7 @@
     width: 60px;
     height: 30px;
   }
-  .reviews-body label:before {
+  .top-reviews label:before {
     padding: 10px;
     content: "\f406";
     font-family: FontAwesome;
@@ -295,5 +312,31 @@
     left: 0;
     font-size: 30px;
   }
+
+  .reviews-body button {
+    font-family: "Roboto", sans-serif;
+    background: #CC2936;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+  }
+
+  #review-textbox {
+    padding: 10px;
+  }
+
+  #review-textbox textarea { 
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 300px;
+    resize: none;
+    margin: 0;
+  }
+
+
 
   
