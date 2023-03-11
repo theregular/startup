@@ -1,21 +1,147 @@
+* {
+    font-family: sans-serif;
+}
+
+header {
+    margin-right: 50px;
+    text-align: right;
+}
+
+header a {
+    text-decoration: none;
+}
+
 .clout {
     font-size: 50px;
-    padding: 1px;
-    font-size: 60px;
     font-family: Russo One, sans-serif;
     color: #CC2936;
     letter-spacing: 0.1em;
 }
 
-.slogan {
-    margin: auto;
-    font-size: 17px;
-    font-family: Roboto, sans-serif;
+.links {
+    font-size: 20px;
+    font-family: Russo One, sans-serif;
+    color: #565980;
     letter-spacing: 0.05em;
+  }
+
+.pfp-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    margin: 5vw;
 }
 
+.pfp-body h1 {
+    justify-content: center;
+    display: flex;
+    font-size: 50px;
+    color: #CC2936;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 0;
+}
+
+.rating-body h1 {
+    padding-bottom: 40px;
+}
+
+.rank-body h1 {
+    padding-bottom: 40px;
+}
+
+.rating-body p {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 18px;
+    color: #2c60a3;
+}
+
+.rank-body h1 {
+    justify-content: center;
+    display: flex;
+    font-size: 50px;
+    color: #ffffff;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 0;
+}
+
+.rank-body p2 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 18px;
+    color: #f9e9ea;
+}
+
+.widget {
+    letter-spacing: 0.03em;
+    font-family: Roboto, sans-serif;
+    justify-content: center;
+    font-weight: bold;
+    margin: auto;
+    border-style: solid;
+    border-color: #CC2936;
+    border-width: 10px;
+    border-radius: 10%;
+    padding: 20px;
+    min-width: 400px;
+
+    display: flex;
+    flex: 1;
+    height: 300px;
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.inverted-widget {
+    letter-spacing: 0.03em;
+    font-family: Roboto, sans-serif;
+    justify-content: center;
+    font-weight: bold;
+
+    background-color: #CC2936;
+    margin: auto;
+    border-style: solid;
+    border-color: #CC2936;
+    border-width: 10px;
+    border-radius: 10%;
+    padding: 20px;
+    min-width: 400px;
+
+    display: flex;
+    flex: 1;
+    height: 300px;
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews-body {
+    justify-content: center;
+    text-align: left;
+}
+
+.reviews-body h1 {
+    padding-bottom: 40px;
+    font-size: 50px;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.reviews-body p {
+    display: inline-flex;
+}
+
+
 footer {
-    background-color: rgba(241, 213, 213, 0.8);
     text-align: center;
     padding-top: 1px;
     padding-bottom: 5px;
@@ -55,88 +181,5 @@ footer {
 
 .fa-instagram {
     background: #125688;
-    color: white;
-}
-
-.grid-container {
-    display: grid;
-    gap: 10px;
-    background-color: #cc2936;
-    padding: 10px;
-}
-
-.grid-item {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 20px;
-    font-size: 30px;
-}
-
-.item1 {
-    grid-column: 1 / span 2;
-    grid-row: 1;
-}
-
-.item3Header {
-    font-size: 25px;
-    font-family: Russo One, sans-serif;
-    letter-spacing: 0.3em;
-}
-
-.item3Body {
-    font-size: 25px;
-    font-family: Roboto, sans-serif;
-    letter-spacing: 0.03em;
-}
-
-.item4Header {
-    font-size: 25px;
-    font-family: Russo One, sans-serif;
-    letter-spacing: 0.3em;
-}
-
-.item4Body {
-    font-size: 25px;
-    font-family: Roboto, sans-serif;
-    letter-spacing: 0.03em;
-}
-
-.item2 {
-    grid-column: 3;
-    grid-row: 1 / span 2;
-    font-size: 20px;
-    font-family: Russo One, sans-serif;
-    letter-spacing: 0.1em;
-}
-
-.item5 {
-    grid-column: 1 / span 3;
-    grid-row: 3;
-    font-size: 40px;
-    font-family: Russo One, sans-serif;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: auto;
-}
-
-li a {
-    display: block;
-    color: black;
-    padding: 8px 16px;
-    text-decoration: none;
-}
-
-li a.active {
-    background-color: #cc2936;
-    color: white;
-}
-
-li a:hover:not(.active) {
-    background-color: #587db4;
     color: white;
 }
