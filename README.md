@@ -70,5 +70,8 @@ Looking back, me thinking that HTML was cool was a pretty chump move because CSS
 ## Post Simon Javascript Reflections
 Wow, I'm honestly baffled with how far we've come and how advanced we've gotten. Pure HTML seems archaic compared to the possibilities that the combined forces of HTML, CSS, and Javascript can provide. As I mention everytime, I'm very, very excited to see what I can use the combination of these three languages to create and how I can involve them in the startup I'm working on. Javascript is definitely much more complex than HTML or CSS, but I'm working on learning its ins and outs so that I can utilize it in my startup and on future projects. The way it intertwines with HTML and CSS is fascinating and I hope to use it as I continue on in the CS field.
 
+## Post Simon Services Reflections
+Services are really important and frankly essential to what makes a website a website. I'm really excited to tie them with using a database because without a databse on the server, services and APIs feel a little bit pointless, but it's a good segway into being able to store and update information on a website.
+
 ## Post Startup Javascript Reflections
 It's really really cool to see how far the website has come. Now that there has been some Javascript functionality added, the website is much more interactive and user friendly. I feel like Javascript opens up an unlimited number of possibilites of where this could go and other functionality that could be added. I'm loving web dev so far and I'm very excited to keep learning more and keep creating.
