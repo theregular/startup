@@ -73,5 +73,8 @@ Wow, I'm honestly baffled with how far we've come and how advanced we've gotten.
 ## Post Simon Services Reflections
 Services are really important and frankly essential to what makes a website a website. I'm really excited to tie them with using a database because without a databse on the server, services and APIs feel a little bit pointless, but it's a good segway into being able to store and update information on a website.
 
+## Post Simon Database Reflections
+Now we're getting to the good stuff! Adding a database to the program has made it so much more realistic and now I finally feel like we have a full fledged application that's working! I'm really excited to add this to my startup and get it all working together with node and mongoDB! Awesome stuff!
+
 ## Post Startup Javascript Reflections
 It's really really cool to see how far the website has come. Now that there has been some Javascript functionality added, the website is much more interactive and user friendly. I feel like Javascript opens up an unlimited number of possibilites of where this could go and other functionality that could be added. I'm loving web dev so far and I'm very excited to keep learning more and keep creating.
