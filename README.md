@@ -79,5 +79,8 @@ Now we're getting to the good stuff! Adding a database to the program has made i
 ## Post Simon Database Reflections
 Now we're getting to the more complex stuff, and even though I don't quite understand all of it and how it all works together just yet, I'm grateful to have this code saved so that I can study it and continue trying to implement stuff like this. The more complex we get with these services and using cookies like this, the more applicable it is to the real world and applications that are made and need to have stuff like this. It's super interesting and I'm still excited to see what else is in store.
 
+## Post Simon WebSocket Reflections
+Websockets are very interesting, I didn't now a whole lot about what they were before this project and learning about it has been very cool. I definitely see the need for an almost constant connection to the server and the ability to be able to have multiple threads of connections going on at the same time is very useful. I'm excited to find a use for this in my startup application.
+
 ## Post Startup Javascript Reflections
 It's really really cool to see how far the website has come. Now that there has been some Javascript functionality added, the website is much more interactive and user friendly. I feel like Javascript opens up an unlimited number of possibilites of where this could go and other functionality that could be added. I'm loving web dev so far and I'm very excited to keep learning more and keep creating.
