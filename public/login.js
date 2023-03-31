@@ -21,7 +21,33 @@
   })();
 
 async function loginUser() {
-    loginOrCreate(`/api/auth/login`);
+    alert("You clicked login button")
+    const endpoint = `/api/auth/login`
+    const userName = document.querySelector('#userName')?.value;
+    const password = document.querySelector('#userPassword')?.value;
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify({ username: userName, password: password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+
+    const body = await response.json();
+
+    if (response?.status === 200) {
+      alert('Login Succeeded!');
+      localStorage.setItem('userName', userName);
+      window.location.href = 'play.html';
+    } else {
+      alert('Login failed!');
+      /*
+      const modalEl = document.querySelector('#msgModal');
+      modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+      const msgModal = new bootstrap.Modal(modalEl, {});
+      msgModal.show();
+      */
+    }
 }
   
 async function createUser() {
@@ -31,9 +57,10 @@ async function createUser() {
 async function loginOrCreate(endpoint) {
     const userName = document.querySelector('#userName')?.value;
     const password = document.querySelector('#userPassword')?.value;
+    const email = document.querySelector('#email')?.value;
     const response = await fetch(endpoint, {
       method: 'post',
-      body: JSON.stringify({ email: userName, password: password }),
+      body: JSON.stringify({ username: userName, email: email, password: password }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
