@@ -1,4 +1,4 @@
-(async () => {
+/*(async () => {
     let authenticated = false;
     const userName = localStorage.getItem('userName');
     if (userName) {
@@ -7,7 +7,7 @@
       const user = await getUser(nameEl.value);
       authenticated = user?.authenticated;
     }
-    /*
+    
   
     if (authenticated) {
       document.querySelector('#playerName').textContent = userName;
@@ -17,9 +17,9 @@
       setDisplay('loginControls', 'block');
       setDisplay('playControls', 'none');
     }
-    */
+    
   })();
-
+  */
 async function loginUser() {
   //alert("You clicked login button")
   const usernameInput = document.querySelector('#userName').value.trim();
