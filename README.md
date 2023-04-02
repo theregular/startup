@@ -50,6 +50,11 @@ ssh -i [key pair file] ubuntu@[ip address]
 ```
 ssh -i "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" ubuntu@3.137.12.11
 ```
+(Laptop)
+```
+ ssh -i "`\OneDrive\Documents\CS260_STARTUP\CS 260\keys\clout.pem" ubuntu@3.137.12.11
+
+```
 
 #### how to deploy to website
 ```
