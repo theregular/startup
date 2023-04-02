@@ -53,7 +53,6 @@ ssh -i "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" ubuntu@3.137.12.11
 (Laptop)
 ```
  ssh -i "~\OneDrive\Documents\CS260_STARTUP\CS 260\keys\clout.pem" ubuntu@3.137.12.11
-
 ```
 
 #### how to deploy to website
@@ -62,7 +61,11 @@ ssh -i "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" ubuntu@3.137.12.11
 ```
 **Example**
 ```
-./deployFiles.sh -k "C:\Users\Ben Kartchner\Documents\CS260_STARTUP\CS 260\keys\clout.pem" -h cloutplatform.com -s simon
+./deployFiles.sh -k "~\Documents\CS260_STARTUP\CS 260\keys\clout.pem" -h cloutplatform.com -s simon
+```
+(Laptop)
+```
+./deployFiles.sh -k "~\OneDrive\Documents\CS260_STARTUP\CS 260\keys\clout.pem" -h cloutplatform.com -s simon
 ```
 
 ## Post Simon HTML Reflections
