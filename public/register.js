@@ -24,6 +24,7 @@ async function createUser() {
             alert('register success');
             //localStorage.setItem('userName', userName);
             //window.location.href = "profile.html";
+            window.location.pathname = `/profile/${usernameInput}`;
           } else {
             alert('register fail');
           }

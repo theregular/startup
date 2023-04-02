@@ -6,13 +6,12 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 //set for handlebars
-/*
 app.set('view engine', 'handlebars');
 
 app.engine('handlebars', handlebars.engine({
     layoutsDir: `${__dirname}/views/layouts`
 }));
-*/
+
 
 // The service port. In production the application is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -35,8 +34,20 @@ app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/login.html');
 })
 
-app.get('/profile', (req, res) => {
-  res.sendFile(__dirname + '/public/profile.html');
+
+app.get('/profile/test', (req, res) => {
+  const username = 'tester';
+
+
+
+  res.render('profile', {layout: 'main', username: username})
+})
+
+//:username will change based on request input
+app.get('/profile/:username', (req, res) => {
+  const username = req.params.username;
+
+  res.render('profile', {layout: 'main', username: username});
 })
 
 
@@ -53,7 +64,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 
     // Set the cookie
     //setAuthCookie(res, user.token);
-
+    
     res.send({
       id: user._id,
     });

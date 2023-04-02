@@ -41,8 +41,9 @@ async function loginUser() {
 
     if (response?.status === 200) {
       alert('Login Succeeded!');
-      localStorage.setItem('userName', userName);
-      //window.location.href = 'profile.html';
+      //ocalStorage.setItem('userName', userName);
+      //window.location.href = `/profile/${userName}`;
+      window.location.pathname = `/profile/${usernameInput}`;
     } else {
       alert('Login failed!');
       /*
