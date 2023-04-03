@@ -1,34 +1,29 @@
-/*(async () => {
+//get username from local storage cookie //GET WORKING
+/*
+(async () => {
     let authenticated = false;
-    const userName = localStorage.getItem('userName');
+    const userName = localStorage.getItem('username');
+
+    //find stored username in DB
     if (userName) {
-      const nameEl = document.querySelector('#userName');
-      nameEl.value = userName;
-      const user = await getUser(nameEl.value);
+      const user = await getUser(userName);
       authenticated = user?.authenticated;
     }
     
-  
+    //if already in local storage redirect to user's page (add authtoken confirmation?)
     if (authenticated) {
-      document.querySelector('#playerName').textContent = userName;
-      setDisplay('loginControls', 'none');
-      setDisplay('playControls', 'block');
-    } else {
-      setDisplay('loginControls', 'block');
-      setDisplay('playControls', 'none');
+      window.location.pathname = `/profile/${userName}`;
     }
-    
   })();
   */
+
 async function loginUser() {
-  //alert("You clicked login button")
   const usernameInput = document.querySelector('#userName').value.trim();
   const passwordInput = document.querySelector('#userPassword').value.trim();
-  //alert(usernameInput + " " + passwordInput);
 
   valid = validate(usernameInput, passwordInput);
 
-  if (valid) {
+  if (valid === true) {
     const response = await fetch(`/api/auth/login`, {
       method: 'post',
       body: JSON.stringify({ username: usernameInput, password: passwordInput }),
@@ -40,12 +35,12 @@ async function loginUser() {
     const body = await response.json();
 
     if (response?.status === 200) {
-      alert('Login Succeeded!');
-      //ocalStorage.setItem('userName', userName);
-      //window.location.href = `/profile/${userName}`;
+      //alert('Login Succeeded!');
+      localStorage.setItem('username', usernameInput);
       window.location.pathname = `/profile/${usernameInput}`;
     } else {
-      alert('Login failed!');
+      //alert('Login failed!');
+      valid = 'Incorrect username or password!';
       /*
       const modalEl = document.querySelector('#msgModal');
       modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
@@ -54,23 +49,27 @@ async function loginUser() {
       */
     }
   }
+  if (valid !== true){
+    const errmsg = document.querySelector('#errMessage');
+    errmsg.textContent = valid;
+  }
 }
 
 function validate(username, password) {
 
   if (username === '') {
-  alert('Please enter a username');
-  return false;
+  //alert('Please enter a username');
+  return 'Please enter a username';
   }
 
   if (password === '') {
-  alert('Please enter a password');
-  return false;
+  //alert('Please enter a password');
+  return 'Please enter a password';
   }
 
   return true;
 }
-  
+
 
 
 /*

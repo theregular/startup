@@ -14,20 +14,20 @@
     <h1 class="clout">CLOUT</h1>
   </a>
   <h6 class="slogan">where do you stand?</h6>
-  <h2 class="signup">Sign Up</h2>
 </header>
 
 <body>
   <div class="login">
     <form>
+      <div id="registerTitle">register</div>
       <input type="text" id="userName" placeholder="username" name="username" />
       <input type="email" id="email" placeholder="email" name="email" />
       <input type="password" id="userPassword" placeholder="password" name="password" />
       <input type="password" id="confirmPassword" placeholder="confirm password" name="confirm-password" />
-      <button id="signup_one" type="button" onclick="createUser()">register</button>
-      <p class="register">Already have an account? <a href="login">Login!</a></p>
+      <button id ="login" type="button" onclick="location.href='login'">login</button>
+      <button id="register" onclick="createUser()" type="button">register</button>
     </form>
-
+    <div id="errMessage"></div>
   </div>
   <script src="register.js"></script>
 </body>

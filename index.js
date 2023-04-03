@@ -5,6 +5,8 @@ const handlebars = require('express-handlebars'); //express-handlebars
 const cookieParser = require('cookie-parser');
 const app = express();
 
+const authCookieName = 'token';
+
 //set for handlebars
 app.set('view engine', 'handlebars');
 
@@ -12,12 +14,14 @@ app.engine('handlebars', handlebars.engine({
     layoutsDir: `${__dirname}/views/layouts`
 }));
 
-
 // The service port. In production the application is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
+
+// Use the cookie parser middleware for tracking authentication tokens
+app.use(cookieParser());
 
 // Serve up the application's static content
 app.use(express.static('public'));
@@ -34,16 +38,33 @@ app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/login.html');
 })
 
-
+//profile tester
+/*
 app.get('/profile/test', (req, res) => {
   const username = 'tester';
-
-
-
   res.render('profile', {layout: 'main', username: username})
 })
+*/
 
-//:username will change based on request input
+/*
+app.get('/profile', async (req, res) => {
+  let authenticated = false;
+  const userName = localStorage.getItem('username');
+  if (userName) {
+    const user = await getUser(userName);
+    authenticated = user?.authenticated;
+  }
+  if (authenticated) {
+    window.location.pathname = `/profile/${userName}`;
+  }
+  else {
+    window.location.pathname = `/login`;
+  }
+})
+*/
+
+
+//:username will change based on request input using handlebars
 app.get('/profile/:username', (req, res) => {
   const username = req.params.username;
 
@@ -62,8 +83,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   } else {
     const user = await DB.createUser(req.body.username, req.body.password, req.body.email);
 
-    // Set the cookie
-    //setAuthCookie(res, user.token);
+    setAuthCookie(res, user.token); //authcookie
     
     res.send({
       id: user._id,
@@ -76,12 +96,18 @@ apiRouter.post('/auth/login', async (req, res) => {
   const user = await DB.getUser(req.body.username);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      //setAuthCookie(res, user.token);
+      setAuthCookie(res, user.token); //authcookie
       res.send({ id: user._id });
       return;
     }
   }
   res.status(401).send({ msg: 'Unauthorized' });
+});
+
+// DeleteAuth token if stored in cookie
+apiRouter.delete('/auth/logout', (_req, res) => {
+  res.clearCookie(authCookieName);
+  res.status(204).end();
 });
 
 // secureApiRouter verifies credentials for endpoints
@@ -109,9 +135,6 @@ app.use((req, res) => {
   res.send('ERROR page not found'); //update to actual HTML error page
 });
 
-
-
-  
   
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {

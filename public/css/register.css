@@ -1,25 +1,41 @@
 * {
-    font-family: sans-serif;
-  }
+  font-family: sans-serif;
+}
+header {
+  /*text-align: center; */
+  margin-top: 30px;
+  margin-right: 50px;
+  text-align: right;
+}
+header a {
+  text-decoration: none;
+}
+.clout {
+  font-size: 50px;
+  padding: 10px;
+  margin: auto;
+  font-family: Russo One, sans-serif;
+  color: #CC2936;
+  letter-spacing: 0.1em;
+}
+.slogan {
+  margin-top: 0;
+  margin-right: 15px;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 700px) {
   header {
+    margin-right: 0;
     text-align: center;
   }
-  header a {
-    text-decoration: none;
-  }
-  .clout {
-    font-size: 50px;
-    padding: 10px;
-    margin: auto;
-    font-family: Russo One, sans-serif;
-    color: #CC2936;
-    letter-spacing: 0.1em;
-  }
+  
   .slogan {
-    margin: auto;
-    font-family: Roboto, sans-serif;
-    letter-spacing: 0.05em;
+    justify-content: center;
+    margin-right: 0;
   }
+}
   .signup {
     margin: auto;
     font-family: Roboto, sans-serif;
@@ -70,6 +86,24 @@
   
   button:hover {
     background: #9e202a;
+  }
+
+  #errMessage {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    justify-content: center;
+    color: #CC2936;
+    align-items: center;
+    font-size: 15px;
+  }
+
+  #registerTitle {
+    color: #CC2936;
+    font-family: Russo One, sans-serif;
+    margin-bottom: 50px;
+    font-weight:400;
+    letter-spacing: 0.05em;
+    font-size: 30px;
   }
   
   @keyframes appear {

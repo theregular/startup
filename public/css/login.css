@@ -2,7 +2,10 @@
     font-family: sans-serif;
   }
   header {
-    text-align: center;
+    /*text-align: center; */
+    margin-top: 30px;
+    margin-right: 50px;
+    text-align: right;
   }
   header a {
     text-decoration: none;
@@ -16,10 +19,24 @@
     letter-spacing: 0.1em;
   }
   .slogan {
-    margin: auto;
+    margin-top: 0;
+    margin-right: 15px;
     font-family: Roboto, sans-serif;
     letter-spacing: 0.05em;
   }
+
+  @media (max-width: 700px) {
+    header {
+      margin-right: 0;
+      text-align: center;
+    }
+    
+    .slogan {
+      justify-content: center;
+      margin-right: 0;
+    }
+  }
+
   .login {
     width: 360px;
     padding: 30px 0 0;
@@ -36,7 +53,7 @@
     animation: appear 2s;
   }
   form input {
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
     outline: 0;
     background: #f2f2f2;
     width: 100%;
@@ -49,7 +66,7 @@
   }
   
   form button {
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
     background: #CC2936;
     width: 47%;
     border: 0;
@@ -67,6 +84,24 @@
   }
   button:hover {
     background: #9e202a;
+  }
+
+  #errMessage {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    justify-content: center;
+    color: #CC2936;
+    align-items: center;
+    font-size: 15px;
+  }
+
+  #loginTitle {
+    color: #CC2936;
+    font-family: Russo One, sans-serif;
+    margin-bottom: 50px;
+    font-weight:400;
+    letter-spacing: 0.05em;
+    font-size: 30px;
   }
   
   @keyframes appear {
