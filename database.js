@@ -2,8 +2,8 @@ const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 
-//const userName = process.env.MONGOUSER;
-//const password = process.env.MONGOPASSWORD;
+const userName = process.env.MONGOUSER;
+const password = process.env.MONGOPASSWORD;
 
 /*
 if (!userName) {

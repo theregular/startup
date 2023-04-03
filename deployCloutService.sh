@@ -24,15 +24,16 @@ cp package* dist
 
 # Step 3
 printf "\n----> Copy the distribution package to the target\n"
-scp -r -i "$key" dist/* ubuntu@$hostname:/
+scp -r -i "$key" dist/* ubuntu@$hostname:/usr/share/caddy
 
 # Step 4
 printf "\n----> Deploy the service on the target\n"
 ssh -i "$key" ubuntu@$hostname << ENDSSH
-# cd services/
+# cd /usr/share/caddy
 npm install
 
 pm2 restart all
+sudo service caddy restart
 ENDSSH
 
 # Step 5
