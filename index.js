@@ -38,37 +38,18 @@ app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/login.html');
 })
 
-//profile tester
-/*
-app.get('/profile/test', (req, res) => {
-  const username = 'tester';
-  res.render('profile', {layout: 'main', username: username})
-})
-*/
-
-/*
-app.get('/profile', async (req, res) => {
-  let authenticated = false;
-  const userName = localStorage.getItem('username');
-  if (userName) {
-    const user = await getUser(userName);
-    authenticated = user?.authenticated;
-  }
-  if (authenticated) {
-    window.location.pathname = `/profile/${userName}`;
-  }
-  else {
-    window.location.pathname = `/login`;
-  }
-})
-*/
-
 
 //:username will change based on request input using handlebars
 app.get('/profile/:username', (req, res) => {
   const username = req.params.username;
 
   res.render('profile', {layout: 'main', username: username});
+})
+
+app.get('/profile/:name', (req, res) => {
+  const name = req.params.username;
+
+  res.render('profile', {layout: 'main', name: name});
 })
 
 
