@@ -19,7 +19,6 @@
             <a href="login">Login /</a>
             <a href="register">Register /</a>
             <a href="#" onclick="getProfile()">Profile</a>
-            <!-- <button id ="profile" type="button" onclick="getProfile()">Profile</button> -->
         </h6>
     </a>
 </header>
@@ -76,25 +75,17 @@
             </div>
         </div>
     </div>
-    <!-- <script>src="profile.js"</script> -->
-
 
     <script>
         async function getProfile() {
-            //alert("CLICKED PROFILE");
+        
             let authenticated = false;
             const userName = localStorage.getItem('username');
-            //alert(userName);
-             //find stored username in DB
-            
-            if (userName) {//AUTHENTICATE THIS
-            //const user = await getUser(userName);
-            //authenticated = user?.authenticated;
-            authenticated = true;
+        
+            if (userName) {            
+                authenticated = true;
             }
         
-            
-            //if already in local storage redirect to user's page (add authtoken confirmation?)
             if (authenticated) {
             window.location.pathname = `/profile/${userName}`;
             }
@@ -165,7 +156,6 @@
 
     </script>
 
-<!-- <script>src="profile.js"</script> -->
 </body>
 
 </html>
