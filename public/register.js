@@ -1,5 +1,4 @@
 async function createUser() {
-    //alert('You clicked register button');
     const usernameInput = document.querySelector('#userName').value.trim();
     const emailInput = document.querySelector('#email').value.trim();
     const passwordInput = document.querySelector('#userPassword').value.trim();
@@ -18,11 +17,9 @@ async function createUser() {
         const body = await response.json();
         
         if (response?.status === 200) {
-            //alert('register success');
             localStorage.setItem('userName', userName);
             window.location.pathname = `/profile/${usernameInput}`;
           } else {
-            //alert('register fail');
             valid = 'Username already in use'
           }
     }
@@ -35,22 +32,18 @@ async function createUser() {
 function validate(username, email, password, confirmPassword) {
 
     if (username === '') {
-    //alert('Please enter a username');
     return 'Please enter a username';
     }
 
     if (!isValidEmail(email)) {
-    //alert('Please enter a valid email address');
     return 'Please enter a valid email address';
     }
 
     if (!validatePassword(password)) {
-    //alert('Password must contain at least one number and one special character, and be at least 8 characters long');
     return 'Password must contain at least one number and one special character, and be at least 8 characters long';
     }
 
     if (password !== confirmPassword) {
-    //alert('Passwords do not match');
     return 'Passwords do not match';
     }
 
