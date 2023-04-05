@@ -39,3 +39,16 @@ function validate(username, password) {
   }
   return true;
 }
+
+const username = document.querySelector('#userName');
+const password = document.querySelector('#userPassword');
+//enter key submission
+username.addEventListener('keydown', enterSubmit);
+password.addEventListener('keydown', enterSubmit);
+
+function enterSubmit (event) {
+  if (event.key === 'Enter') {
+    //event.preventDefault();
+    loginUser();
+  }
+}

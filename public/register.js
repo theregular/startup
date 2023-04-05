@@ -59,3 +59,20 @@ function validatePassword(password) {
     const regex = /^(?=.*[a-zA-Z])(?=.*[0-9!@#$%^&*])(?=.{8,})/;
     return regex.test(password);
 }
+
+const username = document.querySelector('#userName');
+const email = document.querySelector('#email');
+const password = document.querySelector('#userPassword');
+const confirmPassword = document.querySelector('#confirmPassword');
+//enter key submission
+username.addEventListener('keydown', enterSubmit);
+email.addEventListener('keydown', enterSubmit);
+password.addEventListener('keydown', enterSubmit);
+confirmPassword.addEventListener('keydown', enterSubmit);
+
+function enterSubmit (event) {
+    if (event.key === 'Enter') {
+      //event.preventDefault();
+      createUser();
+    }
+}
