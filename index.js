@@ -27,31 +27,39 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/html/index.html');
 })
 
 app.get('/register', (req, res) => {
-  res.sendFile(__dirname + '/public/register.html');
+  res.sendFile(__dirname + '/public/html/register.html');
 })
 
 app.get('/login', (req, res) => {
-  res.sendFile(__dirname + '/public/login.html');
+  res.sendFile(__dirname + '/public/html/login.html');
 })
 
 
 //:username will change based on request input using handlebars
-app.get('/profile/:username', (req, res) => {
+//check for authtoken
+app.get('/profile/:username', async (req, res) => {
   const username = req.params.username;
-
-  res.render('profile', {layout: 'main', username: username});
+  const getAvg = await DB.getAvgRating(username);
+  if (getAvg.length !== 0) {
+    avg = getAvg[0].averageRating.toFixed(2);
+    res.render('profile', {layout: 'main', username: username, avgRating: avg});
+  }
+  else {
+    res.render('profile', {layout: 'main', username: username, avgRating: 'No ratings yet!'});
+  }
 })
 
+/*
 app.get('/profile/:name', (req, res) => {
   const name = req.params.username;
 
   res.render('profile', {layout: 'main', name: name});
 })
-
+*/
 
 // Router for service endpoints
 var apiRouter = express.Router();
@@ -83,6 +91,28 @@ apiRouter.post('/auth/login', async (req, res) => {
     }
   }
   res.status(401).send({ msg: 'Unauthorized' });
+});
+
+//TODO: only allow one rating and ability to delete/change a user rating
+apiRouter.post('/auth/addrating', async (req, res) => { 
+  //check if user is logged in that is rating?
+    const rating = await DB.addRating(req.body.username, req.body.rating);
+    
+    if (rating) {
+        res.status(200).send();
+        return;
+    }
+    res.status(500).send({msg: 'Error adding rating to DB'});
+});
+
+apiRouter.get('/auth/getavgrating', async (req, res) => { 
+  const username = req.params.username;
+  const avg = await DB.getAvgRating(username);
+  if (avg) {
+    res.send({avgRating: avg});
+    return;
+  }
+  res.status(500).send({msg: 'Error getting average rating from DB'});
 });
 
 // DeleteAuth token if stored in cookie

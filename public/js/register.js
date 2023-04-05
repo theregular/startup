@@ -31,8 +31,8 @@ async function createUser() {
 
 function validate(username, email, password, confirmPassword) {
 
-    if (username === '') {
-    return 'Please enter a username';
+    if (!validateUsername(username)) {
+    return 'Please enter a valid username';
     }
 
     if (!isValidEmail(email)) {
@@ -58,6 +58,11 @@ function isValidEmail(email) {
 function validatePassword(password) {
     const regex = /^(?=.*[a-zA-Z])(?=.*[0-9!@#$%^&*])(?=.{8,})/;
     return regex.test(password);
+}
+
+function validateUsername(username) {
+    const regex = /^[a-z0-9]+$/i;
+    return regex.test(username);
 }
 
 const username = document.querySelector('#userName');

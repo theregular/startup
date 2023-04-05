@@ -10,6 +10,8 @@
         <div class="widget">
           <div class="rating-body">
             <h1>RATING</h1>
+            <span>Average Rating: </span>
+            <span id = 'avgRating'>{{avgRating}}</span>
             <div class="rating">
               <input type="radio" name="rating" id="star1" value="1">
               <label for="star1"></label>
@@ -27,6 +29,7 @@
 
             <div class = "rating-text"></div>
 
+<!-- 
             <script>
               const ratingInputs = document.querySelectorAll('.rating input');
 
@@ -48,6 +51,7 @@
                 });
               });
             </script>
+            -->
           </div>
         </div>  
 
@@ -63,9 +67,10 @@
         <div class="widget">
         <div class="reviews-body" id="reviews-body">
           <h1>REVIEWS</h1>
-          <button id="reviewButton">Leave A Review</button>
+          <button id="reviewButton" onclick='test()'>Leave A Review</button>
           <div id="review-textbox"></div>
-          <script>
+
+          <!-- <script>
             /*
             function leaveReview() {
                 const reviewTextbox = document.getElementById('review-textbox');
@@ -109,7 +114,7 @@
                 });
                 }
               });
-          </script>
+          </script> -->
           </div>
 
           <div class = "top-reviews">
