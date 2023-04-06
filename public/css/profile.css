@@ -322,13 +322,14 @@
     font-size: 14px;
     cursor: pointer;
     border-radius: 25px;
+    display: block;
   }
 
   #review-textbox {
     padding: 10px;
   }
 
-  #review-textbox textarea { 
+  #reviewText { 
     display: flex;
     justify-content: center;
     height: 50px;
