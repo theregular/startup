@@ -19,10 +19,14 @@ const client = new MongoClient(url);
 const userCollection = client.db('users').collection('user');
 const ratingsCollection = client.db('users').collection('rating');
 const reviewsCollection = client.db('users').collection('review');
+const ranksCollection = client.db('users').collection('rank');
 
-
-function getUser(username) { //finds user by username from DB
+function getUser(username) { //finds user by username from user DB
     return userCollection.findOne({ username: username });
+}
+
+function getUserInRank(username) { //finds user by username from rank DB
+  return ranksCollection.findOne({ username: username });
 }
 
 function getUserByToken(token) { //finds user by authToken from DB
@@ -59,20 +63,47 @@ async function getThreeReviews(username) { //get five most recent reviews
 
 async function getAvgRating(username) { //gets overall rating of a user
 
-    const avg = ratingsCollection.aggregate([ //returns the average of all the ratings
+    const avg = await ratingsCollection.aggregate([ //returns the average of all the ratings
     {
       $match: { username: username } // filter by username
     },
     {
       $group: {
         _id: null, // group by null to calculate the average across all documents
-        averageRating: { $avg: '$rating' } // calculate the average price of the 'rating' field
+        averageRating: { $avg: '$rating' } // calculate the average of the 'rating' field
       }
     }
   ]);
 
-  return await avg.toArray();
-  //return avg;
+  return avg.toArray();
+}
+async function updateAvgRating(username, rating) {
+  const userReview = {
+    username: username,
+    avgRating: rating,
+  };
+  //if avg for user exists, update it
+  if (await getUserInRank(username)) {
+    console.log("rank found, updating now");
+    const filter = { username: username };
+    const update = { $set: { avgRating: rating } };
+    const result = await ranksCollection.updateOne(filter, update);
+  }
+  //if avg for user doesn't exist, insert
+  else {
+    console.log("rank not found, inserting now");
+    ranksCollection.insertOne(userReview);
+  }
+  return userReview;
+}
+
+async function getRank(username) {
+  const filter = {};
+  const sort = {avgRating: -1};//ascending order by rating field
+  const result = await ranksCollection.find().sort(sort).toArray();
+  const index = result.findIndex(doc => doc.username === username);
+  //console.log(result);
+  return (index + 1); //return rank number
 }
 
 async function createUser(username, password, email) {
@@ -85,7 +116,14 @@ async function createUser(username, password, email) {
       email: email,
       token: uuid.v4(),
     };
+
+    const rank = {
+      username: username,
+      avgRating: "0"
+    }
+
     await userCollection.insertOne(user);
+    await ranksCollection.insertOne(rank);
   
     return user;
 }
@@ -98,5 +136,7 @@ module.exports = {
     getAvgRating,
     addReview,
     getAllReviews,
-    getThreeReviews
+    getThreeReviews,
+    updateAvgRating,
+    getRank
   };

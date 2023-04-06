@@ -45,21 +45,21 @@ app.get('/profile/:username', async (req, res) => {
   const username = req.params.username;
   const getAvg = await DB.getAvgRating(username);
   const threeRevs = await DB.getThreeReviews(username);
-  console.log(threeRevs);
-  console.log(threeRevs.length);
-  let reviews = ["", "", ""]
+  const rank = await DB.getRank(username);
+  let avg = 'No ratings yet!';
+  
+  //check if there are any ratings
+  if (getAvg.length !== 0) {
+    avg = getAvg[0].averageRating.toFixed(2);
+  }
+
+  //parse reviews
+  let reviews = ["No reviews yet!", "", ""]
   for (let i = 0; i < threeRevs.length; i++) {
     reviews[i] = threeRevs[i].review;
   }
 
-  if (getAvg.length !== 0) {
-    avg = getAvg[0].averageRating.toFixed(2);
-
-    res.render('profile', {layout: 'main', username: username, avgRating: avg, review1: reviews[0], review2: reviews[1], review3: reviews[2],});
-  }
-  else {
-    res.render('profile', {layout: 'main', username: username, avgRating: 'No ratings yet!'});
-  }
+  res.render('profile', {layout: 'main', username: username, avgRating: avg, rank: rank, review1: reviews[0], review2: reviews[1], review3: reviews[2],});
 })
 
 /*
@@ -125,6 +125,16 @@ apiRouter.post('/auth/addreview', async (req, res) => {
   res.status(500).send({msg: 'Error adding review to DB'});
 });
 
+apiRouter.post('/auth/updateavg', async (req, res) => { 
+  //check if user is logged in that is reviewing?
+  const result = await DB.updateAvgRating(req.body.username, req.body.avgRating);
+  if (result) {
+    res.status(200).send();
+    return;
+  }
+  res.status(500).send({msg: 'Error updating avgRating to DB'});
+});
+
 //UNNCESS?
 /*
 apiRouter.get('/auth/getthreereviews', async (req, res) => { 
@@ -138,19 +148,32 @@ apiRouter.get('/auth/getthreereviews', async (req, res) => {
 });
 */
 
-
-//UNNCESS?
-/*
-apiRouter.get('/auth/getavgrating', async (req, res) => { 
+apiRouter.get('/auth/getrank/:username', async (req, res) => { 
   const username = req.params.username;
-  const avg = await DB.getAvgRating(username);
-  if (avg) {
+  const rank = await DB.getRank(username);
+  console.log(rank);
+  if (rank) {
+    res.send({rank: rank});
+    return;
+  }
+  res.status(500).send({msg: 'Error getting rank'});
+});
+
+apiRouter.get('/auth/getavgrating/:username', async (req, res) => { 
+  const username = req.params.username;
+  const getAvg = await DB.getAvgRating(username);
+  if (getAvg) {
+    let avg = 'No ratings yet!';
+    //check for any ratings
+    if (getAvg.length !== 0) {
+      avg = getAvg[0].averageRating.toFixed(2);
+    }
     res.send({avgRating: avg});
     return;
   }
   res.status(500).send({msg: 'Error getting average rating from DB'});
 });
-*/
+
 
 // DeleteAuth token if stored in cookie
 apiRouter.delete('/auth/logout', (_req, res) => {
