@@ -92,3 +92,6 @@ Websockets are very interesting, I didn't now a whole lot about what they were b
 
 ## Post Startup Javascript Reflections
 It's really really cool to see how far the website has come. Now that there has been some Javascript functionality added, the website is much more interactive and user friendly. I feel like Javascript opens up an unlimited number of possibilites of where this could go and other functionality that could be added. I'm loving web dev so far and I'm very excited to keep learning more and keep creating.
+
+## Post Startup Service Reflections
+It's really starting to come together as a working and interactive web application. I'm so excited to see how this evolves even more in the future. Node.js makes it so easy to be able to add in complex server code that would otherwise be almost impossible to decipher. The database can store all the information of a user and display it using other server requests. Websocket can make it even more interactive too which is so cool! I will definitely be utilizing all of these to thier maximum capacities with this startup and future projects to come!
