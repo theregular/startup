@@ -84,14 +84,14 @@ async function updateAvgRating(username, rating) {
   };
   //if avg for user exists, update it
   if (await getUserInRank(username)) {
-    console.log("rank found, updating now");
+    //console.log("rank found, updating now");
     const filter = { username: username };
     const update = { $set: { avgRating: rating } };
     const result = await ranksCollection.updateOne(filter, update);
   }
   //if avg for user doesn't exist, insert
   else {
-    console.log("rank not found, inserting now");
+    //console.log("rank not found, inserting now");
     ranksCollection.insertOne(userReview);
   }
   return userReview;
@@ -106,6 +106,10 @@ async function getRank(username) {
   return (index + 1); //return rank number
 }
 
+async function getDisplayName(username) {
+  
+}
+
 async function createUser(username, password, email) {
     // Hash the password before we insert it into the database
     const passwordHash = await bcrypt.hash(password, 10);
@@ -115,6 +119,8 @@ async function createUser(username, password, email) {
       password: passwordHash,
       email: email,
       token: uuid.v4(),
+      displayName: username, //displayName defaults to username
+      //add pfp option later
     };
 
     const rank = {
@@ -138,5 +144,6 @@ module.exports = {
     getAllReviews,
     getThreeReviews,
     updateAvgRating,
-    getRank
+    getRank,
+    getDisplayName
   };

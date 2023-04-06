@@ -188,7 +188,7 @@
   */
 
   rating input:checked {
-    content: "\f111";;
+    content: "\f111";
     color: #d13e4a;
     
   }
@@ -337,6 +337,22 @@
     resize: none;
     margin: 0;
     margin: 20px;
+  }
+  #settings label:before{
+    font-family: FontAwesome;
+    content: "\f013";
+    color:#CC2936;
+    font-size: 80px;
+  }
+
+  #settings {
+    margin-top: 200px;
+    position: absolute;
+    right: 30px;
+  }
+
+  #settings-btn {
+    display: none;
   }
 
 

@@ -143,11 +143,16 @@ async function submitReview(){
   }
 }
 
+
 function validate(input) {
   if (input === ""){
     return 'Please enter valid input';
   }
   return true;
+}
+
+function test() {
+  alert('settings test');
 }
 
 //const avgRating = document.querySelector('#avgRating');

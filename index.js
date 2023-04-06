@@ -42,24 +42,32 @@ app.get('/login', (req, res) => {
 //:username will change based on request input using handlebars
 //check for authtoken/logged in
 app.get('/profile/:username', async (req, res) => {
-  const username = req.params.username;
-  const getAvg = await DB.getAvgRating(username);
-  const threeRevs = await DB.getThreeReviews(username);
-  const rank = await DB.getRank(username);
-  let avg = 'No ratings yet!';
+  const user = await DB.getUser(req.params.username); //verify user actually exists
+  if (user) {
+    const username = user.username;
+    const getAvg = await DB.getAvgRating(username);
+    const threeRevs = await DB.getThreeReviews(username);
+    const rank = await DB.getRank(username);
+    const displayName = user.displayName;
+    let avg = 'No ratings yet!';
+    
+    //check if there are any ratings
+    if (getAvg.length !== 0) {
+      avg = getAvg[0].averageRating.toFixed(2);
+    }
   
-  //check if there are any ratings
-  if (getAvg.length !== 0) {
-    avg = getAvg[0].averageRating.toFixed(2);
+    //parse reviews
+    let reviews = ["No reviews yet!", "", ""]
+    for (let i = 0; i < threeRevs.length; i++) {
+      reviews[i] = threeRevs[i].review;
+    }
+  
+    res.render('profile', {layout: 'main', username: username, avgRating: avg, rank: rank, review1: reviews[0], 
+                                            review2: reviews[1], review3: reviews[2], displayName: displayName});
   }
-
-  //parse reviews
-  let reviews = ["No reviews yet!", "", ""]
-  for (let i = 0; i < threeRevs.length; i++) {
-    reviews[i] = threeRevs[i].review;
+  else {
+    res.redirect('/register');
   }
-
-  res.render('profile', {layout: 'main', username: username, avgRating: avg, rank: rank, review1: reviews[0], review2: reviews[1], review3: reviews[2],});
 })
 
 /*
@@ -151,7 +159,7 @@ apiRouter.get('/auth/getthreereviews', async (req, res) => {
 apiRouter.get('/auth/getrank/:username', async (req, res) => { 
   const username = req.params.username;
   const rank = await DB.getRank(username);
-  console.log(rank);
+  //console.log(rank);
   if (rank) {
     res.send({rank: rank});
     return;

@@ -1,8 +1,12 @@
       <div id = "profile-container">
         <div class ="pfp-top">
+          <div id = 'settings'>
+          <button id="settings-btn" onclick="test()"></button>
+          <label for="settings-btn"></label>
+          </div>
           <img class="pfp-pic" src="/images/cool carl.jpg" alt="pfp">
           <div class ="pfp-userinfo">
-            <h2 class="name">Carl Wheezer</h2>
+            <h2 class="name">{{displayName}}</h2>
             <p class="username">@{{username}}</p>
           </div>
         </div>
