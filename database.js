@@ -54,7 +54,7 @@ async function getAllReviews(username) { //get all reviews
 }
 
 async function getThreeReviews(username) { //get five most recent reviews
-  return ratingsCollection.find({ username: username }).sort({_id:-1}).limit(3);
+  return await reviewsCollection.find({ username: username }).sort({_id:-1}).limit(3).toArray();
 }
 
 async function getAvgRating(username) { //gets overall rating of a user
@@ -71,7 +71,7 @@ async function getAvgRating(username) { //gets overall rating of a user
     }
   ]);
 
-  return avg.toArray();
+  return await avg.toArray();
   //return avg;
 }
 

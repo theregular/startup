@@ -33,24 +33,26 @@ async function addUserRating() {
       }
 }
 
-async function leaveReview() { //TODO: limit reviews?
+function leaveReview() { //TODO: limit reviews?
   const leaveReviewBtn = document.getElementById('reviewButton');
   const reviewBox = document.getElementById('reviewText');
-  const reviewBody = document.getElementById('reviews-body');
-  const thankYouMsg = document.getElementById('thankYouMsg');
+  //const reviewBody = document.getElementById('reviews-body');
+  //const thankYouMsg = document.getElementById('thankYouMsg');
   const submitButton = document.getElementById('submitBtn');
-  const usernameValue = document.querySelector('.username').textContent;
-  const username = usernameValue.substring(1);
+  //const usernameValue = document.querySelector('.username').textContent;
+  //const username = usernameValue.substring(1);
   //thankYouMsg.style.display = 'none';
   reviewBox.style.display = 'block';
   leaveReviewBtn.style.display = 'none';
   submitButton.style.display = 'block';
   
   //on submit button click submit review
+
+  /*
   submitButton.addEventListener('click', async function() {
     const reviewText = reviewBox.value.trim();
     valid = validate(reviewText);
-
+      
     if(valid === true) {
       const response = await fetch('api/auth/addreview',  {
         method: 'post',
@@ -78,6 +80,44 @@ async function leaveReview() { //TODO: limit reviews?
       alert(valid);
     }
   }, { once: true }); //only adds the event listener once
+  */
+}
+
+async function submitReview(){
+  const leaveReviewBtn = document.getElementById('reviewButton');
+  const submitButton = document.getElementById('submitBtn');
+  const thankYouMsg = document.getElementById('thankYouMsg');
+  const usernameValue = document.querySelector('.username').textContent;
+  const username = usernameValue.substring(1);
+  const reviewBox = document.getElementById('reviewText');
+  const reviewText = reviewBox.value.trim();
+  valid = validate(reviewText);
+  if(valid === true) {
+    const response = await fetch(`/api/auth/addreview`, {
+    method: 'post',
+    body: JSON.stringify({ username: username, review: reviewText }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  
+  if (response.status === 200) {
+    //alert('review accepted');
+    thankYouMsg.textContent = 'Your review has been submitted!';
+
+  } else {
+    //alert('could not upload review');
+    thankYouMsg.textContent = 'Error';
+  }
+  leaveReviewBtn.style.display = 'block';
+  submitButton.style.display = 'none';
+  reviewBox.style.display = 'none';
+  reviewBox.value = "";
+  thankYouMsg.style.display = 'block;'
+  }
+  else {
+    alert(valid);
+  }
 }
 
 async function getAverageRating() {

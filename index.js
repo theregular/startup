@@ -40,13 +40,22 @@ app.get('/login', (req, res) => {
 
 
 //:username will change based on request input using handlebars
-//check for authtoken
+//check for authtoken/logged in
 app.get('/profile/:username', async (req, res) => {
   const username = req.params.username;
   const getAvg = await DB.getAvgRating(username);
+  const threeRevs = await DB.getThreeReviews(username);
+  console.log(threeRevs);
+  console.log(threeRevs.length);
+  let reviews = ["", "", ""]
+  for (let i = 0; i < threeRevs.length; i++) {
+    reviews[i] = threeRevs[i].review;
+  }
+
   if (getAvg.length !== 0) {
     avg = getAvg[0].averageRating.toFixed(2);
-    res.render('profile', {layout: 'main', username: username, avgRating: avg, review1: "test", review2: "test2", review3: "test3",});
+
+    res.render('profile', {layout: 'main', username: username, avgRating: avg, review1: reviews[0], review2: reviews[1], review3: reviews[2],});
   }
   else {
     res.render('profile', {layout: 'main', username: username, avgRating: 'No ratings yet!'});
@@ -106,16 +115,29 @@ apiRouter.post('/auth/addrating', async (req, res) => {
 });
 
 apiRouter.post('/auth/addreview', async (req, res) => { 
-  console.log("CALLED");
+  //console.log("CALLED");
   //check if user is logged in that is reviewing?
-  //const review = await DB.addReview(req.body.username, req.body.review);
-  /*
+  const review = await DB.addReview(req.body.username, req.body.review);
   if (review) {
       res.status(200).send();
       return;
   }
-  res.status(500).send({msg: 'Error adding review to DB'});*/
+  res.status(500).send({msg: 'Error adding review to DB'});
 });
+
+//UNNCESS?
+/*
+apiRouter.get('/auth/getthreereviews', async (req, res) => { 
+  //check if user is logged in that is requesting?
+  const review = await DB.getThreeReviews(req.body.username);
+  if (review) {
+      res.status(200).send();
+      return;
+  }
+  res.status(500).send({msg: 'Error getting review from DB'});
+});
+*/
+
 
 //UNNCESS?
 /*

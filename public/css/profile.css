@@ -286,7 +286,7 @@
   .reviews-body h1 {
     justify-content: center;
     display: inline;
-    padding-bottom: 40px;
+    padding-bottom: 0;
     font-size: 50px;
     font-family: Russo One, sans-serif;
     letter-spacing: 0.1em;
@@ -336,6 +336,7 @@
     width: 300px;
     resize: none;
     margin: 0;
+    margin: 20px;
   }
 
 
