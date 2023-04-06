@@ -46,7 +46,7 @@ app.get('/profile/:username', async (req, res) => {
   const getAvg = await DB.getAvgRating(username);
   if (getAvg.length !== 0) {
     avg = getAvg[0].averageRating.toFixed(2);
-    res.render('profile', {layout: 'main', username: username, avgRating: avg});
+    res.render('profile', {layout: 'main', username: username, avgRating: avg, review1: "test", review2: "test2", review3: "test3",});
   }
   else {
     res.render('profile', {layout: 'main', username: username, avgRating: 'No ratings yet!'});
@@ -105,6 +105,20 @@ apiRouter.post('/auth/addrating', async (req, res) => {
     res.status(500).send({msg: 'Error adding rating to DB'});
 });
 
+apiRouter.post('/auth/addreview', async (req, res) => { 
+  console.log("CALLED");
+  //check if user is logged in that is reviewing?
+  //const review = await DB.addReview(req.body.username, req.body.review);
+  /*
+  if (review) {
+      res.status(200).send();
+      return;
+  }
+  res.status(500).send({msg: 'Error adding review to DB'});*/
+});
+
+//UNNCESS?
+/*
 apiRouter.get('/auth/getavgrating', async (req, res) => { 
   const username = req.params.username;
   const avg = await DB.getAvgRating(username);
@@ -114,6 +128,7 @@ apiRouter.get('/auth/getavgrating', async (req, res) => {
   }
   res.status(500).send({msg: 'Error getting average rating from DB'});
 });
+*/
 
 // DeleteAuth token if stored in cookie
 apiRouter.delete('/auth/logout', (_req, res) => {

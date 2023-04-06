@@ -18,6 +18,9 @@ const url = `mongodb+srv://${userName}:${password}@clout.kxu11hn.mongodb.net/`;
 const client = new MongoClient(url);
 const userCollection = client.db('users').collection('user');
 const ratingsCollection = client.db('users').collection('rating');
+const reviewsCollection = client.db('users').collection('review');
+
+
 function getUser(username) { //finds user by username from DB
     return userCollection.findOne({ username: username });
 }
@@ -34,6 +37,24 @@ async function addRating(username, rating) { //adds rating for a user to DB, may
     await ratingsCollection.insertOne(userRating);
   
     return userRating;
+}
+
+async function addReview(username, review) { //adds review for a user to DB, add person who reviewed them, timestamp?
+  const userReview = {
+    username: username,
+    review: review,
+  };
+  await reviewsCollection.insertOne(userReview);
+
+  return userReview;
+}
+
+async function getAllReviews(username) { //get all reviews
+  return ratingsCollection.find({ username: username })
+}
+
+async function getThreeReviews(username) { //get five most recent reviews
+  return ratingsCollection.find({ username: username }).sort({_id:-1}).limit(3);
 }
 
 async function getAvgRating(username) { //gets overall rating of a user
@@ -74,5 +95,8 @@ module.exports = {
     getUserByToken,
     createUser,
     addRating,
-    getAvgRating
+    getAvgRating,
+    addReview,
+    getAllReviews,
+    getThreeReviews
   };

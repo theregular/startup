@@ -29,40 +29,55 @@ async function addUserRating() {
         //alert("added rating to DB successfully");\
         ratingEl.textContent = `You rated ${username} ${actualValue}`;
       } else {
-        ratingEl.textConten = 'Failed to add rating'
+        ratingEl.textContent = 'Failed to add rating';
       }
 }
 
-function leaveReview() {
-    const leaveReviewBtn = document.getElementById('reviewButton');
-        const reviewStuff = document.getElementById('review-textbox');
-        const reviewBody = document.getElementById('reviews-body');
-        let textBox = 0;
+async function leaveReview() { //TODO: limit reviews?
+  const leaveReviewBtn = document.getElementById('reviewButton');
+  const reviewBox = document.getElementById('reviewText');
+  const reviewBody = document.getElementById('reviews-body');
+  const thankYouMsg = document.getElementById('thankYouMsg');
+  const submitButton = document.getElementById('submitBtn');
+  const usernameValue = document.querySelector('.username').textContent;
+  const username = usernameValue.substring(1);
+  //thankYouMsg.style.display = 'none';
+  reviewBox.style.display = 'block';
+  leaveReviewBtn.style.display = 'none';
+  submitButton.style.display = 'block';
+  
+  //on submit button click submit review
+  submitButton.addEventListener('click', async function() {
+    const reviewText = reviewBox.value.trim();
+    valid = validate(reviewText);
 
-        leaveReviewBtn.addEventListener('click', function() {
-        if (textBox == 0) {
-            const textArea = document.createElement('textarea');
-            textArea.setAttribute('id', 'reviewText');
-            textArea.type = 'text';
-            textArea.maxLength = '100';
-            reviewStuff.appendChild(textArea);
-            textBox++;
+    if(valid === true) {
+      const response = await fetch('api/auth/addreview',  {
+        method: 'post',
+        body: JSON.stringify({ username: username, review: reviewText }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      
+      if (response.status === 200) {
+        alert('review accepted');
+        thankYouMsg.textContent = 'Your review has been submitted!';
 
-        
-            const submitButton = document.createElement('button');
-            submitButton.setAttribute('id', 'submitBtn');
-            submitButton.textContent = 'Submit';
-            reviewBody.appendChild(submitButton);
-            
-            submitButton.addEventListener('click', function() {
-                leaveReviewBtn.style.display = 'none';
-                submitButton.style.display = 'none';
-                textArea.style.display = 'none';
-                const thankYouMsg = document.createElement('p');
-                thankYouMsg.textContent = 'Your review has been submitted!';
-                reviewBody.appendChild(thankYouMsg);
-            });
-        }});
+      } else {
+        alert('could not upload review');
+        thankYouMsg.textContent = 'Error';
+      }
+      leaveReviewBtn.style.display = 'block';
+      submitButton.style.display = 'none';
+      reviewBox.style.display = 'none';
+      reviewBox.value = "";
+      thankYouMsg.style.display = 'block;'
+    }
+    else {
+      alert(valid);
+    }
+  }, { once: true }); //only adds the event listener once
 }
 
 async function getAverageRating() {
@@ -87,6 +102,13 @@ async function getAverageRating() {
   }
 
   return 'ERROR';
+}
+
+function validate(input) {
+  if (input === ""){
+    return 'Please enter valid input';
+  }
+  return true;
 }
 
 //const avgRating = document.querySelector('#avgRating');
