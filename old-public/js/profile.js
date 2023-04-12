@@ -143,6 +143,36 @@ async function submitReview(){
   }
 }
 
+function showMenu() {
+  //alert('test');
+  const settingsbtn = document.getElementById("settings-btn");
+  const menu = document.createElement('div');
+  menu.classList.add('menu');
+  menu.innerHTML = `
+    <ul>
+      <li>Setting 1</li>
+      <li>Setting 2</li>
+      <li>Setting 3</li>
+    </ul>
+  `;
+  menu.style.position = 'fixed';
+  menu.style.top = '10px';
+  menu.style.right = '50px';
+  document.body.appendChild(menu);
+  
+  //alert('menu showing');
+
+  settingsbtn.addEventListener('click', hideMenu);
+}
+
+function hideMenu(event) {
+  const menu = document.querySelector('.menu');
+  if (!menu.contains(event.target)) {
+    menu.remove();
+    document.body.removeEventListener('click', hideMenu);
+  }
+}
+
 
 function validate(input) {
   if (input === ""){

@@ -1,0 +1,50 @@
+* {
+  font-family: sans-serif;
+}
+
+header {
+  margin-right: 50px;
+  margin-top: 30px;
+  text-align: right;
+}
+
+header NavLink {
+  text-decoration: none;
+}
+
+.clout {
+  font-size: 50px;
+  padding: 10px;
+  margin: auto;
+  font-family: Russo One, sans-serif;
+  color: #CC2936;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.slogan {
+  margin-top: 0;
+  margin-right: 15px;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 700px) {
+  header {
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .slogan {
+    justify-content: center;
+    margin-right: 0;
+  }
+}
+
+.links {
+  font-size: 20px;
+  font-family: Russo One, sans-serif;
+  color: #565980;
+  letter-spacing: 0.05em;
+}

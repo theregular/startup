@@ -1,0 +1,189 @@
+* {
+    font-family: sans-serif;
+}
+
+header {
+    margin-right: 50px;
+    text-align: right;
+}
+
+header a {
+    text-decoration: none;
+}
+
+.clout {
+    font-size: 50px;
+    font-family: Russo One, sans-serif;
+    color: #CC2936;
+    letter-spacing: 0.1em;
+}
+
+.links {
+    font-size: 20px;
+    font-family: Russo One, sans-serif;
+    color: #565980;
+    letter-spacing: 0.05em;
+  }
+
+.pfp-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    margin: 5vw;
+}
+
+.pfp-body h1 {
+    justify-content: center;
+    display: flex;
+    font-size: 50px;
+    color: #CC2936;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 0;
+}
+
+.rating-body h1 {
+    padding-bottom: 40px;
+}
+
+.rank-body h1 {
+    padding-bottom: 40px;
+}
+
+.rating-body p {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 18px;
+    color: #2c60a3;
+}
+
+.rank-body h1 {
+    justify-content: center;
+    display: flex;
+    font-size: 50px;
+    color: #ffffff;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin: 0;
+}
+
+.rank-body p2 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 18px;
+    color: #f9e9ea;
+}
+
+.widget {
+    letter-spacing: 0.03em;
+    font-family: Roboto, sans-serif;
+    justify-content: center;
+    font-weight: bold;
+    margin: auto;
+    border-style: solid;
+    border-color: #CC2936;
+    border-width: 10px;
+    border-radius: 10%;
+    padding: 20px;
+    min-width: 400px;
+
+    display: flex;
+    flex: 1;
+    height: 300px;
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.inverted-widget {
+    letter-spacing: 0.03em;
+    font-family: Roboto, sans-serif;
+    justify-content: center;
+    font-weight: bold;
+
+    background-color: #CC2936;
+    margin: auto;
+    border-style: solid;
+    border-color: #CC2936;
+    border-width: 10px;
+    border-radius: 10%;
+    padding: 20px;
+    min-width: 400px;
+
+    display: flex;
+    flex: 1;
+    height: 300px;
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews-body {
+    justify-content: center;
+    text-align: left;
+}
+
+.reviews-body h1 {
+    padding-bottom: 40px;
+    font-size: 50px;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.reviews-body p {
+    display: inline-flex;
+}
+
+
+#links {
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 5px;
+    font-size: 25px;
+    font-family: Russo One, sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-google {
+    background: #dd4b39;
+    color: white;
+}
+
+.fa-instagram {
+    background: #df3087;
+    color: white;
+}
+.fa-github {
+    background: #161616;
+    color: white;
+}
