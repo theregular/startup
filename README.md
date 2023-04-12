@@ -90,6 +90,9 @@ Now we're getting to the more complex stuff, and even though I don't quite under
 ## Post Simon WebSocket Reflections
 Websockets are very interesting, I didn't now a whole lot about what they were before this project and learning about it has been very cool. I definitely see the need for an almost constant connection to the server and the ability to be able to have multiple threads of connections going on at the same time is very useful. I'm excited to find a use for this in my startup application.
 
+## Post Simon Reaact Reflections
+Wow! React is so interesting and cool to use. At first glance I was a bit discouraged because I thought this meant I'd have to disregard most of what I had learned this semester and putting in the effort to port something you've been working on for so long can seem daunting, but I've come to learn that it's worth the little extra bit of effort! React makes everything much more object-oriented and readable. Not to mention that now there is so much less repeated and redundant code. I still don't understand fully states and hooks, but I was able to grasp it a little bit more during the conversion of simon to a react application. I'm really excited to try to apply this to my startup!
+
 ## Post Startup Javascript Reflections
 It's really really cool to see how far the website has come. Now that there has been some Javascript functionality added, the website is much more interactive and user friendly. I feel like Javascript opens up an unlimited number of possibilites of where this could go and other functionality that could be added. I'm loving web dev so far and I'm very excited to keep learning more and keep creating.
 
