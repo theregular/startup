@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import './register.css';
 
 export function Register() {
@@ -7,7 +8,10 @@ export function Register() {
     const [emailInput, setEmailInput] = React.useState('');
     const [passwordInput, setPasswordInput] = React.useState('');
     const [confirmPasswordInput, setConfirmPasswordInput] = React.useState('');
-    let [valid, setValid] = React.useState('');
+    //let [valid, setValid] = React.useState('');
+    const [redirect, setRedirect] = React.useState(false);
+    const [msg, setMsg] = React.useState('');
+
 
     const usernameChange = (e) => {
         setUsernameInput(e.target.value.trim());
@@ -26,7 +30,7 @@ export function Register() {
     };
 
     async function createUser() {
-        setValid(validate(usernameInput, emailInput, passwordInput, confirmPasswordInput));
+        const valid = validate(usernameInput, emailInput, passwordInput, confirmPasswordInput);
         if (valid === true) {
             const response = await fetch(`/api/auth/create`, {
                 method: 'post',
@@ -38,9 +42,10 @@ export function Register() {
             
             if (response?.status === 200) {
                 //localStorage.setItem('userName', userName);
-                alert("success!")
+                //alert("success!")
+                setRedirect(true);
               } else {
-                setValid('Username already in use');
+                setMsg('Username already in use');
               }
         }
     }
@@ -48,19 +53,23 @@ export function Register() {
     function validate(username, email, password, confirmPassword) {
 
         if (!validateUsername(username)) {
-            return 'Please enter a valid username';
+            setMsg('Please enter a valid username');
+            return false;
         }
     
         if (!isValidEmail(email)) {
-            return 'Please enter a valid email address';
+            setMsg('Please enter a valid email address');
+            return false;
         }
     
         if (!validatePassword(password)) {
-            return 'Password must contain at least one number and one special character, and be at least 8 characters long';
+            setMsg('Password must contain at least one number and one special character, and be at least 8 characters long');
+            return false;
         }
     
         if (password !== confirmPassword) {
-            return 'Passwords do not match';
+            setMsg('Passwords do not match');
+            return false;
         }
     
         return true;
@@ -81,6 +90,10 @@ export function Register() {
         return regex.test(username);
     }
 
+    if (redirect) { //auto redirects to profile page when login successful
+        return <Navigate to={`/profile/${usernameInput}`} replace={true}/>;
+    }
+
     return (
         <main className='register-body'>
             <div className="register">
@@ -93,7 +106,7 @@ export function Register() {
                         <NavLink className= "button-navlink" id ="login" to="/login">login</NavLink>
                         <button id="register" onClick={() => createUser()} type="button">register</button>
                     </form>
-                <div id="errMessage">{valid}</div>
+                <div id="errMessage">{msg}</div>
             </div>
         </main>
     );

@@ -1,24 +1,26 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useParams } from "react-router-dom";
-import './profile.css'
+import './find.css';
+import { StarRating } from './starRating.jsx';
 
-export function Profile() {
-    const { username } = useParams(); //gets username from params
+export function Find() {
+    const [findInput, setFindInput] = React.useState('');
     const [userData, setUserData] = React.useState(null);
-    const [updated, setUpdated] = React.useState(true);
-    const [redirect, setRedirect] = React.useState(false);
+    const [updated, setUpdated] = React.useState(false);
+    const [msg, setMsg] = React.useState('');
+    const findChange = (e) => {
+        setFindInput(e.target.value.trim());
+    };
 
-    const auth = true;
-    //find way to update this
-    React.useEffect(() => {
-        if(!auth){
-        setRedirect(true);
-        }
+    function childUpdated () {
+        console.log("parent saw child update");
+        setUpdated(true);
+    }
+
+    React.useEffect(() => { //rerender user on update of some kind
         async function fetchData() {
             if(updated) {
                 //console.log("parent updated");
-                const response = await fetch(`/api/user/${username}`, {
+                const response = await fetch(`/api/user/${findInput}`, {
                     method: 'get',
                     headers: {
                     'Content-type': 'application/json; charset=UTF-8',
@@ -36,26 +38,49 @@ export function Profile() {
         }
         fetchData();
     }, [updated]);
-  
-    if (redirect) {
-      return <Navigate to='/login' replace={true}/>;
+    
+    async function findUser() { //intial render of user on search
+        const valid = validate(findInput);
+        if (valid) {
+            const response = await fetch(`/api/user/${findInput}`, {
+                method: 'get',
+                headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
+            if (response.status === 200) {
+                const json = await response.json();
+                setUserData(json);
+            }
+            else {
+                setMsg("Cannot find user");
+            }
+        }
+        else {
+            setMsg("Please enter a username");
+        }
+        setUpdated(false);
+    }
+    
+
+    function validate(input) {
+        if (input === '') {
+            return false;
+        }
+        return true;
     }
 
-    if (!userData) {
-        return <p>Loading user data . . . </p>;
-    }
-    else if (userData === "Does Not Exist") {
-        return <p>User doesn't exist</p>;
-    }
-    else {
-        return (
-            <main className='profile'>            
+
+    return (
+        <main className='find-body'>
+            <div>Find a user:</div>
+            <input type="text" placeholder="enter username here" onChange={findChange}/>
+            <button id ="findBtn" type="button" onClick={() => findUser()}>find</button>
+            <div id="result">{msg}</div>
+
+            { userData && (
                 <div id = "profile-container">
                     <div className ="pfp-top">
-                        <div id = 'settings'>
-                            <button id="settings-btn" onClick=""></button>
-                            <label for="settings-btn"></label>
-                        </div>
                         <img className="pfp-pic" src="/images/cool carl.jpg" alt="pfp"/>
                         <div className ="pfp-userinfo">
                             <h2 className="name">{userData.displayName}</h2>
@@ -69,6 +94,8 @@ export function Profile() {
                                 <span>Average Rating: </span>
                                 <span id = 'avgRating'>{userData.rating}</span>
                                 <div className="rating">
+                                    {/* <StarRating username={userData.username}/>*/} 
+                                    <StarRating updated={childUpdated} username={userData.username}/>
                                 </div>
                                 <div className = "rating-text"></div>
                             </div>
@@ -99,7 +126,7 @@ export function Profile() {
                         </div>
                     </div>
                 </div>
-            </main>
-        );
-    }
+            ) }
+        </main>
+    );
 }
