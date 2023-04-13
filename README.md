@@ -61,7 +61,7 @@ ssh -i "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" ubuntu@3.137.12.11
 ```
 **Example**
 ```
-./deployFiles.sh -k "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" -h cloutplatform.com -s simon
+./deployReact.sh -k "~/Documents/CS260_STARTUP/CS 260/keys/clout.pem" -h cloutplatform.com -s simon
 ```
 (Laptop)
 ```
