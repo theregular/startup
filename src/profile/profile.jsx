@@ -5,15 +5,15 @@ import { StarRating } from './starRating.jsx';
 export function Profile() {
     const [userData, setUserData] = React.useState([]);
     const [updated, setUpdated] = React.useState(false);
-
-
-    const childUpdated = (prop) => {
-        setUpdated(prop);
-    }
+    //const [initalLoad, setInitialLoad] = React.useState(true);
+    //let currAvg = 0;//current average rating
 
     React.useEffect(() => {
         async function fetchData() {
-            const response = await fetch('/api/user/bartchie', {
+            //console.log("parent fetching");
+            if (updated === true) {
+                console.log("data fetched");
+                const response = await fetch('/api/user/bartchie', {
                 method: 'get',
                 headers: {
                   'Content-type': 'application/json; charset=UTF-8',
@@ -26,10 +26,17 @@ export function Profile() {
               else {
                 setUserData("Does Not Exist");
               }
+              setUpdated(false);
+           }
           }
-          fetchData();
+        fetchData();
 
-    }, []);
+    }, [updated]);
+
+    const childUpdated = (data) => {
+        console.log("child updated");
+        setUpdated(data);
+    }
 
     if (!userData) {
         return <p>Loading user data . . . </p>;
@@ -70,8 +77,8 @@ export function Profile() {
                                 <span>Average Rating: </span>
                                 <span id = 'avgRating'>{userData.rating}</span>
                                 <div className="rating">
-                                    <StarRating username={userData.username}/>
-                                    {/*<StarRating update={childUpdated} username={userData.username}/> */} 
+                                    {/* <StarRating username={userData.username}/>*/} 
+                                    <StarRating updated={childUpdated} username={userData.username}/>
                                 </div>
                                 <div className = "rating-text"></div>
                             </div>
