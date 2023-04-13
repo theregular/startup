@@ -1,37 +1,40 @@
 import './App.css';
 import React from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { Profile } from './profile/profile';
-import { AuthState } from './login/authState';
+import { AuthState } from './profile/authState';
 import { Home } from './home/home';
 import { Find } from './find/find';
 
 
 function App() {
-  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || 'test'); //update to be dynamic username detection
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || ''); //update to be dynamic username detection
   // Asynchronously determine if the user is authenticated by calling the service
   const [authState, setAuthState] = React.useState(AuthState.Unknown);
 
-  /*
   React.useEffect(() => {
     if (userName) {
       fetch(`/api/user/${userName}`)
         .then((response) => {
+          console.log("name found but unauth");
           if (response.status === 200) {
             return response.json();
           }
         })
         .then((user) => {
+          console.log("AUTH");
           const state = user?.authenticated ? AuthState.Authenticated : AuthState.Unauthenticated;
           setAuthState(state);
         });
     } else {
+      console.log("unauth");
       setAuthState(AuthState.Unauthenticated);
     }
   }, [userName]);
-*/
+
+
   return (
     <div className="body">
       <header>
@@ -48,15 +51,18 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/find' element={<Find />} />
-        <Route path='/login' element={<Login 
-              userName={userName}
-              authState={authState}
-              onAuthChange={(userName, authState) => {
-                setAuthState(authState);
-                setUserName(userName);
-              }}/>} />
+        <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register />} />
-        <Route path='/profile/:username' element={<Profile />} />
+        <Route path='/profile/:username' element={
+          <Profile 
+            authState={authState}
+            onAuthChange={(userName, authState) => {
+              setAuthState(authState);
+              setUserName(userName);
+            }}/>
+          } 
+        />
+        <Route path='/profile' element={<Navigate to='/login' replace={true}/>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
 
