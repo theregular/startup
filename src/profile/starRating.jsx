@@ -2,40 +2,91 @@ import React, { useState } from 'react';
 import { FaCircle, FaRegCircle } from "react-icons/fa";
 import './starRating.css'
 
+let ratingChanged = false; //change later to not use global variable
+
 export function StarRating(props) {
   const username = props.username;
   const tellParent = props.updated;
   const [rating, setRating] = useState();
   const [hoverCount, sethoverCount] = useState();
 
+
   React.useEffect(() => {
-      async function addRating() {
-        if(rating) {
-        tellParent(true);//tell parent that child updated
-        console.log(`RATING: ${rating}`);
-        const response = await fetch(`/api/auth/addrating`, {
-          method: 'post',
-          body: JSON.stringify({ username: username, rating: rating }),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-          },
-        });
-        
-        if (response.status === 200) {
-          console.log(`added rating of ${rating} to DB successfully`);
-          //setRating(rating);
-        } else {
-          alert("Failed to add rating");
-        }
-        
-        tellParent(false);
-      }
+      
+    if (ratingChanged) {
+      console.log("got in");
+      addRating();
     }
-    addRating();
+
   }, [rating, username, tellParent]);
+  
+
+  async function addRating() {
+    console.log("child updated");
+    if(rating) { //rating != 0
+      console.log(`RATING: ${rating}`);
+      const response = await fetch(`/api/auth/addrating`, {
+        method: 'post',
+        body: JSON.stringify({ username: username, rating: rating }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      
+      if (response.status === 200) {
+        console.log(`added rating of ${rating} to DB successfully`);
+        //setRating(rating);
+        tellParent();
+      } else {
+        alert("Failed to add rating");
+      }
+      
+      ratingChanged = false;
+      const newAvg = await getAverageRating(username);
+      console.log(`NEW AVG: ${newAvg}`);
+      await updateAvgRating(username, newAvg); //update DB with new average rating
+    }
+  }
+
+  async function getAverageRating(username) {
+  
+    const response = await fetch(`/api/auth/getavgrating/${username}`, {
+      method: 'get',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+  
+    const body = await response.json();
+  
+    if (response.status === 200) {
+      return body.avgRating;
+    }
+  
+    return 'ERROR';
+  }
+
+  async function updateAvgRating(username, rating) {
+    const response = await fetch(`/api/auth/updateavg`, {
+      method: 'post',
+      body: JSON.stringify({ username: username, avgRating: rating }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+  
+    if (response.status === 200) {
+      //alert("new avg rating stored!");
+      console.log("new avg rating stored!");
+    } else {
+      alert('could not store rating');
+    }
+  }
+  
 
 
   const handleRatingClick = (index) => {
+    ratingChanged = true;
     setRating(index + 1);
     sethoverCount(index + 1);
     //addUserRating();

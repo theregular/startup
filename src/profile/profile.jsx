@@ -4,15 +4,14 @@ import { StarRating } from './starRating.jsx';
 
 export function Profile() {
     const [userData, setUserData] = React.useState([]);
-    const [updated, setUpdated] = React.useState(false);
+    const [updated, setUpdated] = React.useState(true);
     //const [initalLoad, setInitialLoad] = React.useState(true);
     //let currAvg = 0;//current average rating
 
     React.useEffect(() => {
         async function fetchData() {
-            //console.log("parent fetching");
-            if (updated === true) {
-                console.log("data fetched");
+            if(updated) {
+                console.log("parent updated");
                 const response = await fetch('/api/user/bartchie', {
                 method: 'get',
                 headers: {
@@ -26,16 +25,15 @@ export function Profile() {
               else {
                 setUserData("Does Not Exist");
               }
-              setUpdated(false);
-           }
-          }
+            setUpdated(false);
+            }
+        }
         fetchData();
-
     }, [updated]);
 
-    const childUpdated = (data) => {
-        console.log("child updated");
-        setUpdated(data);
+    function childUpdated () {
+        console.log("parent saw child update");
+        setUpdated(true);
     }
 
     if (!userData) {
@@ -47,21 +45,10 @@ export function Profile() {
     else {
         return (
             <main className='profile'>
-                {/* 
-                <div>
-                    <div>Profile Test</div>
-                    <p>Username: {userData.username}</p>
-                    <p>Display Name: {userData.displayName}</p>
-                    <p>Average Rating: {userData.rating}</p>
-                    <p>Review 1: {userData.review1}</p>
-                    <p>Review 2: {userData.review2}</p>
-                    <p>Review 3: {userData.review3}</p>
-                </div>
-                */}
                 <div id = "profile-container">
                     <div className ="pfp-top">
                         <div id = 'settings'>
-                            <button id="settings-btn" onclick="showMenu()"></button>
+                            <button id="settings-btn" onClick=""></button>
                             <label for="settings-btn"></label>
                         </div>
                         <img className="pfp-pic" src="/images/cool carl.jpg" alt="pfp"/>
