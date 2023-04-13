@@ -44,6 +44,7 @@ app.get('/login', (req, res) => {
 
 //:username will change based on request input using handlebars
 //check for authtoken/logged in
+/*
 app.get('/profile/:username', async (req, res) => {
   const user = await DB.getUser(req.params.username); //verify user actually exists
   if (user) {
@@ -68,17 +69,18 @@ app.get('/profile/:username', async (req, res) => {
 
   
    //for handlebars
-   /* 
+   
     res.render('profile', {layout: 'main', username: username, avgRating: avg, rank: rank, review1: reviews[0], 
                                             review2: reviews[1], review3: reviews[2], displayName: displayName});
-    */
+    
   }
-  /*
+  
   else {
     res.redirect('/register');
   }
-  */
+  
 })
+*/
 
 /*
 app.get('/profile/:name', (req, res) => {
@@ -245,11 +247,10 @@ secureApiRouter.use(async (req, res, next) => {
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
 });
-  
-// Return an error page if page not found
-app.use((req, res) => {
-    //res.sendFile('index.html', { root: 'public' });
-  res.send('ERROR page not found'); //update to actual HTML error page
+
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
 });
 
   
