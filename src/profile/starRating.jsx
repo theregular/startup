@@ -27,6 +27,8 @@ export function StarRating(props) {
         } else {
           alert("Failed to add rating");
         }
+        
+        tellParent(false);
       }
     }
     addRating();
