@@ -11,11 +11,6 @@ export function Profile({authState, onAuthChange}) {
 
     //const auth = true;
     React.useEffect(() => {
-        /*
-        if(username === ''){
-        setRedirect(true);
-        }
-        */
         async function fetchData() {   
             const response = await fetch(`/api/user/${username}`, {
                 method: 'get',
@@ -33,25 +28,26 @@ export function Profile({authState, onAuthChange}) {
         }
         fetchData();
     }, [username]);
-    
+ 
     /*
     if (redirect) {
       return <Navigate to='/login' replace={true}/>;
     }
     */
-
-    function logout() {
+    
+    async function logout() {
         console.log("LOGOUT");
         fetch(`/api/auth/logout`, {
           method: 'delete',
         }).then(() => onAuthChange(username, AuthState.Unauthenticated));
-
     }
 
     function openSettings() {
         console.log("SETTINGS");
     }
 
+    console.log("PROFILE SEES: ")
+    console.log(authState);
     if (!userData) {
         return <p>Loading user data . . . </p>;
     }
@@ -108,8 +104,15 @@ export function Profile({authState, onAuthChange}) {
                 </main>
             );
         }
-        else {
+        else if (authState === AuthState.Unauthenticated) {
             return (<p>this user not logged in</p>);
+        }
+        else if (authState === AuthState.Unknown) {
+            //return (<p>UNKNOWN</p>);
+            return <p>Loading user data . . . </p>;
+        }
+        else {
+            return (window.location.reload());
         }
     }
 }

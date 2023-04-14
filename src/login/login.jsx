@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink} from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { AuthState } from './authState';
 import './login.css';
 
-export function Login({prefill}) {
-
+export function Login({prefill, authState, onAuthChange}) {
+    const navigate = useNavigate();
     const [usernameInput, setUsernameInput] = React.useState(prefill);
     const [passwordInput, setPasswordInput] = React.useState('');
     //let [valid, setValid] = React.useState('');
@@ -24,22 +25,36 @@ export function Login({prefill}) {
         
         const valid = validate(usernameInput, passwordInput);
         if (valid === true) {
-            const response = await fetch(`/api/auth/login`, {
+
+            //const response = await 
+            fetch(`/api/auth/login`, {
                 method: 'post',
                 body: JSON.stringify({ username: usernameInput, password: passwordInput }),
                 headers: {
                   'Content-type': 'application/json; charset=UTF-8',
                 },
-              });
+              }).then((response) => {
+                if (response?.status === 200) {
+                  onAuthChange(usernameInput, AuthState.Authenticated);
+                  localStorage.setItem('username', usernameInput); //store username cookie
+                  //alert("Login success!");
+                }
+                else {
+                    setMsg('Incorrect username or password!');
+                }
+              }).then(() => setRedirect(true));
+/*
 
             if (response?.status === 200) {
+                onAuthChange(usernameInput, AuthState.Authenticated);
                 localStorage.setItem('username', usernameInput); //store username cookie
                 //alert("Login success!");
-                setRedirect(true);
+                //setRedirect(true);
             } 
             else {
                 setMsg('Incorrect username or password!');
             }
+            */
         }
     }
 
@@ -64,7 +79,7 @@ export function Login({prefill}) {
     }
 
     if (redirect) { //auto redirects to profile page when login successful
-        return <Navigate to={`/profile/${usernameInput}`} replace={true}/>;
+        navigate(`/profile/${usernameInput}`);///return <Navigate to={`/profile/${usernameInput}`} replace={true}/>;
     }
 
     return (

@@ -51,12 +51,21 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/find' element={<Find />} />
-        <Route path='/login' element={<Login prefill={userName}/>} />
+        <Route path='/login' element={
+          <Login 
+              prefill={userName} 
+              authState={authState}
+              onAuthChange={(userName, authState) => {console.log("LOGIN AUTH STATE CHANGE"); console.log(authState);
+                setAuthState(authState);
+                setUserName(userName);
+              }}/>
+            }
+          />
         <Route path='/register' element={<Register />} />
         <Route path='/profile/:username' element={
           <Profile 
             authState={authState}
-            onAuthChange={(userName, authState) => {
+            onAuthChange={(userName, authState) => {console.log("LOGOUT AUTH STATE CHANGE"); console.log(authState);
               setAuthState(authState);
               setUserName(userName);
             }}/>
