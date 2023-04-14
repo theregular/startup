@@ -4,7 +4,7 @@ import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { Profile } from './profile/profile';
-import { AuthState } from './profile/authState';
+import {AuthState} from './login/authState';
 import { Home } from './home/home';
 import { Find } from './find/find';
 
@@ -18,18 +18,18 @@ function App() {
     if (userName) {
       fetch(`/api/user/${userName}`)
         .then((response) => {
-          console.log("name found");
+          //console.log("name found");
           if (response.status === 200) {
             return response.json();
           }
         })
         .then((user) => {
           const state = user?.authenticated ? AuthState.Authenticated : AuthState.Unauthenticated;
-          console.log(state);
+          //console.log(state);
           setAuthState(state);
         });
     } else {
-      console.log("unauth");
+      //console.log("unauth");
       setAuthState(AuthState.Unauthenticated);
     }
   }, [userName]);
@@ -50,7 +50,12 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/find' element={<Find />} />
+        <Route path='/find' element={
+            <Find 
+              authState={authState}
+
+            />}
+         />
         <Route path='/login' element={
           <Login 
               prefill={userName} 

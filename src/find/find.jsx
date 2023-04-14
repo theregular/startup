@@ -1,8 +1,9 @@
 import React from 'react';
 import './find.css';
 import { StarRating } from './starRating.jsx';
+// /import { AuthState } from './authState';
 
-export function Find() {
+export function Find({authState}) {
     const [findInput, setFindInput] = React.useState('');
     const [userData, setUserData] = React.useState(null);
     const [updated, setUpdated] = React.useState(false);
@@ -67,9 +68,9 @@ export function Find() {
         setUpdated(false);
     }
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = async (event) => {
         if (event.keyCode === 13) { //if enter key pressed
-            findUser();
+           await findUser();
         }
     }
     
@@ -110,7 +111,7 @@ export function Find() {
                                 <span id = 'avgRating'>{userData.rating}</span>
                                 <div className="rating">
                                     {/* <StarRating username={userData.username}/>*/} 
-                                    <StarRating updated={childUpdated} username={userData.username}/>
+                                    <StarRating authState={authState} updated={childUpdated} username={userData.username}/>
                                 </div>
                                 <div className = "rating-text"></div>
                             </div>

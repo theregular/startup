@@ -1,10 +1,11 @@
 import React from 'react';
-//import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
-import { AuthState } from './authState';
+import {AuthState} from '../login/authState';
 import './profile.css'
 
 export function Profile({authState, onAuthChange}) {
+    const navigate = useNavigate();
     const { username } = useParams(); //gets username from params
     const [userData, setUserData] = React.useState(null);
     //const [redirect, setRedirect] = React.useState(false);
@@ -46,8 +47,8 @@ export function Profile({authState, onAuthChange}) {
         console.log("SETTINGS");
     }
 
-    console.log("PROFILE SEES: ")
-    console.log(authState);
+    //console.log("PROFILE SEES: ")
+    //console.log(authState);
     if (!userData) {
         return <p>Loading user data . . . </p>;
     }
@@ -105,7 +106,8 @@ export function Profile({authState, onAuthChange}) {
             );
         }
         else if (authState === AuthState.Unauthenticated) {
-            return (<p>this user not logged in</p>);
+            //return (<p>this user not logged in</p>);
+            return (navigate('/login'))
         }
         else if (authState === AuthState.Unknown) {
             //return (<p>UNKNOWN</p>);

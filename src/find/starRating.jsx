@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaCircle, FaRegCircle } from "react-icons/fa";
 import './starRating.css'
+import { AuthState } from '../login/authState';
 
 let ratingChanged = false; //change later to not use global variable
 
@@ -18,7 +19,7 @@ export function StarRating(props) {
       addRating();
     }
 
-  }, [rating, username, tellParent]);
+  }, [rating, username, tellParent,]);
   
 
   async function addRating() {
@@ -86,9 +87,15 @@ export function StarRating(props) {
 
 
   const handleRatingClick = (index) => {
-    ratingChanged = true;
-    setRating(index + 1);
-    sethoverCount(index + 1);
+    //console.log(props.authState);
+    if (props.authState === AuthState.Authenticated) {
+      ratingChanged = true;
+      setRating(index + 1);
+      sethoverCount(index + 1);
+    }
+    else {
+    alert("please login or make an account to rate people!")
+    }
     //addUserRating();
   };
   const handleMouseEnter = (index) => {

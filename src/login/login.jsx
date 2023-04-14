@@ -81,21 +81,27 @@ export function Login({prefill, authState, onAuthChange}) {
     if (redirect) { //auto redirects to profile page when login successful
         navigate(`/profile/${usernameInput}`);///return <Navigate to={`/profile/${usernameInput}`} replace={true}/>;
     }
-
-    return (
-        <main className='login-body'>
-            <div className="login">
-                <form className="login-form">
-                    <div id="loginTitle">login</div>
-                    <input type="text" value={usernameInput} id="userName" placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
-                    <input type="password" id="userPassword" placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange} />
-                    <div id="buttons">
-                        <button id ="loginBtn" type="button" onClick={() => loginUser()}>login</button>
-                        <NavLink className= "button-navlink" id ="register" to="/register">register</NavLink>
-                    </div>
-                </form>
-                <div id="errMessage">{msg}</div>
-            </div>
-        </main>
-    );
+    /*
+    if (authState === AuthState.Authenticated) {
+        return (navigate('/login'));
+    }
+    else {
+        */
+        return (
+            <main className='login-body'>
+                <div className="login">
+                    <form className="login-form">
+                        <div id="loginTitle">login</div>
+                        <input type="text" value={usernameInput} id="userName" placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
+                        <input type="password" id="userPassword" placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange} />
+                        <div id="buttons">
+                            <button id ="loginBtn" type="button" onClick={() => loginUser()}>login</button>
+                            <NavLink className= "button-navlink" id ="register" to="/register">register</NavLink>
+                        </div>
+                    </form>
+                    <div id="errMessage">{msg}</div>
+                </div>
+            </main>
+        );
+    //}
 }
