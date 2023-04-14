@@ -40,7 +40,7 @@ function App() {
       <header>
       <NavLink className="clout" to =''>CLOUT</NavLink>
         <h6 className="slogan">where do you stand?</h6>
-        <h6 class="links">
+        <h6 className="links">
             <NavLink to ='find' style={{ textDecoration: 'none' }} >Find /</NavLink>
             <NavLink to ='login' style={{ textDecoration: 'none' }} > Login /</NavLink>
             <NavLink to ='register' style={{ textDecoration: 'none' }} > Register /</NavLink>

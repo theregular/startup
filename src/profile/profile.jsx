@@ -8,6 +8,10 @@ export function Profile({authState, onAuthChange, userName}) {
     const navigate = useNavigate();
     const { username } = useParams(); //gets username from params
     const [userData, setUserData] = React.useState(null);
+    const [settings, setSettings] = React.useState(false);
+    const [changeName, setChangeName] = React.useState(false);
+    const [nameChangeInput, setNameChangeInput] = React.useState('');
+
     //const [redirect, setRedirect] = React.useState(false);
 
     //const auth = true;
@@ -37,15 +41,68 @@ export function Profile({authState, onAuthChange, userName}) {
     */
     
     async function logout() {
-        console.log("LOGOUT");
+        //console.log("LOGOUT");
         fetch(`/api/auth/logout`, {
           method: 'delete',
         }).then(() => onAuthChange(username, AuthState.Unauthenticated));
     }
 
-    function openSettings() {
-        console.log("SETTINGS");
+    function settingsOption() {
+        if(settings) {
+            setSettings(false);
+            setChangeName(false);
+            console.log("made it here");
+        }
+        else {
+            setSettings(true);
+        }
     }
+
+    function changeNameBox() {
+        if(changeName) {
+            setChangeName(false);
+        }
+        else {
+            setChangeName(true);
+        }
+    }
+
+    async function submitNameChange() {
+        const valid = validate(nameChangeInput);
+        console.log("submit");
+        if (valid === true) {
+            console.log("valid true");
+            const response = await fetch(`/api/auth/changedisplayname`, {
+                method: 'post',
+                body: JSON.stringify({ username: username, newDisplayName: nameChangeInput}),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
+            if (response?.status === 200) {
+                setChangeName(false);
+            } else {
+            alert("fail!");
+            //console.log("fail!");
+            }
+    }
+        else {
+            alert("Please enter a name to change to");
+        }
+    }
+
+    const nameChangeText = (e) => {
+        setNameChangeInput(e.target.value.trim());
+    };
+
+    function validate(input) {
+        if (input === '') {
+            return false;
+        }
+        return true;
+    }
+
+
 
     //console.log("PROFILE SEES: ")
     //console.log(authState);
@@ -62,8 +119,20 @@ export function Profile({authState, onAuthChange, userName}) {
                     <div id = "profile-container">
                         <div className ="pfp-top">
                             <div id = 'settings'>
-                                <button id="settings-btn" onClick={()=> openSettings()}>Settings</button>
+                                <button id="settings-btn" onClick={()=> settingsOption()}>Settings</button>
                                 <button id="logout-btn"onClick={()=> logout()}>Logout</button>
+                                    {settings && (
+                                        <div id="settings-options">
+                                            <button id="change-name" onClick={()=> changeNameBox()}>change name</button>
+                                            <button id="change-pfp">change pfp</button>
+                                        </div>
+                                    )}
+                                    {changeName && (
+                                        <div id="name-change">
+                                            <input type="text" id="change-name" maxLength="25" placeholder='enter new name here' onChange={nameChangeText}></input>
+                                            <button id="change-pfp" onClick={()=> submitNameChange()}>submit</button>
+                                        </div>
+                                    )}
                             </div>
                             <img className="pfp-pic" src="/images/cool carl.jpg" alt="pfp"/>
                             <div className ="pfp-userinfo">

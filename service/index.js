@@ -121,6 +121,16 @@ apiRouter.post('/auth/updateavg', async (req, res) => {
   res.status(500).send({msg: 'Error updating avgRating to DB'});
 });
 
+apiRouter.post('/auth/changedisplayname', async (req, res) => { 
+  //check if user is logged in that is reviewing?
+  const result = await DB.changeDisplayName(req.body.username, req.body.newDisplayName);
+  if (result) {
+    res.status(200).send();
+    return;
+  }
+  res.status(500).send({msg: 'Error changing display name'});
+});
+
 //UNNCESS?
 /*
 apiRouter.get('/auth/getthreereviews', async (req, res) => { 
