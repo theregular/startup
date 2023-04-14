@@ -38,11 +38,12 @@ export function Login({prefill, authState, onAuthChange}) {
                   onAuthChange(usernameInput, AuthState.Authenticated);
                   localStorage.setItem('username', usernameInput); //store username cookie
                   //alert("Login success!");
+                  setRedirect(true);
                 }
                 else {
                     setMsg('Incorrect username or password!');
                 }
-              }).then(() => setRedirect(true));
+              });//.then(() => setRedirect(true));
 /*
 
             if (response?.status === 200) {

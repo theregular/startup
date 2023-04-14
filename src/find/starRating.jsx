@@ -19,7 +19,7 @@ export function StarRating(props) {
       addRating();
     }
 
-  }, [rating, username, tellParent,]);
+  });
   
 
   async function addRating() {

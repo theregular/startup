@@ -70,6 +70,7 @@ function App() {
         <Route path='/profile/:username' element={
           <Profile 
             authState={authState}
+            userName={userName}
             onAuthChange={(userName, authState) => {console.log("LOGOUT AUTH STATE CHANGE"); console.log(authState);
               setAuthState(authState);
               setUserName(userName);

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import {AuthState} from '../login/authState';
 import './profile.css'
 
-export function Profile({authState, onAuthChange}) {
+export function Profile({authState, onAuthChange, userName}) {
     const navigate = useNavigate();
     const { username } = useParams(); //gets username from params
     const [userData, setUserData] = React.useState(null);
@@ -28,7 +28,7 @@ export function Profile({authState, onAuthChange}) {
             }
         }
         fetchData();
-    }, [username]);
+    });
  
     /*
     if (redirect) {
@@ -56,7 +56,7 @@ export function Profile({authState, onAuthChange}) {
         return <p>User doesn't exist</p>;
     }
     else {
-        if (authState === AuthState.Authenticated) {
+        if ((authState === AuthState.Authenticated) && (userName === username)) {
             return (
                 <main className='profile'>    
                     <div id = "profile-container">
@@ -105,8 +105,7 @@ export function Profile({authState, onAuthChange}) {
                 </main>
             );
         }
-        else if (authState === AuthState.Unauthenticated) {
-            //return (<p>this user not logged in</p>);
+        else if ((authState === AuthState.Unauthenticated)) {
             return (navigate('/login'))
         }
         else if (authState === AuthState.Unknown) {
@@ -114,6 +113,10 @@ export function Profile({authState, onAuthChange}) {
             return <p>Loading user data . . . </p>;
         }
         else {
+            if (userName !== username) { //change this to make more sense later for how it checks Authstate
+                return (<p>this user not logged in</p>); //could change to display the editable profile you find in find.jsx
+            }
+
             return (window.location.reload());
         }
     }
