@@ -40,6 +40,18 @@ export function Profile({authState, onAuthChange}) {
     }
     */
 
+    function logout() {
+        console.log("LOGOUT");
+        fetch(`/api/auth/logout`, {
+          method: 'delete',
+        }).then(() => onAuthChange(username, AuthState.Unauthenticated));
+
+    }
+
+    function openSettings() {
+        console.log("SETTINGS");
+    }
+
     if (!userData) {
         return <p>Loading user data . . . </p>;
     }
@@ -53,8 +65,8 @@ export function Profile({authState, onAuthChange}) {
                     <div id = "profile-container">
                         <div className ="pfp-top">
                             <div id = 'settings'>
-                                <button id="settings-btn" onClick=""></button>
-                                <label for="settings-btn"></label>
+                                <button id="settings-btn" onClick={()=> openSettings()}>Settings</button>
+                                <button id="logout-btn"onClick={()=> logout()}>Logout</button>
                             </div>
                             <img className="pfp-pic" src="/images/cool carl.jpg" alt="pfp"/>
                             <div className ="pfp-userinfo">

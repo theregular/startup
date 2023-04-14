@@ -3,9 +3,9 @@ import { NavLink} from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import './login.css';
 
-export function Login() {
+export function Login({prefill}) {
 
-    const [usernameInput, setUsernameInput] = React.useState('');
+    const [usernameInput, setUsernameInput] = React.useState(prefill);
     const [passwordInput, setPasswordInput] = React.useState('');
     //let [valid, setValid] = React.useState('');
     const [redirect, setRedirect] = React.useState(false);
@@ -33,7 +33,7 @@ export function Login() {
               });
 
             if (response?.status === 200) {
-                //localStorage.setItem('username', usernameInput);
+                localStorage.setItem('username', usernameInput); //store username cookie
                 //alert("Login success!");
                 setRedirect(true);
             } 
@@ -72,7 +72,7 @@ export function Login() {
             <div className="login">
                 <form className="login-form">
                     <div id="loginTitle">login</div>
-                    <input type="text" id="userName" placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
+                    <input type="text" value={usernameInput} id="userName" placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
                     <input type="password" id="userPassword" placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange} />
                     <div id="buttons">
                         <button id ="loginBtn" type="button" onClick={() => loginUser()}>login</button>

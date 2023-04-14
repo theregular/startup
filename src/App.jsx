@@ -10,7 +10,7 @@ import { Find } from './find/find';
 
 
 function App() {
-  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || ''); //update to be dynamic username detection
+  const [userName, setUserName] = React.useState(localStorage.getItem('username') || ''); //gets username that was stored
   // Asynchronously determine if the user is authenticated by calling the service
   const [authState, setAuthState] = React.useState(AuthState.Unknown);
 
@@ -18,14 +18,14 @@ function App() {
     if (userName) {
       fetch(`/api/user/${userName}`)
         .then((response) => {
-          console.log("name found but unauth");
+          console.log("name found");
           if (response.status === 200) {
             return response.json();
           }
         })
         .then((user) => {
-          console.log("AUTH");
           const state = user?.authenticated ? AuthState.Authenticated : AuthState.Unauthenticated;
+          console.log(state);
           setAuthState(state);
         });
     } else {
@@ -51,7 +51,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/find' element={<Find />} />
-        <Route path='/login' element={<Login/>} />
+        <Route path='/login' element={<Login prefill={userName}/>} />
         <Route path='/register' element={<Register />} />
         <Route path='/profile/:username' element={
           <Profile 
