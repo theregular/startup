@@ -86,9 +86,6 @@ export function Profile({authState, onAuthChange, userName}) {
             //console.log("fail!");
             }
     }
-        else {
-            alert("Please enter a name to change to");
-        }
     }
 
     const nameChangeText = (e) => {
@@ -118,19 +115,22 @@ export function Profile({authState, onAuthChange, userName}) {
                 <main className='profile'>    
                     <div id = "profile-container">
                         <div className ="pfp-top">
-                            <div id = 'settings'>
+                            <div id = 'settings-buttons'>
+                                <button id="settings-btn"onClick={()=> logout()}>Logout</button>
                                 <button id="settings-btn" onClick={()=> settingsOption()}>Settings</button>
-                                <button id="logout-btn"onClick={()=> logout()}>Logout</button>
+                            </div>
+                            <div id = 'settings'>
                                     {settings && (
                                         <div id="settings-options">
-                                            <button id="change-name" onClick={()=> changeNameBox()}>change name</button>
-                                            <button id="change-pfp">change pfp</button>
-                                        </div>
-                                    )}
-                                    {changeName && (
-                                        <div id="name-change">
-                                            <input type="text" id="change-name" maxLength="25" placeholder='enter new name here' onChange={nameChangeText}></input>
-                                            <button id="change-pfp" onClick={()=> submitNameChange()}>submit</button>
+                                            {changeName && (
+                                                <div id="name-change">
+                                                    <input type="text" id="change-name" maxLength="25" placeholder='enter new name here' onChange={nameChangeText}></input>
+                                                    <button id="submit-btn" onClick={()=> submitNameChange()}>submit</button>
+                                                    <button id="submit-btn" onClick={()=> setChangeName(false)}>cancel</button>
+                                                </div>
+                                            )}
+                                            {!changeName && (<button id="change-btn" onClick={()=> changeNameBox()}>change name</button>)}
+                                            <button id="change-btn">change pfp</button>
                                         </div>
                                     )}
                             </div>
