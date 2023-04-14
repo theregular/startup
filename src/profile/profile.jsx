@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+//import { Navigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { AuthState } from './authState';
 import './profile.css'
@@ -7,7 +7,7 @@ import './profile.css'
 export function Profile({authState, onAuthChange}) {
     const { username } = useParams(); //gets username from params
     const [userData, setUserData] = React.useState(null);
-    const [redirect, setRedirect] = React.useState(false);
+    //const [redirect, setRedirect] = React.useState(false);
 
     //const auth = true;
     React.useEffect(() => {
@@ -32,11 +32,13 @@ export function Profile({authState, onAuthChange}) {
             }
         }
         fetchData();
-    }, []);
+    }, [username]);
     
+    /*
     if (redirect) {
       return <Navigate to='/login' replace={true}/>;
     }
+    */
 
     if (!userData) {
         return <p>Loading user data . . . </p>;

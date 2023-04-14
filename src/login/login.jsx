@@ -43,6 +43,12 @@ export function Login() {
         }
     }
 
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 13) { //if enter key pressed
+            loginUser();
+        }
+    }
+
     function validate(username, password) {
         if (username === '') {
             //return 'Please enter a username';
@@ -64,13 +70,12 @@ export function Login() {
     return (
         <main className='login-body'>
             <div className="login">
-                <form>
+                <form className="login-form">
                     <div id="loginTitle">login</div>
-                    <input type="text" id="userName" placeholder="username" onChange={usernameChange}/>
-                    <input type="password" id="userPassword" placeholder="password" onChange={passwordChange} />
-                    
+                    <input type="text" id="userName" placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
+                    <input type="password" id="userPassword" placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange} />
                     <div id="buttons">
-                        <button id ="login" type="button" onClick={() => loginUser()}>login</button>
+                        <button id ="loginBtn" type="button" onClick={() => loginUser()}>login</button>
                         <NavLink className= "button-navlink" id ="register" to="/register">register</NavLink>
                     </div>
                 </form>

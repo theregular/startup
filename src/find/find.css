@@ -1,0 +1,57 @@
+.find {
+    width: 360px;
+    padding: 30px 0 0;
+    margin: auto;
+    justify-content: center;
+    animation: appear 1s;
+    text-align: center;
+}
+
+#findTitle {
+    color: #CC2936;
+    font-family: Russo One, sans-serif;
+    margin-bottom: 50px;
+    font-weight:400;
+    letter-spacing: 0.05em;
+    font-size: 30px;
+    
+}
+
+
+.find-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: static;
+    background: #FFFFFF;
+    margin: 0px 0px 0px;
+    max-width: 360;
+    padding-top: 40px;
+}
+
+.find-form input {
+    
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 25px;
+    margin-right: 10px;
+  }
+
+#findBtn {
+    font-family: Roboto, sans-serif;
+    background: #CC2936;
+    width: 47%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px
+}
+  

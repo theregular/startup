@@ -14,7 +14,7 @@
   font-size: 30px;
 }
 
-form {
+.login-form {
   position: static;
   background: #FFFFFF;
   margin: 0px 0px 0px;
@@ -22,11 +22,11 @@ form {
   padding: 40px;
   text-align: center;
   
-  animation: appear 2s;
+  animation: appear 1s;
 }
 
-form input {
-  font-family: Roboto, sans-serif;
+.login-form input {
+  font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -36,10 +36,9 @@ form input {
   box-sizing: border-box;
   font-size: 14px;
   border-radius: 25px;
-  align-content: left;
 }
 
-form .button-navlink {
+.login-form .button-navlink {
   display: inline-block;
   font-family: "Roboto", sans-serif;
   background: #CC2936;
@@ -53,7 +52,7 @@ form .button-navlink {
   text-decoration: none;
 }
 
-form button {
+.login-form button {
   font-family: Roboto, sans-serif;
   align-content: left;
   background: #CC2936;
@@ -66,15 +65,12 @@ form button {
   border-radius: 25px;
 }
 
-#login {
-  float: left;
-}
-#signup {
-  float: right;
+#buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
-
-button:hover, .button-navlink:hover {
+.login-form button:hover,.login-form .button-navlink:hover {
   background: #9e202a;
 }
 

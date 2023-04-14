@@ -31,13 +31,14 @@ export function Find() {
                     setUserData(json);
                 }
                 else {
-                    setUserData("Does Not Exist");
+                    setUserData(null);
+                    //setMsg("");
                 }
                 setUpdated(false);
             }
         }
         fetchData();
-    }, [updated]);
+    }, [updated, findInput]);
     
     async function findUser() { //intial render of user on search
         const valid = validate(findInput);
@@ -50,16 +51,24 @@ export function Find() {
             });
             if (response.status === 200) {
                 const json = await response.json();
+                setMsg("");
                 setUserData(json);
             }
             else {
                 setMsg("Cannot find user");
+                setUserData(null);
             }
         }
         else {
             setMsg("Please enter a username");
         }
         setUpdated(false);
+    }
+
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 13) { //if enter key pressed
+            findUser();
+        }
     }
     
 
@@ -73,10 +82,14 @@ export function Find() {
 
     return (
         <main className='find-body'>
-            <div>Find a user:</div>
-            <input type="text" placeholder="enter username here" onChange={findChange}/>
-            <button id ="findBtn" type="button" onClick={() => findUser()}>find</button>
-            <div id="result">{msg}</div>
+            <div className='find'>
+                <div id="findTitle">find a user</div>
+                <form className="find-form">
+                    <input id= "search" type="text" placeholder="enter username here" onKeyDown={handleKeyDown} onChange={findChange}/>
+                    <button id ="findBtn" type="button" onClick={() => findUser()}>find</button>
+                </form>
+                <div id="result">{msg}</div>
+            </div>
 
             { userData && (
                 <div id = "profile-container">

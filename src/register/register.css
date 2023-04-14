@@ -14,7 +14,7 @@
     font-size: 30px;
 }
 
-form {
+.register-form {
     position: static;
     background: #FFFFFF;
     margin: 0px 0px 0px;
@@ -22,9 +22,9 @@ form {
     padding: 40px;
     text-align: center;
     
-    animation: appear 2s;
+    animation: appear 1s;
 }
-form input {
+.register-form input {
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
@@ -37,7 +37,7 @@ form input {
     border-radius: 25px;
 }
 
-form .button-navlink {
+.register-form .button-navlink {
     font-family: "Roboto", sans-serif;
     background: #CC2936;
     width: 38%;
@@ -50,7 +50,7 @@ form .button-navlink {
     text-decoration: none;
     display: inline-block;
 }
-form button {
+.register-form button {
     font-family: "Roboto", sans-serif;
     background: #CC2936;
     width: 47%;
@@ -66,7 +66,7 @@ form button {
     float: center;
 }
 
-button:hover, .button-navlink:hover {
+.register-form button:hover, .button-navlink:hover {
     background: #9e202a;
 }
 

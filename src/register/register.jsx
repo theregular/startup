@@ -50,6 +50,12 @@ export function Register() {
         }
     }
 
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 13) { //if enter key pressed
+            createUser();
+        }
+    }
+
     function validate(username, email, password, confirmPassword) {
 
         if (!validateUsername(username)) {
@@ -97,14 +103,16 @@ export function Register() {
     return (
         <main className='register-body'>
             <div className="register">
-                    <form>
+                    <form className="register-form">
                         <div id="registerTitle">register</div>
-                        <input type="text" id="userName" placeholder="username" onChange={usernameChange}/>
-                        <input type="email" id="email" placeholder="email" onChange={emailChange} />
-                        <input type="password" id="userPassword" placeholder="password" onChange={passwordChange}/>
-                        <input type="password" id="confirmPassword" placeholder="confirm password" onChange={confirmPasswordChange} />
-                        <NavLink className= "button-navlink" id ="login" to="/login">login</NavLink>
-                        <button id="register" onClick={() => createUser()} type="button">register</button>
+                        <input type="text" id="userName" placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
+                        <input type="email" id="email" placeholder="email" onKeyDown={handleKeyDown} onChange={emailChange} />
+                        <input type="password" id="userPassword" placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange}/>
+                        <input type="password" id="confirmPassword" placeholder="confirm password" onKeyDown={handleKeyDown} onChange={confirmPasswordChange} />
+                        <div id="buttons">
+                            <NavLink className= "button-navlink" id ="login" to="/login">login</NavLink>
+                            <button id="register" onClick={() => createUser()} type="button">register</button>
+                        </div>
                     </form>
                 <div id="errMessage">{msg}</div>
             </div>
