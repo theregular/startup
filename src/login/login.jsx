@@ -81,7 +81,7 @@ export function Login({prefill, authState, onAuthChange}) {
                     <form className="login-form">
                         <div id="loginTitle">login</div>
                         <input type="text" value={usernameInput} id="userName" placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
-                        <input type="password" id="userPassword" placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange} />
+                        <input type="password" value={passwordInput} id="userPassword" placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange} />
                         <div id="buttons">
                             <button id ="loginBtn" type="button" onClick={() => loginUser()}>login</button>
                             <NavLink className= "button-navlink" id ="register" to="/register">register</NavLink>

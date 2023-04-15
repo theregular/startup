@@ -3,18 +3,24 @@ import "./find.css";
 import { StarRating } from "./starRating.jsx";
 
 export function Find({authState, userName}) {
+    //find
     const [findInput, setFindInput] = React.useState('');
     const [userData, setUserData] = React.useState(null);
     const [updated, setUpdated] = React.useState(false);
 
+    //review
     const [showReviewBox, setShowReviewBox] = React.useState(false);
     const [reviewText, setReviewText] = React.useState("");
-    const [reviews, setReviews] = React.useState([]);
+    //const [reviews, setReviews] = React.useState([]);
 
+    //message
     const [msg, setMsg] = React.useState("");
+
     const findChange = (e) => {
         setFindInput(e.target.value.trim());
     };
+
+    /* PAGE UPDATE */
 
     function childUpdated() {
         console.log("parent saw child update");
@@ -27,7 +33,7 @@ export function Find({authState, userName}) {
             if (updated) {
                 //console.log("parent updated");
                 const response = await fetch(`/api/user/${findInput}`, {
-                    method: "get",
+                    method: 'get',
                     headers: {
                         "Content-type": "application/json; charset=UTF-8",
                     },
@@ -45,13 +51,14 @@ export function Find({authState, userName}) {
         fetchData();
     }, [updated, findInput]);
 
+    /*FIND SEARCH */
 
     async function findUser() {
         //intial render of user on search
-        const valid = validate(findInput);
+        const valid = validateFind(findInput);
         if (valid) {
             const response = await fetch(`/api/user/${findInput}`, {
-                method: "get",
+                method: 'get',
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                 },
@@ -66,29 +73,68 @@ export function Find({authState, userName}) {
             }
         } else {
             setMsg("Please enter a username");
+            setUserData(null);
         }
         setUpdated(false);
     }
 
-    const handleKeyDown = async (event) => {
+    // not working for some reason, fix later
+    const handleKeyDown = (event) => {
         if (event.keyCode === 13) { //if enter key pressed
-           await findUser();
+           findUser();
         }
     };
+    
 
-    function validate(input) {
+    function validateFind(input) {
         if (input === "") {
             return false;
         }
         return true;
     }
 
+    /*REVIEW*/
+
+    const reviewTextChange = (e) => {
+        setReviewText(e.target.value);
+    };
+
     function handleLeaveReview() {
-        setShowReviewBox(true);
+        if(userName === userData.username){
+            alert("You can't review yourself");
+        }
+        else {
+            setShowReviewBox(true);
+        }
     }
 
-    async function handleSubmit() {
-        console.log("leave review")
+    async function submitReview() {
+        const valid = validateReview(reviewText);
+        if(valid) {
+            console.log("leave review");
+            const response = await fetch(`/api/auth/addreview`, {
+                method: 'post',
+                body: JSON.stringify({ username: userData.username, review: reviewText }),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
+            if (response.status === 200) {
+                console.log("review added to DB");
+                setShowReviewBox(false);
+                setReviewText('');
+                childUpdated();
+            }
+            else {
+                console.log("error adding review to DB");
+            }
+
+        }
+        else {
+            alert("please enter a review");
+        }
+
+        /*
 
         const newReviewKey = `review${Object.keys(userData).length + 1}`;
         setUserData((prevData) => ({
@@ -111,9 +157,18 @@ export function Find({authState, userName}) {
         .catch((error) => {
             console.error("Error:", error);
         });
+        */
         
     }
 
+    function validateReview(input) {
+        if (input === "") {
+            return false;
+        }
+        return true;
+    }
+
+    /* HTML */
 
     return (
         <main className="find-body">
@@ -123,6 +178,7 @@ export function Find({authState, userName}) {
                     <input
                         id="search"
                         type="text"
+                        value={findInput}
                         placeholder="enter username here"
                         onKeyDown={handleKeyDown}
                         onChange={findChange}
@@ -181,13 +237,15 @@ export function Find({authState, userName}) {
                                 {showReviewBox ? (
                                     <div>
                                         <textarea
+                                            id="reviewBox"
+                                            placeholder="type review here"
                                             value={reviewText}
-                                            onChange={(event) => setReviewText(event.target.value)}
+                                            onChange={reviewTextChange}
                                         />
-                                        <button onClick={handleSubmit}>Submit Review</button>
+                                        <button onClick={submitReview}>Submit Review</button>
                                     </div>
                                 ) : (
-                                    <button onClick={handleLeaveReview} disabled={showReviewBox}>
+                                    <button onClick={handleLeaveReview}>
                                         Leave Review
                                     </button>
                                 )}

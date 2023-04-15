@@ -117,10 +117,10 @@ export function Register({onAuthChange}) {
             <div className="register">
                     <form className="register-form">
                         <div id="registerTitle">register</div>
-                        <input type="text" id="userName" placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
-                        <input type="email" id="email" placeholder="email" onKeyDown={handleKeyDown} onChange={emailChange} />
-                        <input type="password" id="userPassword" placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange}/>
-                        <input type="password" id="confirmPassword" placeholder="confirm password" onKeyDown={handleKeyDown} onChange={confirmPasswordChange} />
+                        <input type="text" id="userName" value={usernameInput} placeholder="username" onKeyDown={handleKeyDown} onChange={usernameChange}/>
+                        <input type="text" id="email" value={emailInput} placeholder="email" onKeyDown={handleKeyDown} onChange={emailChange} />
+                        <input type="password" id="userPassword" value={passwordInput} placeholder="password" onKeyDown={handleKeyDown} onChange={passwordChange}/>
+                        <input type="password" id="confirmPassword" value={confirmPasswordInput} placeholder="confirm password" onKeyDown={handleKeyDown} onChange={confirmPasswordChange} />
                         <div id="buttons">
                             <NavLink className= "button-navlink" id ="login" to="/login">login</NavLink>
                             <button id="register" onClick={() => createUser()} type="button">register</button>

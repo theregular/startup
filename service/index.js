@@ -42,7 +42,6 @@ apiRouter.get('/user/:username', async (req, res) => {
     let avg = 0;
     const token = req?.cookies.token;// check for authtoken
 
-
     //check if there are any ratings
     if (getAvg.length !== 0) {
       avg = getAvg[0].averageRating.toFixed(2);
@@ -93,7 +92,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 apiRouter.post('/auth/addrating', async (req, res) => { 
   //check if user is logged in that is rating?
     const rating = await DB.addRating(req.body.username, req.body.rating, req.body.ratedBy);
-    
+    //console.log(rating);
     if (rating) {
         res.status(200).send();
         return;
@@ -160,7 +159,7 @@ apiRouter.get('/auth/getavgrating/:username', async (req, res) => {
   const username = req.params.username;
   const getAvg = await DB.getAvgRating(username);
   if (getAvg) {
-    let avg = 'No ratings yet!';
+    let avg = 0;
     //check for any ratings
     if (getAvg.length !== 0) {
       avg = getAvg[0].averageRating.toFixed(2);
