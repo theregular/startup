@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import {AuthState} from '../login/authState';
 import './profile.css'
+import './switch.css'
 
 export function Profile({authState, onAuthChange, userName}) {
     const navigate = useNavigate();
@@ -11,6 +12,7 @@ export function Profile({authState, onAuthChange, userName}) {
     const [settings, setSettings] = React.useState(false);
     const [changeName, setChangeName] = React.useState(false);
     const [nameChangeInput, setNameChangeInput] = React.useState('');
+    const [darkMode, setDarkMode] = React.useState(false);
 
     //const [redirect, setRedirect] = React.useState(false);
 
@@ -99,6 +101,10 @@ export function Profile({authState, onAuthChange, userName}) {
         return true;
     }
 
+    const darkModeChecked = (event) => {
+        setDarkMode(event.target.checked);
+    }
+    
 
 
     //console.log("PROFILE SEES: ")
@@ -119,7 +125,15 @@ export function Profile({authState, onAuthChange, userName}) {
                                 <button id="settings-btn"onClick={()=> logout()}>Logout</button>
                                 <button id="settings-btn" onClick={()=> settingsOption()}>Settings</button>
                             </div>
-                            <div id = 'settings'>
+                            <div id="switch">
+                                {!darkMode && (<div id="switch-text">Light Mode</div>)}
+                                {darkMode && (<div id="switch-text">Dark Mode</div>)}
+                                <label class="switch">
+                                    <input type="checkbox" checked={darkMode} onChange={darkModeChecked}/>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div id='settings'>
                                     {settings && (
                                         <div id="settings-options">
                                             {changeName && (
@@ -140,26 +154,30 @@ export function Profile({authState, onAuthChange, userName}) {
                                 <p className="username">@{userData.username}</p>
                             </div>
                         </div>
+
+
                         <div className="pfp-body">
                             <div className="widget">
+
                                 <div className="rating-body">
                                     <h1>RATING</h1>
                                     <span>Average Rating: </span>
                                     <span id = 'avgRating'>{userData.rating}</span>
-                                    <div className="rating">
-                                    </div>
-                                    <div className = "rating-text"></div>
                                 </div>
+
                             </div>
                             <div className="inverted-widget">
+
                                 <div className="rank-body">
                                     <h1>RANK</h1>
                                     <div id='hash'>#</div>
                                     <h2 id="rank">{userData.rank}</h2>
                                     <p>in the world</p>
                                 </div>
+
                             </div>
                             <div className="widget">
+
                                 <div className="reviews-body" id="reviews-body">
                                     <h1>REVIEWS</h1>
                                     <div className = "top-reviews">
@@ -168,6 +186,7 @@ export function Profile({authState, onAuthChange, userName}) {
                                         <div>{userData.review3}</div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

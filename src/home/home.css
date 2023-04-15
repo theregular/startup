@@ -1,38 +1,13 @@
-* {
-    font-family: sans-serif;
-}
-
-header {
-    margin-right: 50px;
-    text-align: right;
-}
-
-header a {
-    text-decoration: none;
-}
-
-.clout {
-    font-size: 50px;
-    font-family: Russo One, sans-serif;
-    color: #CC2936;
-    letter-spacing: 0.1em;
-}
-
-.links {
-    font-size: 20px;
-    font-family: Russo One, sans-serif;
-    color: #565980;
-    letter-spacing: 0.05em;
-  }
-
-.pfp-body {
+.home-body {
     display: flex;
     flex-wrap: wrap;
     gap: 2vw;
     margin: 5vw;
 }
 
-.pfp-body h1 {
+/* WIDGETS */
+
+.widget h1 {
     justify-content: center;
     display: flex;
     font-size: 50px;
@@ -43,23 +18,7 @@ header a {
     margin: 0;
 }
 
-.rating-body h1 {
-    padding-bottom: 40px;
-}
-
-.rank-body h1 {
-    padding-bottom: 40px;
-}
-
-.rating-body p {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    font-size: 18px;
-    color: #2c60a3;
-}
-
-.rank-body h1 {
+.inverted-widget h1 {
     justify-content: center;
     display: flex;
     font-size: 50px;
@@ -70,15 +29,7 @@ header a {
     margin: 0;
 }
 
-.rank-body p2 {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    font-size: 18px;
-    color: #f9e9ea;
-}
-
-.widget {
+.home-body .widget {
     letter-spacing: 0.03em;
     font-family: Roboto, sans-serif;
     justify-content: center;
@@ -100,7 +51,7 @@ header a {
 
 }
 
-.inverted-widget {
+.home-body .inverted-widget {
     letter-spacing: 0.03em;
     font-family: Roboto, sans-serif;
     justify-content: center;
@@ -123,23 +74,11 @@ header a {
     align-items: center;
 }
 
-.reviews-body {
-    justify-content: center;
-    text-align: left;
+.inverted-widget p {
+    color: #ffffff;
 }
 
-.reviews-body h1 {
-    padding-bottom: 40px;
-    font-size: 50px;
-    font-family: Russo One, sans-serif;
-    letter-spacing: 0.1em;
-    margin: 0;
-}
-
-.reviews-body p {
-    display: inline-flex;
-}
-
+/* SOCIAL LINKS */
 
 #links {
     text-align: center;

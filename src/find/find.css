@@ -55,3 +55,17 @@
     border-radius: 25px
 }
   
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.rating-text {
+    color: #2e2e2e;
+    text-align: center;
+    font-family: Arial;
+  }
