@@ -20,6 +20,7 @@ const userCollection = client.db('users').collection('user');
 const ratingsCollection = client.db('users').collection('rating');
 const reviewsCollection = client.db('users').collection('review');
 const ranksCollection = client.db('users').collection('rank');
+const settingsCollection = client.db('users').collection('settings');
 
 function getUser(username) { //finds user by username from user DB
     return userCollection.findOne({ username: username });
@@ -78,7 +79,7 @@ async function getAvgRating(username) { //gets overall rating of a user
   return avg.toArray();
 }
 async function updateAvgRating(username, rating) {
-  const userReview = {
+  const userRating = {
     username: username,
     avgRating: rating,
   };
@@ -92,13 +93,12 @@ async function updateAvgRating(username, rating) {
   //if avg for user doesn't exist, insert
   else {
     //console.log("rank not found, inserting now");
-    ranksCollection.insertOne(userReview);
+    ranksCollection.insertOne(userRating);
   }
-  return userReview;
+  return userRating;
 }
 
 async function getRank(username) {
-  const filter = {};
   const sort = {avgRating: -1};//ascending order by rating field
   const result = await ranksCollection.find().sort(sort).toArray();
   const index = result.findIndex(doc => doc.username === username);
@@ -106,11 +106,16 @@ async function getRank(username) {
   return (index + 1); //return rank number
 }
 
-async function getDisplayName(username) {
-  
+async function changeDisplayName(username, newDisplayName) {
+  if (await getUser(username)) {
+    const filter = { username: username };
+    const update = { $set: { displayName: newDisplayName } };
+    const result = await userCollection.updateOne(filter, update);
+    return result;
+  }
 }
 
-async function createUser(username, password, email) {
+async function createUser(username, password, email) { //client doesn't actually use token that's generated, implement this later
     // Hash the password before we insert it into the database
     const passwordHash = await bcrypt.hash(password, 10);
   
@@ -145,5 +150,5 @@ module.exports = {
     getThreeReviews,
     updateAvgRating,
     getRank,
-    getDisplayName
+    changeDisplayName
   };

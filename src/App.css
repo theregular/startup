@@ -43,8 +43,34 @@ header NavLink {
 }
 
 .links {
-  font-size: 20px;
-  font-family: Russo One, sans-serif;
-  color: #565980;
-  letter-spacing: 0.05em;
+  margin-top: 70px;
+  text-decoration: 'none'
 }
+
+.navlink {
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
+  color: #CC2936;
+  letter-spacing: 0.05em;
+  text-decoration: 'none'
+}
+
+.navlink:hover {
+  color: #9e202a;
+}
+
+#switch {
+  margin-top: 30px;
+  position: absolute;
+  left: 75px;
+  display: inline-flex;
+}
+
+#switch-text {
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 6px;
+  margin-left: 10px;
+}
+

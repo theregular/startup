@@ -39,8 +39,9 @@ apiRouter.get('/user/:username', async (req, res) => {
     const rank = await DB.getRank(username);
     const displayName = user.displayName;
     let avg = 'No ratings yet!';
-    const test = "bruh";
-    
+    const token = req?.cookies.token;// check for authtoken
+
+
     //check if there are any ratings
     if (getAvg.length !== 0) {
       avg = getAvg[0].averageRating.toFixed(2);
@@ -52,7 +53,8 @@ apiRouter.get('/user/:username', async (req, res) => {
     }
     //hard coded three reviews rn, scale up later
     //const token = req?.cookies.token; // --- implement later
-    res.send({ username: username, displayName: displayName, rating: avg, rank: rank, review1: reviews[0], review2: reviews[1], review3: reviews[2]});//authenticated: token === user.token }); // --- implement later
+    res.send({ username: username, displayName: displayName, rating: avg, rank: rank, 
+      review1: reviews[0], review2: reviews[1], review3: reviews[2], authenticated: token === user.token}); // --- implement later
     return;
   }
   res.status(401).send({ msg: 'Unauthorized' });
@@ -117,6 +119,16 @@ apiRouter.post('/auth/updateavg', async (req, res) => {
     return;
   }
   res.status(500).send({msg: 'Error updating avgRating to DB'});
+});
+
+apiRouter.post('/auth/changedisplayname', async (req, res) => { 
+  //check if user is logged in that is reviewing?
+  const result = await DB.changeDisplayName(req.body.username, req.body.newDisplayName);
+  if (result) {
+    res.status(200).send();
+    return;
+  }
+  res.status(500).send({msg: 'Error changing display name'});
 });
 
 //UNNCESS?
