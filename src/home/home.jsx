@@ -87,6 +87,7 @@ export function Home() {
                     <h1>World Ranks</h1>
                     { displayTop && (
                     <div className="inner">
+                        <p>Top 5:</p>
                         <p>Best people go here</p>
                     </div>
                     )}
@@ -95,16 +96,15 @@ export function Home() {
 
             <div className="widget" onMouseEnter={mouseEnterLinks} onMouseLeave={mouseLeaveLinks}>
                 <div className="outer">
-                    <h1>Follow us on our Social Media!</h1>
-
-                    { displayLinks && (
+                    { displayLinks ? (
                     <div id="links">
                             <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebook className="fa fa-facebook"/></a>
-                            <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><FaTwitter className="fa fa-twitter"/></a>
-                            <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram className="fa fa-instagram"/></a>
+                            <a href="https://twitter.com/randomRTBot" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><FaTwitter className="fa fa-twitter"/></a>
+                            <a href="https://www.instagram.com/bennyswoop" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram className="fa fa-instagram"/></a>
                             <a href="https://github.com/theregular/startup" aria-label="Github" target="_blank" rel="noopener noreferrer"><FaGithub className="fa fa-github"/></a>
                     </div>
-                    )}
+                    ) :
+                    (<h1>Follow us on our Social Media!</h1>)}
                 </div>
             </div>
         </main>
