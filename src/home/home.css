@@ -27,7 +27,19 @@
     letter-spacing: 0.1em;
     text-align: center;
     margin: 0;
+    background-color: #CC2936;
 }
+
+.inverted-widget .outer {
+    background-color: #CC2936;
+}
+.inverted-widget .inner {
+    background-color: #CC2936;
+}
+.inverted-widget p {
+    background-color: #CC2936;
+}
+
 
 .home-body .widget {
     letter-spacing: 0.03em;
@@ -58,12 +70,13 @@
     font-weight: bold;
 
     background-color: #CC2936;
+    /*margin: 0, 20px, 20px; */
     margin: auto;
-    border-style: solid;
+    border-style:solid;
     border-color: #CC2936;
     border-width: 10px;
     border-radius: 10%;
-    padding: 20px;
+    padding:20px;
     min-width: 400px;
 
     display: flex;
@@ -87,6 +100,7 @@
     font-size: 25px;
     font-family: Russo One, sans-serif;
     letter-spacing: 0.05em;
+    border-radius: 100%;
 }
 
 .fa {

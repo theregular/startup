@@ -16,12 +16,10 @@
 
 .register-form {
     position: static;
-    background: #FFFFFF;
     margin: 0px 0px 0px;
     max-width: 360;
     padding: 40px;
     text-align: center;
-    
     animation: appear 1s;
 }
 .register-form input {
@@ -43,12 +41,12 @@
     width: 38%;
     border: 0;
     padding: 15px;
-    color: #FFFFFF;
     font-size: 14px;
     cursor: pointer;
     border-radius: 25px;
     text-decoration: none;
     display: inline-block;
+    color: #FFFFFF;
 }
 .register-form button {
     font-family: "Roboto", sans-serif;

@@ -141,10 +141,11 @@ export function StarRating(props) {
     return stars;
   };
 
+  //{rating && <div>You rated {props.username}: {rating}</div>}
+
   return (
     <div id= "rater">
       {renderStars()}
-      {rating && <div>You rated {props.username}: {rating}</div>}
     </div>
   );
 }

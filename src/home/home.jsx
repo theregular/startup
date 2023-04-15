@@ -43,7 +43,7 @@ export function Home() {
                 <div className="about-us">
                     <h1>About Us</h1>
                     { displayUs && (
-                    <div className="aboutus">
+                    <div className="inner">
                         <p> Ben and David are two computer science students who are passionate about web programming and
                             software development.
                             They are both currently enrolled in a top university, pursuing their degrees in Computer
@@ -60,10 +60,10 @@ export function Home() {
             </div>
 
             <div className="inverted-widget" onMouseEnter={mouseEnterClout} onMouseLeave={mouseLeaveClout}>
-                <div className="about-clout">
+                <div className="outer">
                     <h1>About CLOUT</h1>
                     { displayClout && (
-                    <div className="aboutclout">
+                    <div className="inner">
                         <p> The first social media where your fame doesn't come from your follower count, but from how
                             you're
                             rated by your peers.
@@ -83,10 +83,10 @@ export function Home() {
             </div>
 
             <div className="inverted-widget" onMouseEnter={mouseEnterTop} onMouseLeave={mouseLeaveTop}>
-                <div className="top-rankst">
+                <div className="outer">
                     <h1>World Ranks</h1>
                     { displayTop && (
-                    <div className="top">
+                    <div className="inner">
                         <p>Best people go here</p>
                     </div>
                     )}
@@ -94,7 +94,7 @@ export function Home() {
             </div>
 
             <div className="widget" onMouseEnter={mouseEnterLinks} onMouseLeave={mouseLeaveLinks}>
-                <div className="links">
+                <div className="outer">
                     <h1>Follow us on our Social Media!</h1>
 
                     { displayLinks && (

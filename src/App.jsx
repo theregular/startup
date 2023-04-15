@@ -14,6 +14,33 @@ function App() {
   // Asynchronously determine if the user is authenticated by calling the service
   const [authState, setAuthState] = React.useState(AuthState.Unknown);
 
+  //dark mode stuff
+  const [darkMode, setDarkMode] = React.useState(false);
+  const backColor = !darkMode ? '#1b1b1b' : '#ffffff00'; //left is dark right is light
+  const textColor = !darkMode ? '#ffffff' : '#000000';
+  const formInputColor = !darkMode ? '#1f2223' : '#f2f2f2';
+
+  const darkModeChecked = (event) => {
+    setDarkMode(event.target.checked);
+    updateWildcardCSS();
+  }
+
+  function updateWildcardCSS() {
+    //document.head.querySelector('style')
+    let style = document.getElementById("dark-mode-style");
+    if(style) {
+      document.head.removeChild(style);
+    }
+    style = document.createElement('style');
+    style.id="dark-mode-style";
+    style.innerHTML = `* { background-color: ${backColor}; color: ${textColor}} 
+                        .login-form input {background: ${formInputColor};}
+                        .register-form input {background: ${formInputColor};}
+                        .find-form input {background: ${formInputColor};}
+                      `;
+    document.head.appendChild(style);
+  }
+
   React.useEffect(() => {
     if (userName) {
       fetch(`/api/user/${userName}`)
@@ -40,11 +67,19 @@ function App() {
       <header>
       <NavLink className="clout" to =''>CLOUT</NavLink>
         <h6 className="slogan">where do you stand?</h6>
-        <h6 className="navlinks">
-            <NavLink to ='find' style={{ textDecoration: 'none' }} >Find /</NavLink>
-            <NavLink to ='login' style={{ textDecoration: 'none' }} > Login /</NavLink>
-            <NavLink to ='register' style={{ textDecoration: 'none' }} > Register /</NavLink>
-            <NavLink to ={`profile/${userName}`} style={{ textDecoration: 'none' }} > Profile</NavLink>
+        <div id="switch">
+            <label class="switch">
+                <input type="checkbox" checked={darkMode} onChange={darkModeChecked}/>
+                <span class="slider"></span>
+            </label>
+            {!darkMode && (<div id="switch-text">Light Mode</div>)}
+            {darkMode && (<div id="switch-text">Dark Mode</div>)}
+        </div>
+        <h6 className="links">
+            <NavLink className="navlink" to ='find' style={{ textDecoration: 'none'}} >Find /</NavLink>
+            <NavLink className="navlink" to ='login' style={{ textDecoration: 'none' }} > Login /</NavLink>
+            <NavLink className="navlink" to ='register' style={{ textDecoration: 'none' }} > Register /</NavLink>
+            <NavLink className="navlink" to ={`profile/${userName}`} style={{ textDecoration: 'none' }} > Profile</NavLink>
         </h6>
       </header>
       

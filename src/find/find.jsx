@@ -107,11 +107,13 @@ export function Find({authState}) {
                         <div className="widget">
                             <div className="rating-body">
                                 <h1>RATING</h1>
-                                <span>Average Rating: </span>
-                                <span id = 'avgRating'>{userData.rating}</span>
                                 <div className="rating">
                                     {/* <StarRating username={userData.username}/>*/} 
-                                    <StarRating authState={authState} updated={childUpdated} username={userData.username}/>
+                                    <StarRating id="star-rater" authState={authState} updated={childUpdated} username={userData.username}/>
+                                </div>
+                                <div id="avg-rating-container">
+                                    <span id ='avgRating-find'>{userData.rating}</span>
+                                    <span id="out-of-five-find">/ 5</span>
                                 </div>
                                 <div className = "rating-text"></div>
                             </div>

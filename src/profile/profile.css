@@ -136,7 +136,43 @@
 
   }
 
+  /* RATING */
+
+  #avgRating {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0;
+    font-weight: bold;
+    font-size: 100px;
+    background-color: inherit;
+  }
+
+  /*
+  #slash {
+    font-size: 50px;
+    display: inline-flex;
+    vertical-align: -75px;
+    margin-left: 5px;
+  }
+  */
+
+  #out-of-five {
+    font-size: 50px;
+    display: inline-flex;
+    vertical-align: -75px;
+    margin-left: 10px;
+  }
+  
+  #avg-rating-container {
+    justify-content: center;
+  }
+
   /* RANK */
+
+  .rank-body {
+    background-color: inherit;
+  }
+
 
   .rank-body p {
     display: flex;
@@ -144,6 +180,7 @@
     margin: 0;
     font-size: 18px;
     color:#f9e9ea;
+    background-color: inherit;
   }
   
 
@@ -156,15 +193,18 @@
     text-align: center; 
     justify-content: center;
     margin: 0;
+    background-color: inherit;
   }
 
   #rank {
     vertical-align: middle;
     display: inline-block;
     margin: 0;
+    margin-left: 10px;
     font-weight: bold;
     font-size: 150px;
     color:#ffffff;
+    background-color: inherit;
   }
 
   .rank-body #hash {
@@ -300,6 +340,7 @@
   border-radius: 25px;
 }
 
+/*
 #switch {
   margin-top: 200px;
   position: absolute;
@@ -313,6 +354,7 @@
   font-weight: bold;
   text-align: center;
 }
+*/
 
  
 

@@ -12,11 +12,27 @@ export function Profile({authState, onAuthChange, userName}) {
     const [settings, setSettings] = React.useState(false);
     const [changeName, setChangeName] = React.useState(false);
     const [nameChangeInput, setNameChangeInput] = React.useState('');
+
+/*
+    //dark mode stuff
+
     const [darkMode, setDarkMode] = React.useState(false);
+    const backColor = !darkMode ? '#1b1b1b' : '#ffffff00';
+    const textColor = !darkMode ? '#ffffff' : '#000000';
+    function updateWildcardCSS() {
+        //document.head.querySelector('style')
+        const style = document.createElement('style');
+        style.innerHTML = `* { background-color: ${backColor}; color: ${textColor}}`;
+        document.head.appendChild(style);
+    };
 
-    //const [redirect, setRedirect] = React.useState(false);
+ const darkModeChecked = (event) => {
+        setDarkMode(event.target.checked);
+        updateWildcardCSS();
+    }
 
-    //const auth = true;
+    */
+
     React.useEffect(() => {
         async function fetchData() {   
             const response = await fetch(`/api/user/${username}`, {
@@ -100,15 +116,7 @@ export function Profile({authState, onAuthChange, userName}) {
         }
         return true;
     }
-
-    const darkModeChecked = (event) => {
-        setDarkMode(event.target.checked);
-    }
     
-
-
-    //console.log("PROFILE SEES: ")
-    //console.log(authState);
     if (!userData) {
         return <p>Loading user data . . . </p>;
     }
@@ -118,20 +126,12 @@ export function Profile({authState, onAuthChange, userName}) {
     else {
         if ((authState === AuthState.Authenticated) && (userName === username)) {
             return (
-                <main className='profile'>    
+                <main className='profile'>  {/*style={{ backgroundColor: backColor }}>*/}    
                     <div id = "profile-container">
                         <div className ="pfp-top">
                             <div id = 'settings-buttons'>
                                 <button id="settings-btn"onClick={()=> logout()}>Logout</button>
                                 <button id="settings-btn" onClick={()=> settingsOption()}>Settings</button>
-                            </div>
-                            <div id="switch">
-                                {!darkMode && (<div id="switch-text">Light Mode</div>)}
-                                {darkMode && (<div id="switch-text">Dark Mode</div>)}
-                                <label class="switch">
-                                    <input type="checkbox" checked={darkMode} onChange={darkModeChecked}/>
-                                    <span class="slider"></span>
-                                </label>
                             </div>
                             <div id='settings'>
                                     {settings && (
@@ -145,6 +145,15 @@ export function Profile({authState, onAuthChange, userName}) {
                                             )}
                                             {!changeName && (<button id="change-btn" onClick={()=> changeNameBox()}>change name</button>)}
                                             <button id="change-btn">change pfp</button>
+                                            {/*
+                                            <div id="switch">
+                                                {!darkMode && (<div id="switch-text">Light Mode</div>)}
+                                                {darkMode && (<div id="switch-text">Dark Mode</div>)}
+                                                <label class="switch">
+                                                    <input type="checkbox" checked={darkMode} onChange={darkModeChecked}/>
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </div>*/}
                                         </div>
                                     )}
                             </div>
@@ -161,8 +170,11 @@ export function Profile({authState, onAuthChange, userName}) {
 
                                 <div className="rating-body">
                                     <h1>RATING</h1>
-                                    <span>Average Rating: </span>
-                                    <span id = 'avgRating'>{userData.rating}</span>
+                                    {/*<span>Average Rating: </span> */}
+                                    <div id="avg-rating-container">
+                                        <span id ='avgRating'>{userData.rating}</span>
+                                        <span id="out-of-five">/ 5</span>
+                                    </div>
                                 </div>
 
                             </div>

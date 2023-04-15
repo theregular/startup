@@ -23,14 +23,12 @@
     align-items: center;
     justify-content: space-between;
     position: static;
-    background: #FFFFFF;
     margin: 0px 0px 0px;
     max-width: 360;
     padding-top: 40px;
 }
 
 .find-form input {
-    
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
@@ -55,12 +53,14 @@
     border-radius: 25px
 }
   
+/* RATING */
+
 .rating {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
@@ -68,4 +68,33 @@
     color: #2e2e2e;
     text-align: center;
     font-family: Arial;
+  }
+
+  #avgRating-find {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0;
+    font-weight: bold;
+    font-size: 100px;
+    background-color: inherit;
+  }
+
+  /*
+  #slash {
+    font-size: 50px;
+    display: inline-flex;
+    vertical-align: -75px;
+    margin-left: 5px;
+  }
+  */
+
+  #out-of-five-find {
+    font-size: 50px;
+    display: inline-flex;
+    margin-left: 10px;
+    vertical-align: -30px;
+  }
+  
+  #avg-rating-container {
+    justify-content: center;
   }
