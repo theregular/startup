@@ -195,9 +195,9 @@ export function Profile({authState, onAuthChange, userName}) {
                                 <div className="reviews-body" id="reviews-body">
                                     <h1>REVIEWS</h1>
                                     <div className = "top-reviews">
-                                        <div>{userData.review1}</div>
-                                        <div>{userData.review2}</div>
-                                        <div>{userData.review3}</div>
+                                        <div id="review">{userData.review1}</div>
+                                        <div id="review">{userData.review2}</div>
+                                        <div id="review">{userData.review3}</div>
                                     </div>
                                 </div>
                                 

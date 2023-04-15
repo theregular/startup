@@ -217,66 +217,12 @@
 
   /* REVIEWS */
 
-  .reviews-body {
-    justify-content: center;
-    text-align: left;
-  }
-  
-  .reviews-body h1 {
-    justify-content: center;
-    display: inline;
-    padding-bottom: 0;
-    font-size: 50px;
-    font-family: Russo One, sans-serif;
-    letter-spacing: 0.1em;
-    margin: 0;
+  .top-reviews {
+    margin-top: 20px;
   }
 
-  .reviews-body p {
-    display: inline-flex;
-  }
-
-  .reviews-body label {
-    margin: 0;
-    width: 60px;
-    height: 30px;
-  }
-
-  .top-reviews label:before {
-    padding: 10px;
-    content: "\f406";
-    font-family: FontAwesome;
-    color:#CC2936;
-    position: relative;
-    top: 0;
-    left: 0;
-    font-size: 30px;
-  }
-
-  .reviews-body button {
-    font-family: "Roboto", sans-serif;
-    background: #CC2936;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 25px;
-    display: block;
-  }
-
-  #review-textbox {
-    padding: 10px;
-  }
-
-  #reviewText { 
-    display: flex;
-    justify-content: center;
-    height: 50px;
-    width: 300px;
-    resize: none;
-    margin: 0;
-    margin: 20px;
+  #review {
+    margin: 10px;
   }
 
   /* SETTINGS */

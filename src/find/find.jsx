@@ -6,7 +6,7 @@ export function Find({authState, userName}) {
     //find
     const [findInput, setFindInput] = React.useState('');
     const [userData, setUserData] = React.useState(null);
-    const [updated, setUpdated] = React.useState(false);
+    const [updated, setUpdated] = React.useState(true);
 
     //review
     const [showReviewBox, setShowReviewBox] = React.useState(false);
@@ -107,6 +107,11 @@ export function Find({authState, userName}) {
             setShowReviewBox(true);
         }
     }
+
+    function handleCancel() {
+        setShowReviewBox(false);
+    }
+
 
     async function submitReview() {
         const valid = validateReview(reviewText);
@@ -229,9 +234,9 @@ export function Find({authState, userName}) {
                             <div className="reviews-body" id="reviews-body">
                                 <h1>REVIEWS</h1>
                                 <div className = "top-reviews">
-                                    <div>{userData.review1}</div>
-                                    <div>{userData.review2}</div>
-                                    <div>{userData.review3}</div>
+                                    <div id="review">{userData.review1}</div>
+                                    <div id="review">{userData.review2}</div>
+                                    <div id="review">{userData.review3}</div>
                                 </div>
                                 <p>{/* This is just used to create a white line*/}</p>
                                 {showReviewBox ? (
@@ -241,11 +246,15 @@ export function Find({authState, userName}) {
                                             placeholder="type review here"
                                             value={reviewText}
                                             onChange={reviewTextChange}
+                                            maxLength="100"
                                         />
-                                        <button onClick={submitReview}>Submit Review</button>
+                                        <div id="review-buttons">
+                                            <button id="reviewBtn" onClick={handleCancel}>cancel</button>
+                                            <button id="reviewBtn" onClick={submitReview}>submit</button>
+                                        </div>
                                     </div>
                                 ) : (
-                                    <button onClick={handleLeaveReview}>
+                                    <button id="reviewBtn" onClick={handleLeaveReview}>
                                         Leave Review
                                     </button>
                                 )}

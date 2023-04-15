@@ -38,15 +38,14 @@ export function StarRating(props) {
       if (response.status === 200) {
         console.log(`added rating of ${rating} to DB successfully`);
         //setRating(rating);
+        const newAvg = await getAverageRating(username);
+        //console.log(`NEW AVG: ${newAvg}`);
+        await updateAvgRating(username, newAvg); //update DB with new average rating
         tellParent();
+        ratingChanged = false;
       } else {
         alert("Failed to add rating");
       }
-      
-      ratingChanged = false;
-      const newAvg = await getAverageRating(username);
-      //console.log(`NEW AVG: ${newAvg}`);
-      await updateAvgRating(username, newAvg); //update DB with new average rating
     }
   }
 

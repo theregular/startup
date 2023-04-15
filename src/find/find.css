@@ -98,3 +98,23 @@
   #avg-rating-container {
     justify-content: center;
   }
+
+  #reviewBox {
+    height: 50px;
+    width: 300px;
+    resize: none;
+  }
+
+  #reviewBtn {
+    font-family: Roboto, sans-serif;
+    background: #CC2936;
+    border: 0;
+    padding: 5px 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
