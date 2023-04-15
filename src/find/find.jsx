@@ -3,7 +3,7 @@ import './find.css';
 import { StarRating } from './starRating.jsx';
 // /import { AuthState } from './authState';
 
-export function Find({authState}) {
+export function Find({authState, userName}) {
     const [findInput, setFindInput] = React.useState('');
     const [userData, setUserData] = React.useState(null);
     const [updated, setUpdated] = React.useState(false);
@@ -109,12 +109,15 @@ export function Find({authState}) {
                                 <h1>RATING</h1>
                                 <div className="rating">
                                     {/* <StarRating username={userData.username}/>*/} 
-                                    <StarRating id="star-rater" authState={authState} updated={childUpdated} username={userData.username}/>
+                                    <StarRating id="star-rater" authState={authState} updated={childUpdated} username={userData.username} userName={userName}/>
                                 </div>
-                                <div id="avg-rating-container">
-                                    <span id ='avgRating-find'>{userData.rating}</span>
-                                    <span id="out-of-five-find">/ 5</span>
-                                </div>
+                                {userData.rating === 0 && ( <span id="out-of-five-find">No Ratings Yet!</span>)}
+                                    {userData.rating !== 0 && (
+                                        <div id="avg-rating-container">
+                                        <span id ='avgRating-find'>{userData.rating}</span>
+                                        <span id="out-of-five-find">/ 5</span>
+                                    </div>
+                                    )}
                                 <div className = "rating-text"></div>
                             </div>
                         </div>

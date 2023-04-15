@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink} from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+import { AuthState } from '../login/authState';
 import './register.css';
 
-export function Register() {
+export function Register({onAuthChange}) {
     const [usernameInput, setUsernameInput] = React.useState('');
     const [emailInput, setEmailInput] = React.useState('');
     const [passwordInput, setPasswordInput] = React.useState('');
     const [confirmPasswordInput, setConfirmPasswordInput] = React.useState('');
-    //let [valid, setValid] = React.useState('');
     const [redirect, setRedirect] = React.useState(false);
     const [msg, setMsg] = React.useState('');
 
@@ -38,8 +38,19 @@ export function Register() {
                 headers: {
                   'Content-type': 'application/json; charset=UTF-8',
                 },
-            });
+            }).then((response) => {
+                if (response?.status === 200) {
+                  onAuthChange(usernameInput, AuthState.Authenticated);
+                  localStorage.setItem('username', usernameInput); //store username cookie
+                  //alert("Login success!");
+                  setRedirect(true);
+                }
+                else {
+                    setMsg('Username already in use');
+                }
+              });
             
+              /*
             if (response?.status === 200) {
                 //localStorage.setItem('userName', userName);
                 //alert("success!")
@@ -47,6 +58,7 @@ export function Register() {
               } else {
                 setMsg('Username already in use');
               }
+              */
         }
     }
 

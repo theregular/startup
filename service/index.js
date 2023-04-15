@@ -38,7 +38,8 @@ apiRouter.get('/user/:username', async (req, res) => {
     const threeRevs = await DB.getThreeReviews(username);
     const rank = await DB.getRank(username);
     const displayName = user.displayName;
-    let avg = 'No ratings yet!';
+    //let avg = 'No ratings yet!';
+    let avg = 0;
     const token = req?.cookies.token;// check for authtoken
 
 
@@ -91,7 +92,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 //TODO: only allow one rating and ability to delete/change a user rating
 apiRouter.post('/auth/addrating', async (req, res) => { 
   //check if user is logged in that is rating?
-    const rating = await DB.addRating(req.body.username, req.body.rating);
+    const rating = await DB.addRating(req.body.username, req.body.rating, req.body.ratedBy);
     
     if (rating) {
         res.status(200).send();

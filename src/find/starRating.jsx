@@ -6,6 +6,7 @@ import { AuthState } from '../login/authState';
 let ratingChanged = false; //change later to not use global variable
 
 export function StarRating(props) {
+  const loggedInUser = props.userName;
   const username = props.username;
   const tellParent = props.updated;
   const [rating, setRating] = useState();
@@ -15,7 +16,7 @@ export function StarRating(props) {
   React.useEffect(() => {
       
     if (ratingChanged) {
-      console.log("got in");
+      //console.log("got in");
       addRating();
     }
 
@@ -28,7 +29,7 @@ export function StarRating(props) {
       console.log(`RATING: ${rating}`);
       const response = await fetch(`/api/auth/addrating`, {
         method: 'post',
-        body: JSON.stringify({ username: username, rating: rating }),
+        body: JSON.stringify({ username: username, rating: rating, ratedBy: loggedInUser}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
@@ -44,7 +45,7 @@ export function StarRating(props) {
       
       ratingChanged = false;
       const newAvg = await getAverageRating(username);
-      console.log(`NEW AVG: ${newAvg}`);
+      //console.log(`NEW AVG: ${newAvg}`);
       await updateAvgRating(username, newAvg); //update DB with new average rating
     }
   }
@@ -78,7 +79,7 @@ export function StarRating(props) {
   
     if (response.status === 200) {
       //alert("new avg rating stored!");
-      console.log("new avg rating stored!");
+      //console.log("new avg rating stored!");
     } else {
       alert('could not store rating');
     }
@@ -89,12 +90,17 @@ export function StarRating(props) {
   const handleRatingClick = (index) => {
     //console.log(props.authState);
     if (props.authState === AuthState.Authenticated) {
-      ratingChanged = true;
-      setRating(index + 1);
-      sethoverCount(index + 1);
+      if(loggedInUser === username) {
+        alert("you can't rate yourself!");
+      }
+      else {
+        ratingChanged = true;
+        setRating(index + 1);
+        sethoverCount(index + 1);
+      }
     }
     else {
-    alert("please login or make an account to rate people!")
+      alert("please login or make an account to rate people!");
     }
     //addUserRating();
   };

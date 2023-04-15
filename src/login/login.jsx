@@ -8,7 +8,6 @@ export function Login({prefill, authState, onAuthChange}) {
     const navigate = useNavigate();
     const [usernameInput, setUsernameInput] = React.useState(prefill);
     const [passwordInput, setPasswordInput] = React.useState('');
-    //let [valid, setValid] = React.useState('');
     const [redirect, setRedirect] = React.useState(false);
     const [msg, setMsg] = React.useState('');
 
@@ -43,19 +42,7 @@ export function Login({prefill, authState, onAuthChange}) {
                 else {
                     setMsg('Incorrect username or password!');
                 }
-              });//.then(() => setRedirect(true));
-/*
-
-            if (response?.status === 200) {
-                onAuthChange(usernameInput, AuthState.Authenticated);
-                localStorage.setItem('username', usernameInput); //store username cookie
-                //alert("Login success!");
-                //setRedirect(true);
-            } 
-            else {
-                setMsg('Incorrect username or password!');
-            }
-            */
+              });
         }
     }
 

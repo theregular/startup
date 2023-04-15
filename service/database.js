@@ -26,22 +26,39 @@ function getUser(username) { //finds user by username from user DB
     return userCollection.findOne({ username: username });
 }
 
-function getUserInRank(username) { //finds user by username from rank DB
+function getUserInRank(username) { //finds user by username from ranks DB
   return ranksCollection.findOne({ username: username });
+}
+
+function getUserInRating(ratedBy) { //finds user by username from ratings DB
+  return ratingsCollection.findOne({ ratedBy: ratedBy });
 }
 
 function getUserByToken(token) { //finds user by authToken from DB
     return userCollection.findOne({ token: token });
 }
 
-async function addRating(username, rating) { //adds rating for a user to DB, maybe add person who rated them that later?
-    const userRating = {
-      username: username,
-      rating: rating,
-    };
-    await ratingsCollection.insertOne(userRating);
-  
+async function addRating(username, rating, ratedBy) { //adds rating for a user to DB, maybe add person who rated them that later?
+  const userRating = {
+    username: username,
+    rating: rating,
+    ratedBy: ratedBy,
+  };
+  //if username hasn't already been rated before by ratedBy, add new rating
+  if(await getUserInRating(ratedBy)) {
+    console.log(`updated rating for ${username} by ${ratedBy}`);
+    const filter = { ratedBy: ratedBy };
+    const update = { $set: { rating: rating } };
+    await ratingsCollection.updateOne(filter, update);
     return userRating;
+  }
+  //update rating if has
+  else {
+    
+    console.log(`new rating for ${username} by ${ratedBy}`);
+    await ratingsCollection.insertOne(userRating);
+    return userRating;
+  }
 }
 
 async function addReview(username, review) { //adds review for a user to DB, add person who reviewed them, timestamp?

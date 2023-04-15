@@ -159,8 +159,8 @@
   #out-of-five {
     font-size: 50px;
     display: inline-flex;
-    vertical-align: -75px;
     margin-left: 10px;
+    vertical-align: -30px;
   }
   
   #avg-rating-container {

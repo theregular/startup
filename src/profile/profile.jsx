@@ -170,11 +170,13 @@ export function Profile({authState, onAuthChange, userName}) {
 
                                 <div className="rating-body">
                                     <h1>RATING</h1>
-                                    {/*<span>Average Rating: </span> */}
-                                    <div id="avg-rating-container">
+                                    {userData.rating === 0 && ( <span id="out-of-five">No Ratings Yet!</span>)}
+                                    {userData.rating !== 0 && (
+                                        <div id="avg-rating-container">
                                         <span id ='avgRating'>{userData.rating}</span>
                                         <span id="out-of-five">/ 5</span>
                                     </div>
+                                    )}
                                 </div>
 
                             </div>

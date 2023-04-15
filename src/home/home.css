@@ -111,6 +111,7 @@
     text-decoration: none;
     margin: 5px 2px;
     border-radius: 50%;
+    color: white !important;;
 }
 
 .fa:hover {
@@ -119,24 +120,24 @@
 
 .fa-facebook {
     background: #3B5998;
-    color: white;
+    color: white !important;;
 }
 
 .fa-twitter {
     background: #55ACEE;
-    color: white;
+    color: white !important;;
 }
 
 .fa-google {
     background: #dd4b39;
-    color: white;
+    color: white !important;;
 }
 
 .fa-instagram {
     background: #df3087;
-    color: white;
+    color: white !important;;
 }
 .fa-github {
     background: #161616;
-    color: white;
+    color: white !important;;
 }

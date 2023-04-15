@@ -33,10 +33,10 @@ function App() {
     }
     style = document.createElement('style');
     style.id="dark-mode-style";
-    style.innerHTML = `* { background-color: ${backColor}; color: ${textColor}} 
-                        .login-form input {background: ${formInputColor};}
-                        .register-form input {background: ${formInputColor};}
-                        .find-form input {background: ${formInputColor};}
+    style.innerHTML = `body { background-color: ${backColor}; color: ${textColor}} 
+                        .login-form input {background: ${formInputColor}; color: ${textColor}}
+                        .register-form input {background: ${formInputColor}; color: ${textColor}}
+                        .find-form input {background: ${formInputColor}; color: ${textColor}}
                       `;
     document.head.appendChild(style);
   }
@@ -88,7 +88,7 @@ function App() {
         <Route path='/find' element={
             <Find 
               authState={authState}
-
+              userName={userName}
             />}
          />
         <Route path='/login' element={
@@ -101,7 +101,11 @@ function App() {
               }}/>
             }
           />
-        <Route path='/register' element={<Register />} />
+        <Route path='/register' element={<Register 
+                onAuthChange={(userName, authState) => {console.log("REGISTER AUTH STATE CHANGE"); console.log(authState);
+                setAuthState(authState);
+                setUserName(userName);
+              }}/>} />
         <Route path='/profile/:username' element={
           <Profile 
             authState={authState}
