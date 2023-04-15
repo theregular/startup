@@ -13,7 +13,7 @@ if (!userName) {
   */
 const url = `mongodb+srv://${userName}:${password}@clout.kxu11hn.mongodb.net/`;
 
-//const url = `mongodb+srv://cloutDB:platform321@clout.kxu11hn.mongodb.net/`;
+// const url = `mongodb+srv://cloutDB:platform321@clout.kxu11hn.mongodb.net/`;
 
 const client = new MongoClient(url);
 const userCollection = client.db('users').collection('user');
