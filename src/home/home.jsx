@@ -10,6 +10,7 @@ export function Home() {
     const [displayClout, setDisplayClout] = React.useState(false);
     const [displayUs, setDisplayUs] = React.useState(false);
     const [displayTop, setDisplayTop] = React.useState(false);
+    const [top10, setTop10] = React.useState([]);
 
     const mouseEnterLinks = () => {
         setDisplayLinks(true);
@@ -35,6 +36,28 @@ export function Home() {
     const mouseLeaveTop = () => {
         setDisplayTop(false);
     };
+
+    React.useEffect(() => {
+        getTop10();
+        console.log(top10);
+    });
+
+    async function getTop10() {
+        console.log("FETCHING TOP TEN");
+        const response = await fetch(`/api/auth/gettop10`, {
+            method: 'get',
+            headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            },
+            });
+        if (response.status === 200) {
+            const json = await response.json();
+            setTop10(json.top10);
+        }
+        else {
+            setTop10("No Top Users");
+        }
+    }
 
     return (
         <main className='home-body'>
@@ -87,8 +110,16 @@ export function Home() {
                     <h1>World Ranks</h1>
                     { displayTop && (
                     <div className="inner">
-                        <p>Top 5:</p>
-                        <p>Best people go here</p>
+                        <p>Top 10:</p>
+                        <ol id="top-ten">
+                        {top10.map((user) => {
+                            return (
+                            <li key={user.id}>
+                                {user.username }
+                            </li>
+                            );
+                        })}
+                        </ol>
                     </div>
                     )}
                 </div>

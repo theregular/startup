@@ -124,6 +124,13 @@ async function getRank(username) {
   return (index + 1); //return rank number
 }
 
+async function getTop10() {
+  console.log("MADE IT TO DB CALL");
+  const sort = {avgRating: -1};
+  const result = await ranksCollection.find().sort(sort).limit(10).toArray();
+  return result;
+}
+
 async function changeDisplayName(username, newDisplayName) {
   if (await getUser(username)) {
     const filter = { username: username };
@@ -168,5 +175,6 @@ module.exports = {
     getThreeReviews,
     updateAvgRating,
     getRank,
-    changeDisplayName
+    changeDisplayName,
+    getTop10
   };

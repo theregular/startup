@@ -32,7 +32,7 @@ export function Register({onAuthChange}) {
     async function createUser() {
         const valid = validate(usernameInput, emailInput, passwordInput, confirmPasswordInput);
         if (valid === true) {
-            const response = await fetch(`/api/auth/create`, {
+            await fetch(`/api/auth/create`, {
                 method: 'post',
                 body: JSON.stringify({ username: usernameInput, password: passwordInput, email: emailInput}),
                 headers: {

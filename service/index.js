@@ -170,6 +170,16 @@ apiRouter.get('/auth/getavgrating/:username', async (req, res) => {
   res.status(500).send({msg: 'Error getting average rating from DB'});
 });
 
+apiRouter.get('/auth/gettop10', async (req, res) => { 
+  console.log("TOP TEN SERVICE CALLED");
+  const top10 = await DB.getTop10();
+  console.log(top10);
+  if (top10) {
+    res.send({top10: top10});
+    return;
+  }
+  res.status(500).send({msg: 'Error getting top tens'});
+});
 
 // DeleteAuth token if stored in cookie
 apiRouter.delete('/auth/logout', (_req, res) => {
