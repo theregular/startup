@@ -12,6 +12,8 @@ export function Profile({authState, onAuthChange, userName}) {
     const [settings, setSettings] = React.useState(false);
     const [changeName, setChangeName] = React.useState(false);
     const [nameChangeInput, setNameChangeInput] = React.useState('');
+    const [changePfp, setChangePfp] = React.useState(false);
+    const [image, setImage] = React.useState(null); //get default image from database
 
 /*
     //dark mode stuff
@@ -85,6 +87,15 @@ export function Profile({authState, onAuthChange, userName}) {
         }
     }
 
+    function changePfpOption() {
+        if(changePfp) {
+            setChangePfp(false);
+        }
+        else {
+            setChangePfp(true);
+        }
+    }
+
     async function submitNameChange() {
         const valid = validate(nameChangeInput);
         console.log("submit");
@@ -105,6 +116,7 @@ export function Profile({authState, onAuthChange, userName}) {
             }
     }
     }
+    
 
     const nameChangeText = (e) => {
         setNameChangeInput(e.target.value.trim());
@@ -144,7 +156,14 @@ export function Profile({authState, onAuthChange, userName}) {
                                                 </div>
                                             )}
                                             {!changeName && (<button id="change-btn" onClick={()=> changeNameBox()}>change name</button>)}
-                                            <button id="change-btn">change pfp</button>
+                                            {changePfp && (
+                                                <div id="pfp-change">
+                                                    <input type="text" id="change-name" maxLength="25" placeholder='enter new name here' onChange={nameChangeText}></input>
+                                                    <button id="submit-btn" onClick={()=> submitPfpChange()}>submit</button>
+                                                    <button id="submit-btn" onClick={()=> setChangePfp(false)}>cancel</button>
+                                                </div>
+                                            )}
+                                            {!changePfp &&  (<button id="change-btn" onClick={()=> changePfpOption()}>change pfp</button>)}
                                             {/*
                                             <div id="switch">
                                                 {!darkMode && (<div id="switch-text">Light Mode</div>)}

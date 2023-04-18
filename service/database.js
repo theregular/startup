@@ -20,7 +20,8 @@ const userCollection = client.db('users').collection('user');
 const ratingsCollection = client.db('users').collection('rating');
 const reviewsCollection = client.db('users').collection('review');
 const ranksCollection = client.db('users').collection('rank');
-const settingsCollection = client.db('users').collection('settings');
+const pfpCollection = client.db('users').collection('pfp');
+//const settingsCollection = client.db('users').collection('settings');
 
 function getUser(username) { //finds user by username from user DB
     return userCollection.findOne({ username: username });
