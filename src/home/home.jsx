@@ -39,11 +39,11 @@ export function Home() {
 
     React.useEffect(() => {
         getTop10();
-        console.log(top10);
-    });
+        //console.log(top10);
+    }, [top10]);
 
     async function getTop10() {
-        console.log("FETCHING TOP TEN");
+        //console.log("FETCHING TOP TEN");
         const response = await fetch(`/api/auth/gettop10`, {
             method: 'get',
             headers: {
@@ -58,6 +58,7 @@ export function Home() {
             setTop10("No Top Users");
         }
     }
+
 
     return (
         <main className='home-body'>

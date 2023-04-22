@@ -171,9 +171,9 @@ apiRouter.get('/auth/getavgrating/:username', async (req, res) => {
 });
 
 apiRouter.get('/auth/gettop10', async (req, res) => { 
-  console.log("TOP TEN SERVICE CALLED");
+  //console.log("TOP TEN SERVICE CALLED");
   const top10 = await DB.getTop10();
-  console.log(top10);
+  //console.log(top10);
   if (top10) {
     res.send({top10: top10});
     return;

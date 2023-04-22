@@ -116,6 +116,13 @@ export function Profile({authState, onAuthChange, userName}) {
             }
     }
     }
+
+    async function submitPfpChange() {
+        if (image) {
+    
+
+        }
+    }
     
 
     const nameChangeText = (e) => {
@@ -158,7 +165,7 @@ export function Profile({authState, onAuthChange, userName}) {
                                             {!changeName && (<button id="change-btn" onClick={()=> changeNameBox()}>change name</button>)}
                                             {changePfp && (
                                                 <div id="pfp-change">
-                                                    <input type="text" id="change-name" maxLength="25" placeholder='enter new name here' onChange={nameChangeText}></input>
+                                                    <input type="file" accept="image/*" onChange={null}/>
                                                     <button id="submit-btn" onClick={()=> submitPfpChange()}>submit</button>
                                                     <button id="submit-btn" onClick={()=> setChangePfp(false)}>cancel</button>
                                                 </div>
