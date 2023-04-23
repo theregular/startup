@@ -13,7 +13,8 @@ export function Profile({authState, onAuthChange, userName}) {
     const [changeName, setChangeName] = React.useState(false);
     const [nameChangeInput, setNameChangeInput] = React.useState('');
     const [changePfp, setChangePfp] = React.useState(false);
-    const [image, setImage] = React.useState(null); //get default image from database
+    //const [image, setImage] = React.useState(null); //get default image from database
+    const [image, setImage] = React.useState("/images/cool carl.jpg"); //get default image from database
 
 /*
     //dark mode stuff
@@ -119,11 +120,22 @@ export function Profile({authState, onAuthChange, userName}) {
 
     async function submitPfpChange() {
         if (image) {
-    
+            
 
         }
     }
     
+    const handleFileInputChange = (event) => {
+        console.log("GOT IMAGE");
+        const img = event.target.files[0];
+        console.log(img);
+        if (img) {
+            const fileUrl = URL.createObjectURL(img);
+            setImage(fileUrl);
+        } else {
+            setImage(null);
+        }
+    };
 
     const nameChangeText = (e) => {
         setNameChangeInput(e.target.value.trim());
@@ -165,7 +177,9 @@ export function Profile({authState, onAuthChange, userName}) {
                                             {!changeName && (<button id="change-btn" onClick={()=> changeNameBox()}>change name</button>)}
                                             {changePfp && (
                                                 <div id="pfp-change">
-                                                    <input type="file" accept="image/*" onChange={null}/>
+                                                    <input type="file" accept="image/*" onChange={handleFileInputChange}/>
+                                
+                                                    <button id="submit-btn" onClick={()=> console.log("CHOOSE FILE")}>choose file</button>
                                                     <button id="submit-btn" onClick={()=> submitPfpChange()}>submit</button>
                                                     <button id="submit-btn" onClick={()=> setChangePfp(false)}>cancel</button>
                                                 </div>
@@ -183,7 +197,7 @@ export function Profile({authState, onAuthChange, userName}) {
                                         </div>
                                     )}
                             </div>
-                            <img className="pfp-pic" src="/images/cool carl.jpg" alt="pfp"/>
+                            <img className="pfp-pic" src={image} alt="pfp"/>
                             <div className ="pfp-userinfo">
                                 <h2 className="name">{userData.displayName}</h2>
                                 <p className="username">@{userData.username}</p>

@@ -36,7 +36,8 @@ export function Home() {
     const mouseLeaveTop = () => {
         setDisplayTop(false);
     };
-
+    
+    //TODO: FIX HOW IT CALLS THIS SO MUCH
     React.useEffect(() => {
         getTop10();
         //console.log(top10);
