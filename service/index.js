@@ -131,6 +131,19 @@ apiRouter.post('/auth/changedisplayname', async (req, res) => {
   res.status(500).send({msg: 'Error changing display name'});
 });
 
+apiRouter.post('/auth/uploadpfp', async (req, res) => { 
+  //check if user is logged in that is reviewing?
+  console.log("SERVICE CALL:");
+  console.log(req.body.username);
+  console.log(req.body.pfp);
+  const result = await DB.uploadPfp(req.body.username, req.body.pfp);
+  if (result) {
+    res.status(200).send();
+    return;
+  }
+  res.status(500).send({msg: 'Error uploading pfp'});
+});
+
 //UNNCESS?
 /*
 apiRouter.get('/auth/getthreereviews', async (req, res) => { 

@@ -165,6 +165,11 @@ async function createUser(username, password, email) { //client doesn't actually
     return user;
 }
 
+async function uploadPfp(username, pfpData) {
+  console.log("MADE IT TO DB");
+  return true;
+}
+
 module.exports = {
     getUser,
     getUserByToken,
@@ -177,5 +182,6 @@ module.exports = {
     updateAvgRating,
     getRank,
     changeDisplayName,
-    getTop10
+    getTop10,
+    uploadPfp
   };

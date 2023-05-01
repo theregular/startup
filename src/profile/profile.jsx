@@ -13,8 +13,10 @@ export function Profile({authState, onAuthChange, userName}) {
     const [changeName, setChangeName] = React.useState(false);
     const [nameChangeInput, setNameChangeInput] = React.useState('');
     const [changePfp, setChangePfp] = React.useState(false);
-    //const [image, setImage] = React.useState(null); //get default image from database
-    const [image, setImage] = React.useState("/images/cool carl.jpg"); //get default image from database
+    const [image, setImage] = React.useState("/images/cool carl.jpg"); //use default image by default
+    const [OGimage, setOGImage] = React.useState(image);
+    const [imageFile, setImageFile] = React.useState(null);
+    //const [imageData, setImageData] = React.useState(null);
 
 /*
     //dark mode stuff
@@ -97,11 +99,15 @@ export function Profile({authState, onAuthChange, userName}) {
         }
     }
 
+    function pfpChangeCancel(){
+        setChangePfp(false);
+        setImage(OGimage);
+    }
+
     async function submitNameChange() {
         const valid = validate(nameChangeInput);
         console.log("submit");
         if (valid === true) {
-            console.log("valid true");
             const response = await fetch(`/api/auth/changedisplayname`, {
                 method: 'post',
                 body: JSON.stringify({ username: username, newDisplayName: nameChangeInput}),
@@ -119,21 +125,43 @@ export function Profile({authState, onAuthChange, userName}) {
     }
 
     async function submitPfpChange() {
-        if (image) {
-            
+        console.log("SUBMIT");
+        if (imageFile) {
+            //convert image to binary data
+            const reader = new FileReader();
+            reader.readAsDataURL(imageFile);
+            reader.onload = async () => {
+                const base64Image = reader.result.split(",")[1];
+                const response = await fetch(`/api/auth/uploadpfp`, {
+                    method: 'post',
+                    body: JSON.stringify({ username: username, pfp: imageFile}),
+                    headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                    },
+                    });
+                if (response.status === 200) {
+                    console.log("SUCCESS");
 
+                    //const json = await response.json();
+                    //setUserData(json);
+                }
+                else {
+                    console.log("FAIL");
+                }
+            }
         }
     }
     
     const handleFileInputChange = (event) => {
-        console.log("GOT IMAGE");
         const img = event.target.files[0];
-        console.log(img);
-        if (img) {
+        const maxFileSize = 10 * 1024 * 1024; // 10 MB
+
+        if (img && img.size <= maxFileSize) {
+            setImageFile(img);
             const fileUrl = URL.createObjectURL(img);
             setImage(fileUrl);
         } else {
-            setImage(null);
+            alert("File size must be less than 10 MB");
         }
     };
 
@@ -177,11 +205,10 @@ export function Profile({authState, onAuthChange, userName}) {
                                             {!changeName && (<button id="change-btn" onClick={()=> changeNameBox()}>change name</button>)}
                                             {changePfp && (
                                                 <div id="pfp-change">
-                                                    <input type="file" accept="image/*" onChange={handleFileInputChange}/>
+                                                    <input id="file-input" type="file" accept="image/*" onChange={handleFileInputChange}/>
                                 
-                                                    <button id="submit-btn" onClick={()=> console.log("CHOOSE FILE")}>choose file</button>
                                                     <button id="submit-btn" onClick={()=> submitPfpChange()}>submit</button>
-                                                    <button id="submit-btn" onClick={()=> setChangePfp(false)}>cancel</button>
+                                                    <button id="submit-btn" onClick={()=> pfpChangeCancel()}>cancel</button>
                                                 </div>
                                             )}
                                             {!changePfp &&  (<button id="change-btn" onClick={()=> changePfpOption()}>change pfp</button>)}

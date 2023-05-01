@@ -302,6 +302,24 @@
 }
 */
 
+#file-input::-webkit-file-upload-button {
+  display: none;
+}
+
+#file-input::before {
+  content: 'choose file';
+  display: inline-block;
+  background: #CC2936;
+  font-family: Roboto, sans-serif;
+  cursor: pointer;
+  border: 0;
+  padding: 5px 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
  
 
 
