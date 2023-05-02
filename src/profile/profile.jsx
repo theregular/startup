@@ -243,7 +243,6 @@ export function Profile({authState, onAuthChange, userName}) {
                 <main className='profile'>  {/*style={{ backgroundColor: backColor }}>*/}    
                     <div id = "profile-container">
                         <div className ="pfp-top">
-                        <div>{userData.pfp.toString('base64')}</div>
                             <div id = 'settings-buttons'>
                                 <button id="settings-btn"onClick={()=> logout()}>Logout</button>
                                 <button id="settings-btn" onClick={()=> settingsOption()}>Settings</button>

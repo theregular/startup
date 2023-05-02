@@ -198,7 +198,7 @@ export function Find({authState, userName}) {
             {userData && (
                 <div id="profile-container">
                     <div className="pfp-top">
-                        <img className="pfp-pic" src="/images/cool carl.jpg" alt="pfp" />
+                        <img className="pfp-pic" src={userData.pfp ? `data:image/jpeg;base64,${userData.pfp.toString('base64')}` : "/images/cool carl.jpg"} alt="pfp" />
                         <div className="pfp-userinfo">
                             <h2 className="name">{userData.displayName}</h2>
                             <p className="username">@{userData.username}</p>
