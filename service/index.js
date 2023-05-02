@@ -7,13 +7,6 @@ const app = express();
 
 const authCookieName = 'token';
 
-//set for handlebars
-app.set('view engine', 'handlebars');
-
-app.engine('handlebars', handlebars.engine({
-    layoutsDir: `${__dirname}/views/layouts`
-}));
-
 // The service port. In production the application is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
