@@ -5,12 +5,17 @@ import { FaTwitter } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
 import { FaGithub} from 'react-icons/fa';
 
+
 export function Home() {
     const [displayLinks, setDisplayLinks] = React.useState(false);
     const [displayClout, setDisplayClout] = React.useState(false);
     const [displayUs, setDisplayUs] = React.useState(false);
     const [displayTop, setDisplayTop] = React.useState(false);
     const [top10, setTop10] = React.useState([]);
+    const [windowSize, setWindowSize] = React.useState({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
 
     const mouseEnterLinks = () => {
         setDisplayLinks(true);
@@ -41,6 +46,13 @@ export function Home() {
     React.useEffect(() => {
         getTop10();
         //console.log(top10);
+        // Add event listener to listen for window resize
+        window.addEventListener('resize', handleResize);
+    
+        // Clean up the event listener on component unmount
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
     }, [top10]);
 
     async function getTop10() {
@@ -59,7 +71,13 @@ export function Home() {
             setTop10("No Top Users");
         }
     }
-
+    
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+    };
 
     return (
         <main className='home-body'>
@@ -84,7 +102,7 @@ export function Home() {
                 </div>
             </div>
 
-            <div className="inverted-widget" onMouseEnter={mouseEnterClout} onMouseLeave={mouseLeaveClout}>
+            <div className= "inverted-widget" onMouseEnter={mouseEnterClout} onMouseLeave={mouseLeaveClout}>
                 <div className="outer">
                     <h1>About CLOUT</h1>
                     { displayClout && (
@@ -107,12 +125,12 @@ export function Home() {
                 </div>
             </div>
 
-            <div className="inverted-widget" onMouseEnter={mouseEnterTop} onMouseLeave={mouseLeaveTop}>
+            <div className= {windowSize.width <= 1063 || windowSize.width >= 1623 ? "widget" : "inverted-widget"} onMouseEnter={mouseEnterTop} onMouseLeave={mouseLeaveTop}>
                 <div className="outer">
-                    <h1>World Ranks</h1>
+                    {!displayTop && (<h1>World Ranks</h1>)}
                     { displayTop && (
                     <div className="inner">
-                        <p>Top 10:</p>
+                        <p className= "topTitle" >Top 10:</p>
                         <ol id="top-ten">
                         {top10.map((user) => {
                             return (
@@ -127,7 +145,7 @@ export function Home() {
                 </div>
             </div>
 
-            <div className="widget" onMouseEnter={mouseEnterLinks} onMouseLeave={mouseLeaveLinks}>
+            <div className= {windowSize.width <= 1063 || windowSize.width >= 1623 ? "inverted-widget" : "widget"} onMouseEnter={mouseEnterLinks} onMouseLeave={mouseLeaveLinks}>
                 <div className="outer">
                     { displayLinks ? (
                     <div id="links">

@@ -77,14 +77,23 @@ function App() {
         </div>
         <h6 className="links">
             <NavLink className="navlink" to ='find' style={{ textDecoration: 'none'}} >Find /</NavLink>
-            <NavLink className="navlink" to ='login' style={{ textDecoration: 'none' }} > Login /</NavLink>
-            <NavLink className="navlink" to ='register' style={{ textDecoration: 'none' }} > Register /</NavLink>
+
+            {authState !== AuthState.Authenticated && (
+              <span>
+                <NavLink className="navlink" to ='login' style={{ textDecoration: 'none' }} > Login /</NavLink>
+                <NavLink className="navlink" to ='register' style={{ textDecoration: 'none' }} > Register /</NavLink>
+              </span>
+            )}
+
+            {/* <NavLink className="navlink" to ='login' style={{ textDecoration: 'none' }} > Login /</NavLink>
+            <NavLink className="navlink" to ='register' style={{ textDecoration: 'none' }} > Register /</NavLink> */}
+            
             <NavLink className="navlink" to ={`profile/${userName}`} style={{ textDecoration: 'none' }} > Profile</NavLink>
         </h6>
       </header>
       
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home authState={authState} />} />
         <Route path='/find' element={
             <Find 
               authState={authState}

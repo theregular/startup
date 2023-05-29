@@ -2,13 +2,22 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import {AuthState} from '../login/authState';
+import { FaBars} from 'react-icons/fa';
 import './profile.css'
 import './switch.css'
 
 export function Profile({authState, onAuthChange, userName}) {
     const navigate = useNavigate();
+
+    const [windowSize, setWindowSize] = React.useState({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    const [mobileView, setMobileView] = React.useState(windowSize.width <= 810 ? true : false);
+
     const { username } = useParams(); //gets username from params
     const [userData, setUserData] = React.useState(null);
+    const [options, setOptions] = React.useState(false);
     const [settings, setSettings] = React.useState(false);
     const [changeName, setChangeName] = React.useState(false);
     const [nameChangeInput, setNameChangeInput] = React.useState('');
@@ -55,7 +64,32 @@ export function Profile({authState, onAuthChange, userName}) {
             }
         }
         fetchData();
+
+
+        // Add event listener to listen for window resize
+        window.addEventListener('resize', handleResize);
+    
+        // Clean up the event listener on component unmount
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
     });
+
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+        if (window.innerWidth <= 810 && !mobileView) {
+            setMobileView(true);
+            settingsWindowReset();
+        }
+        if (window.innerWidth > 810 && mobileView) {
+            setMobileView(false);
+            settingsWindowReset();
+        }
+    };
+
  
     /*
     if (redirect) {
@@ -70,11 +104,22 @@ export function Profile({authState, onAuthChange, userName}) {
         }).then(() => onAuthChange(username, AuthState.Unauthenticated));
     }
 
+    function openSettingsOptions() {
+        if(options) {
+            setOptions(false);
+            setSettings(false);
+            setChangeName(false);
+            setChangePfp(false);
+        }
+        else {
+            setOptions(true);
+        }
+    }
+
     function settingsOption() {
         if(settings) {
             setSettings(false);
             setChangeName(false);
-            console.log("made it here");
         }
         else {
             setSettings(true);
@@ -102,6 +147,14 @@ export function Profile({authState, onAuthChange, userName}) {
     function pfpChangeCancel(){
         setChangePfp(false);
         setImage(OGimage);
+    }
+
+    function settingsWindowReset() {
+        setOptions(false);
+        setSettings(false);
+        setChangeName(false);
+        setChangePfp(false);
+        return true;
     }
 
     async function submitNameChange() {
@@ -188,10 +241,18 @@ export function Profile({authState, onAuthChange, userName}) {
                 <main className='profile'>  {/*style={{ backgroundColor: backColor }}>*/}    
                     <div id = "profile-container">
                         <div className ="pfp-top">
-                            <div id = 'settings-buttons'>
-                                <button id="settings-btn"onClick={()=> logout()}>Logout</button>
-                                <button id="settings-btn" onClick={()=> settingsOption()}>Settings</button>
-                            </div>
+
+                            {(windowSize.width <= 810) &&
+                                (<button id="options-button" onClick={()=> openSettingsOptions()}><FaBars className="fa-bars"/></button>) 
+                            }
+
+                            {(windowSize.width > 810 || options) &&
+                                (<div id = 'settings-buttons'>
+                                    <button id="settings-btn"onClick={()=> logout()}>Logout</button>
+                                    <button id="settings-btn" onClick={()=> settingsOption()}>Settings</button>
+                                </div>)
+                            }
+
                             <div id='settings'>
                                     {settings && (
                                         <div id="settings-options">

@@ -45,7 +45,8 @@
     letter-spacing: 0.03em;
     font-family: Roboto, sans-serif;
     justify-content: center;
-    font-weight: bold;
+    align-items: center;
+    font-weight:lighter;
     margin: auto;
     border-style: solid;
     border-color: #CC2936;
@@ -53,7 +54,6 @@
     border-radius: 10%;
     padding: 20px;
     min-width: 400px;
-
     display: flex;
     flex: 1;
     height: 300px;
@@ -67,7 +67,7 @@
     letter-spacing: 0.03em;
     font-family: Roboto, sans-serif;
     justify-content: center;
-    font-weight: bold;
+    font-weight:lighter;
 
     background-color: #CC2936;
     /*margin: 0, 20px, 20px; */
@@ -87,14 +87,25 @@
     align-items: center;
 }
 
-.inverted-widget p {
+@media (max-width: 810px) { /*maybe change this to be not a harcoded value somehow, mess with flex box*/
+    .home-body .inverted-widget {
+        min-width: 300px;
+    }
+  
+    .home-body .widget {
+        min-width: 300px;
+    }
+}
+  
+
+.inverted-widget .inner {
     color: #ffffff;
 }
 
 /* TOP TEN */
 
-#top-ten {
-    color: white;
+.topTitle {
+    font-weight: bold;
 }
 
 /* SOCIAL LINKS */
@@ -118,7 +129,7 @@
     vertical-align: -90px;
     margin: 10px 20px;
     border-radius: 50%;
-    color: white !important;;
+    color: white !important;
 }
 
 .fa:hover {
@@ -127,24 +138,24 @@
 
 .fa-facebook {
     background: #3B5998;
-    color: white !important;;
+    color: white !important;
 }
 
 .fa-twitter {
     background: #55ACEE;
-    color: white !important;;
+    color: white !important;
 }
 
 .fa-google {
     background: #dd4b39;
-    color: white !important;;
+    color: white !important;
 }
 
 .fa-instagram {
     background: #df3087;
-    color: white !important;;
+    color: white !important;
 }
 .fa-github {
     background: #161616;
-    color: white !important;;
+    color: white !important;
 }
