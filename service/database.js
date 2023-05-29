@@ -20,7 +20,7 @@ const userCollection = client.db('users').collection('user');
 const ratingsCollection = client.db('users').collection('rating');
 const reviewsCollection = client.db('users').collection('review');
 const ranksCollection = client.db('users').collection('rank');
-const pfpCollection = client.db('users').collection('pfp');
+//const pfpCollection = client.db('users').collection('pfp');
 //const settingsCollection = client.db('users').collection('settings');
 
 function getUser(username) { //finds user by username from user DB
@@ -151,7 +151,7 @@ async function createUser(username, password, email) { //client doesn't actually
       email: email,
       token: uuid.v4(),
       displayName: username, //displayName defaults to username
-      //add pfp option later
+      pfp: null,
     };
 
     const rank = {
@@ -167,7 +167,12 @@ async function createUser(username, password, email) { //client doesn't actually
 
 async function uploadPfp(username, pfpData) {
   console.log("MADE IT TO DB");
-  return true;
+  if (await getUser(username)) {
+    const filter = { username: username };
+    const update = { $set: { pfp: pfpData } };
+    const result = await userCollection.updateOne(filter, update);
+    return result;
+  }
 }
 
 module.exports = {

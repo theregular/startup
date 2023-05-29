@@ -22,7 +22,7 @@ export function Profile({authState, onAuthChange, userName}) {
     const [changeName, setChangeName] = React.useState(false);
     const [nameChangeInput, setNameChangeInput] = React.useState('');
     const [changePfp, setChangePfp] = React.useState(false);
-    const [image, setImage] = React.useState("/images/cool carl.jpg"); //use default image by default
+    const [image, setImage] = React.useState("/images/cool carl.jpg");
     const [OGimage, setOGImage] = React.useState(image);
     const [imageFile, setImageFile] = React.useState(null);
     //const [imageData, setImageData] = React.useState(null);
@@ -176,18 +176,20 @@ export function Profile({authState, onAuthChange, userName}) {
             }
     }
     }
-
+    
+/* -- send pfp as base64 --
     async function submitPfpChange() {
         console.log("SUBMIT");
         if (imageFile) {
-            //convert image to binary data
+            //convert image to base64 data
             const reader = new FileReader();
             reader.readAsDataURL(imageFile);
             reader.onload = async () => {
                 const base64Image = reader.result.split(",")[1];
+                //setImage("data:image/png;base64," + base64Image);
                 const response = await fetch(`/api/auth/uploadpfp`, {
                     method: 'post',
-                    body: JSON.stringify({ username: username, pfp: imageFile}),
+                    body: JSON.stringify({ username: username}),//pfpData: base64Image}),
                     headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                     },
@@ -204,6 +206,59 @@ export function Profile({authState, onAuthChange, userName}) {
             }
         }
     }
+    */
+/* send pfp as FormData binary */
+    async function submitPfpChange() {
+        console.log("SUBMIT");
+        if (imageFile) {
+            //convert image to binary data
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('pfp', imageFile);
+            
+            const response = await fetch(`/api/auth/uploadpfp`, {
+                method: 'post',
+                body: formData
+                });
+            if (response.status === 200) {
+                console.log("SUCCESS");
+
+                //const json = await response.json();
+                //setUserData(json);
+            }
+            else {
+                console.log("FAIL");
+            }
+        }
+    }
+    
+    /*
+    async function submitPfpChange() {
+        console.log("SUBMIT");
+        if (imageFile) {
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('pfpic', imageFile);
+
+            const response = await fetch(`/api/auth/uploadpfp`, {
+                method: 'post',
+                body: formData,
+                });
+            if (response.status === 200) {
+                console.log("SUCCESS");
+
+                //const json = await response.json();
+                //setUserData(json);
+            }
+            else {
+                console.log("FAIL");
+            }
+        }
+        else {
+            console.log("NO FILE DETECTED");
+        }
+    }
+    */
     
     const handleFileInputChange = (event) => {
         const img = event.target.files[0];
@@ -211,8 +266,8 @@ export function Profile({authState, onAuthChange, userName}) {
 
         if (img && img.size <= maxFileSize) {
             setImageFile(img);
-            const fileUrl = URL.createObjectURL(img);
-            setImage(fileUrl);
+            //const fileUrl = URL.createObjectURL(img);
+            //setImage(fileUrl);
         } else {
             alert("File size must be less than 10 MB");
         }
@@ -285,7 +340,7 @@ export function Profile({authState, onAuthChange, userName}) {
                                         </div>
                                     )}
                             </div>
-                            <img className="pfp-pic" src={image} alt="pfp"/>
+                            <img className="pfp-pic" src={userData.pfp ? `data:image/jpeg;base64,${userData.pfp.toString('base64')}` : "/images/cool carl.jpg"} alt="pfp"/>
                             <div className ="pfp-userinfo">
                                 <h2 className="name">{userData.displayName}</h2>
                                 <p className="username">@{userData.username}</p>

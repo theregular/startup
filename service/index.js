@@ -1,18 +1,14 @@
 const express = require('express');
 const DB = require('./database.js'); //code for database
 const bcrypt = require('bcrypt'); //encryption module
-const handlebars = require('express-handlebars'); //express-handlebars
+//const handlebars = require('express-handlebars'); //express-handlebars
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+
 const app = express();
+const upload = multer();
 
 const authCookieName = 'token';
-
-//set for handlebars
-app.set('view engine', 'handlebars');
-
-app.engine('handlebars', handlebars.engine({
-    layoutsDir: `${__dirname}/views/layouts`
-}));
 
 // The service port. In production the application is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -38,6 +34,7 @@ apiRouter.get('/user/:username', async (req, res) => {
     const threeRevs = await DB.getThreeReviews(username);
     const rank = await DB.getRank(username);
     const displayName = user.displayName;
+    const pfp = user.pfp;
     //let avg = 'No ratings yet!';
     let avg = 0;
     const token = req?.cookies.token;// check for authtoken
@@ -53,7 +50,7 @@ apiRouter.get('/user/:username', async (req, res) => {
     }
     //hard coded three reviews rn, scale up later
     //const token = req?.cookies.token; // --- implement later
-    res.send({ username: username, displayName: displayName, rating: avg, rank: rank, 
+    res.send({ username: username, displayName: displayName, pfp: pfp, rating: avg, rank: rank, 
       review1: reviews[0], review2: reviews[1], review3: reviews[2], authenticated: token === user.token}); // --- implement later
     return;
   }
@@ -131,12 +128,12 @@ apiRouter.post('/auth/changedisplayname', async (req, res) => {
   res.status(500).send({msg: 'Error changing display name'});
 });
 
-apiRouter.post('/auth/uploadpfp', async (req, res) => { 
+apiRouter.post('/auth/uploadpfp', upload.single('pfp'), async (req, res) => { 
   //check if user is logged in that is reviewing?
   console.log("SERVICE CALL:");
-  console.log(req.body.username);
-  console.log(req.body.pfp);
-  const result = await DB.uploadPfp(req.body.username, req.body.pfp);
+  //console.log(req.body.username);
+  //console.log(req.file.buffer);
+  const result = await DB.uploadPfp(req.body.username, req.file.buffer);
   if (result) {
     res.status(200).send();
     return;
